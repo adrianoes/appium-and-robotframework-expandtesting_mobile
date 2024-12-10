@@ -37,13 +37,14 @@ Check then both to add both options in context menu.
 - Open your terminal in your project directory and execute ```npx appium-doctor --android``` to run Appium Doctor and check Appium instalation status.
 - Open your terminal in your project directory and execute ```npx appium driver install uiautomator2``` to install drivers for automationName and platformName capabilities.
 - See [Appium Inspector download page](https://github.com/appium/appium-inspector/releases), download and install it. Configure capabilities as below and save it:
+
   ```
-    {
-      "platformName": "Android",
-      "appium:deviceName": "Android Emulator",
-      "appium:automationName": "UIAutomator2",
-      "appium:app": "C:\\appium-expandtesting_UI\\apps\\apiClient.apk"
-    }
+  {
+    "platformName": "Android",
+    "appium:deviceName": "Android Emulator",
+    "appium:automationName": "UIAutomator2",
+    "appium:app": "C:\\appium-expandtesting_UI\\apps\\apiClient.apk"
+  }
   ```  
 - Open your terminal in your project directory and execute ```npx appium``` to start appium session.
 - Execute Virtual Device Manager on Android Studio.
