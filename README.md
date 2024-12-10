@@ -17,7 +17,6 @@ UI testing in [expandtesting](https://practice.expandtesting.com/notes/app/) not
 | Virtual device                  | Pixel 4        |                                                                 |
 | API                             | 29             |                                                                 |
 | uiautomator2 driver             | 3.9.2          |                                                                 |
-| uiautomator2 driver             | 3.9.2          |                                                                 |
 
 # Installation:
 
