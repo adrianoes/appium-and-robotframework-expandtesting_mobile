@@ -33,6 +33,9 @@ jobs:
       run: |     
         npx appium driver install uiautomator2
 
+    - name: Set ANDROID_HOME
+      run: echo "ANDROID_HOME=/usr/local/lib/android/sdk" >> $GITHUB_ENV
+  
     - name: Add adb to PATH
       run: |
         export PATH=$PATH:/usr/local/lib/android/sdk/platform-tools
