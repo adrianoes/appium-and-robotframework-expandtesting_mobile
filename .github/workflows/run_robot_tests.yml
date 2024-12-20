@@ -28,6 +28,9 @@ jobs:
     - name: Install Appium
       run: |
         npm install -g appium
+
+    - name: Install appium-uiautomator2-driver
+      run: |
         npm install -g appium-uiautomator2-driver
 
     - name: Start Appium Server
