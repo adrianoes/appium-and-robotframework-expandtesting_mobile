@@ -27,8 +27,9 @@ jobs:
 
     - name: Accept Licenses and Install Emulator
       run: |
-        yes | $ANDROID_HOME/cmdline-tools/bin/sdkmanager --licenses
-        $ANDROID_HOME/cmdline-tools/bin/sdkmanager "platform-tools" "emulator" "platforms;android-29" "system-images;android-29;google_apis;x86_64"
+        yes | $ANDROID_HOME/cmdline-tools/bin/sdkmanager --sdk_root=$ANDROID_HOME --licenses
+        $ANDROID_HOME/cmdline-tools/bin/sdkmanager --sdk_root=$ANDROID_HOME "platform-tools" "emulator" "platforms;android-29" "system-images;android-29;google_apis;x86_64"
+      
 
     - name: Start Android Emulator
       run: |
