@@ -25,7 +25,6 @@ jobs:
         pip install robotframework
         pip install robotframework-appiumlibrary
         pip install uiautomator2
-        pip install -r requirements.txt
 
     - name: Run Robot Framework Tests
       run: |
