@@ -30,7 +30,10 @@ jobs:
         yes | $ANDROID_HOME/cmdline-tools/bin/sdkmanager --sdk_root=$ANDROID_HOME --licenses
         $ANDROID_HOME/cmdline-tools/bin/sdkmanager --sdk_root=$ANDROID_HOME "platform-tools" "emulator" "platforms;android-29" "system-images;android-29;google_apis;x86_64"
       
-
+    - name: Create Android Virtual Device
+      run: |
+        echo "no" | $ANDROID_HOME/cmdline-tools/latest/bin/avdmanager create avd -n test_device -k "system-images;android-29;google_apis;x86_64" --device "pixel_4"
+  
     - name: Start Android Emulator
       run: |
         $ANDROID_HOME/emulator/emulator -avd test_device -no-snapshot -no-window -gpu off -partition-size 512 &
