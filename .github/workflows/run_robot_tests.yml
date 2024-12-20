@@ -27,23 +27,14 @@ jobs:
         echo "ANDROID_HOME=$HOME/android-sdk" >> $GITHUB_ENV
         echo "PATH=$PATH:$ANDROID_HOME/cmdline-tools/latest/bin:$ANDROID_HOME/platform-tools" >> $GITHUB_ENV
 
-    - name: Check KVM Support
-      run: |
-        if ! grep -qE "(vmx|svm)" /proc/cpuinfo; then
-          echo "KVM support is required to run the emulator. Exiting..."
-          exit 1
-        else
-          echo "KVM support detected. Proceeding..."
-        fi
-
     - name: Accept Licenses and Install Emulator
       run: |
         yes | $ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager --licenses
-        $ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager "platform-tools" "emulator" "platforms;android-29" "system-images;android-29;google_apis;arm64-v8a"
+        $ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager "platform-tools" "emulator" "platforms;android-29" "system-images;android-29;google_apis;x86_64"
 
     - name: Create Android Virtual Device
       run: |
-        echo "no" | $ANDROID_HOME/cmdline-tools/latest/bin/avdmanager create avd -n test_device -k "system-images;android-29;google_apis;arm64-v8a" --device "pixel_4"
+        echo "no" | $ANDROID_HOME/cmdline-tools/latest/bin/avdmanager create avd -n test_device -k "system-images;android-29;google_apis;x86_64" --device "pixel_4"
 
     - name: Start Android Emulator
       run: |
