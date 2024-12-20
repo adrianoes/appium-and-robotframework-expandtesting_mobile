@@ -25,17 +25,14 @@ jobs:
         pip install robotframework
         pip install robotframework-appiumlibrary
           
-    - name: Install Appium
+    - name: Install Appium and Appium UIAutomator2 Driver
       run: |
         npm install -g appium
-
-    - name: Install appium-uiautomator2-driver
-      run: |
         npm install -g appium-uiautomator2-driver
-
+  
     - name: Start Appium Server
       run: |
-        nohup appium --port 4723 &   
+        appium --port 4723 &  
 
     - name: Run Robot Framework Tests
       run: |
