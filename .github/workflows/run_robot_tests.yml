@@ -25,6 +25,10 @@ jobs:
         pip install robotframework
         pip install robotframework-appiumlibrary
         pip install uiautomator2
+  
+    - name: Install Appium
+      run: |
+        npm install -g appium
 
     - name: Start Appium Server
       run: |
