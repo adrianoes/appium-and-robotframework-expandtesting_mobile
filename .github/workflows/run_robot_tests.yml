@@ -28,5 +28,5 @@ jobs:
 
     - name: Run Robot Framework Tests
       run: |
-        mkdir -p appium-expandtesting_UI/reports        
-        robot --outputdir appium-expandtesting_UI/reports appium-expandtesting_UI/tests/**/*.robot
+        mkdir -p appium-expandtesting_UI/results        
+        robot -d ./results tests

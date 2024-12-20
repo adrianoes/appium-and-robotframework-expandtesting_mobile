@@ -64,6 +64,11 @@ Check then both to add both options in context menu.
 - Execute Virtual Device Manager on Android Studio.
 - Open Appium Inspector and start the appium session. 
 
+# Tests:
+
+- Execute ```robot -d ./results tests``` to run all tests in headless mode and store results in separated folder.
+- Hit :point_right:**Testing** button on left side bar in VSC and choose the tests you want to execute.
+
 # Support:
 
 - [expandtesting API documentation page](https://practice.expandtesting.com/notes/api/api-docs/)
