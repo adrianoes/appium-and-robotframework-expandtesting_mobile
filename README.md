@@ -76,7 +76,9 @@ Check then both to add both options in context menu.
 - [AppiumLibrary](https://serhatbolsu.github.io/robotframework-appiumlibrary/AppiumLibrary.html)
 - [Quickstart Intro](https://appium.io/docs/en/latest/quickstart/)
 - [Download ApiClient : REST API Client APK](https://apiclient-rest-api-client.en.softonic.com/android/download)
+- [ChatGPT](https://chatgpt.com/)
 
 # Tips:
 
-- UI and API tests to send password reset link to user's email and API tests to verify a password reset token and reset a user's password must be tested manually as they rely on e-mail verification.   
+- UI and API tests to send password reset link to user's email and API tests to verify a password reset token and reset a user's password must be tested manually as they rely on e-mail verification.  
+- ChatGPT helped a lot when dealing with github actions.  
