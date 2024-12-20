@@ -25,13 +25,17 @@ jobs:
         pip install robotframework
         pip install robotframework-appiumlibrary
           
-    - name: Install Appium and Appium UIAutomator2 Driver
+    - name: Install Appium
       run: |
         npm install -g appium
 
     - name: Install Appium UIAutomator2 Driver
       run: |     
         npx appium driver install uiautomator2
+
+    - name: Add adb to PATH
+      run: |
+        export PATH=$PATH:/usr/local/lib/android/sdk/platform-tools
   
     - name: Start Appium Server
       run: |
