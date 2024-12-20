@@ -8,6 +8,7 @@ UI testing in [expandtesting](https://practice.expandtesting.com/notes/app/) not
 | :------------------------------ |:---------------| :-------------------------------------------------------------- |
 | Visual Studio Code              | 1.89.1         | -                                                               |
 | Node.js                         | 22.11.0        | -                                                               |
+| Python                          | 3.13.1         | -                                                               |
 | JDK                             | 23             | -                                                               |
 | Anroid Studio                   | 2024.2.1.11    | -                                                               |
 | Appium                          | 2.13.1         | -                                                               |
@@ -17,14 +18,23 @@ UI testing in [expandtesting](https://practice.expandtesting.com/notes/app/) not
 | Virtual device                  | Pixel 4        |                                                                 |
 | API                             | 29             |                                                                 |
 | uiautomator2 driver             | 3.9.2          |                                                                 |
+| Robot Framework                 | 7.1.1          | -                                                               | 
+| robotframework-appiumlibrary    | 2.1.0          | -                                                               | 
+| Robot Framework Language Server | 1.13.0         | -                                                               | 
 
 # Installation:
 
 - See [Visual Studio Code page](https://code.visualstudio.com/) and install the latest VSC stable version. Keep all the prefereced options as they are until you reach the possibility to check the checkboxes below: 
-  - :white_check_mark: Add "Open with code" action to Windows Explorer file context menu. 
-  - :white_check_mark: Add "Open with code" action to Windows Explorer directory context menu.
+  - :white_check_mark: **Add "Open with code" action to Windows Explorer file context menu**; 
+  - :white_check_mark: **Add "Open with code" action to Windows Explorer directory context menu**.
 Check then both to add both options in context menu.
 - See [Node.js page](https://nodejs.org/en) and install the aforementioned Node.js version. Keep all the preferenced options as they are.
+- See [python page](https://www.python.org/downloads/) and download the latest Python stable version. Start the installation and check the checkboxes below: 
+  - :white_check_mark: **Use admin privileges when installing py.exe**, :white_check_mark: **Add python.exe to PATH** and :point_right:**Customize installation**;
+  - :point_right:**Next**; 
+  - :white_check_mark:**Install Python 3.13 for all users**, set **Customize install location** as **C:\Python313**, click :point_right:**Install**;
+  - :point_right:**Yes** to accept changes in the system;
+  - :point_right:**Close** after installation is done.
 - See [JDK Development Kit 23 downloads](https://www.oracle.com/in/java/technologies/downloads/#jdk23-windows), download the proper version for your OS and install it by keeping the preferenced options. 
 - See [Anroid Studio download page](https://developer.android.com/), download the last version and install it by keeping the preferenced options. Open Virtual Device Manager and create an image as simple as possible. 
 - Open your terminal in your project directory and execute ```npm init``` to initiate a project.
@@ -42,9 +52,14 @@ Check then both to add both options in context menu.
     "platformName": "Android",
     "appium:deviceName": "Android Emulator",
     "appium:automationName": "UIAutomator2",
-    "appium:app": "C:\\appium-expandtesting_UI\\apps\\apiClient.apk"
+    "appium:app": "C:\\appium-expandtesting_UI\\apps\\apiClient.apk",
+    "adbExecTimeout": 60000,
+    "appium:autoGrantPermissions": true
   }
   ```  
+- Open windows propmpt as admin and execute ```pip install robotframework``` to install Robot Framework.
+- Open windows propmpt as admin and execute ```pip install robotframework-appiumlibrary``` to install Appium Library for Robot Framework.
+- Look for Robot Framework Language Server in the extensions marketplace and install the one from Robocorp.
 - Open your terminal in your project directory and execute ```npx appium``` to start appium session.
 - Execute Virtual Device Manager on Android Studio.
 - Open Appium Inspector and start the appium session. 
@@ -53,12 +68,10 @@ Check then both to add both options in context menu.
 
 - [expandtesting API documentation page](https://practice.expandtesting.com/notes/api/api-docs/)
 - [expandtesting API demonstration page](https://www.youtube.com/watch?v=bQYvS6EEBZc)
-- [AppiumLibrary](https://serhatbolsu.github.io/robotframework-appiumlibrary/AppiumLibrary.html#library-documentation-top)
-- [AppiumLibrary](https://serhatbolsu.github.io/robotframework-appiumlibrary/AppiumLibrary.html#library-documentation-top)
+- [AppiumLibrary](https://serhatbolsu.github.io/robotframework-appiumlibrary/AppiumLibrary.html)
 - [Quickstart Intro](https://appium.io/docs/en/latest/quickstart/)
 - [Download ApiClient : REST API Client APK](https://apiclient-rest-api-client.en.softonic.com/android/download)
 
 # Tips:
 
-- UI and API tests to send password reset link to user's email and API tests to verify a password reset token and reset a user's password must be tested manually as they rely on e-mail verification. 
-- Faker e-mail keyword has presented repeated e-mails and related test fails with 409 code (conflict). Random lowercase letters were added to workaround.   
+- UI and API tests to send password reset link to user's email and API tests to verify a password reset token and reset a user's password must be tested manually as they rely on e-mail verification.   
