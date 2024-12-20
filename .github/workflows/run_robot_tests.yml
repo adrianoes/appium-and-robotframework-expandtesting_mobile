@@ -26,6 +26,10 @@ jobs:
         pip install robotframework-appiumlibrary
         pip install uiautomator2
 
+    - name: Start Appium Server
+      run: |
+        nohup appium --port 4723 &   
+
     - name: Run Robot Framework Tests
       run: |
         mkdir -p appium-expandtesting_UI/results        
