@@ -30,19 +30,19 @@ UI testing in [expandtesting](https://practice.expandtesting.com/notes/app/) not
 Check then both to add both options in context menu.
 - See [Node.js page](https://nodejs.org/en) and install the aforementioned Node.js version. Keep all the preferenced options as they are.
 - See [python page](https://www.python.org/downloads/) and download the latest Python stable version. Start the installation and check the checkboxes below: 
-  - :white_check_mark: **Use admin privileges when installing py.exe**, :white_check_mark: **Add python.exe to PATH** and :point_right:**Customize installation**;
-  - :point_right:**Next**; 
-  - :white_check_mark:**Install Python 3.13 for all users**, set **Customize install location** as **C:\Python313**, click :point_right:**Install**;
-  - :point_right:**Yes** to accept changes in the system;
-  - :point_right:**Close** after installation is done.
+  - :white_check_mark: **Use admin privileges when installing py.exe**, :white_check_mark: **Add python.exe to PATH** and :point_right: **Customize installation**;
+  - :point_right: **Next**; 
+  - :white_check_mark: **Install Python 3.13 for all users**, set **Customize install location** as **C:\Python313**, click :point_right: **Install**;
+  - :point_right: **Yes** to accept changes in the system;
+  - :point_right: **Close** after installation is done.
 - See [JDK Development Kit 23 downloads](https://www.oracle.com/in/java/technologies/downloads/#jdk23-windows), download the proper version for your OS and install it by keeping the preferenced options. 
 - See [Anroid Studio download page](https://developer.android.com/), download the last version and install it by keeping the preferenced options. Open Virtual Device Manager and create an image as simple as possible. 
 - Open your terminal in your project directory and execute ```npm init``` to initiate a project.
 - Open your terminal in your project directory and execute ```npm i appium``` to install Appium.
 - Open your terminal in your project directory and execute ```npm i appium-doctor``` to install Appium Doctor.
-- Right click :point_right:**My Computer** and select :point_right:**Properties**. On the :point_right:**Advanced** tab, select :point_right:**Environment Variables**, and then edit JAVA_HOME to point to where the JDK software is located, for example, C:\Program Files\Java\jdk-23.
-- Right click :point_right:**My Computer** and select :point_right:**Properties**. On the :point_right:**Advanced** tab, select :point_right:**Environment Variables**, and then edit ANDROID_HOME to point to where the sdk software is located, for example, C:\Users\user\AppData\Local\Android\Sdk.
-- Right click :point_right:**My Computer** and select :point_right:**Properties**. On the :point_right:**Advanced** tab, select :point_right:**Environment Variables**, and then edit Path system variable with the new %JAVA_HOME%\bin and %ANDROID_HOME%\platform-tools entries.
+- Right click :point_right: **My Computer** and select :point_right: **Properties**. On the :point_right: **Advanced** tab, select :point_right: **Environment Variables**, and then edit JAVA_HOME to point to where the JDK software is located, for example, C:\Program Files\Java\jdk-23.
+- Right click :point_right: **My Computer** and select :point_right: **Properties**. On the :point_right: **Advanced** tab, select :point_right: **Environment Variables**, and then edit ANDROID_HOME to point to where the sdk software is located, for example, C:\Users\user\AppData\Local\Android\Sdk.
+- Right click :point_right: **My Computer** and select :point_right: **Properties**. On the :point_right: **Advanced** tab, select :point_right: **Environment Variables**, and then edit Path system variable with the new %JAVA_HOME%\bin and %ANDROID_HOME%\platform-tools entries.
 - Open your terminal in your project directory and execute ```npx appium-doctor --android``` to run Appium Doctor and check Appium instalation status.
 - Open your terminal in your project directory and execute ```npx appium driver install uiautomator2``` to install drivers for automationName and platformName capabilities.
 - See [Appium Inspector download page](https://github.com/appium/appium-inspector/releases), download and install it. Configure capabilities as below and save it:
@@ -50,10 +50,11 @@ Check then both to add both options in context menu.
   ```
   {
     "platformName": "Android",
-    "appium:deviceName": "Android Emulator",
+    "platformVersion": "10.0",
+    "appium:deviceName": "Pixel_4_API_29",
     "appium:automationName": "UIAutomator2",
     "appium:app": "C:\\appium-expandtesting_UI\\apps\\apiClient.apk",
-    "adbExecTimeout": 60000,
+    "appium:adbExecTimeout": 60000,
     "appium:autoGrantPermissions": true
   }
   ```  
@@ -67,7 +68,7 @@ Check then both to add both options in context menu.
 # Tests:
 
 - Execute ```robot -d ./results tests``` to run all tests in headless mode and store results in separated folder.
-- Hit :point_right:**Testing** button on left side bar in VSC and choose the tests you want to execute.
+- Hit :point_right: **Testing** button on left side bar in VSC and choose the tests you want to execute.
 
 # Support:
 
@@ -77,8 +78,8 @@ Check then both to add both options in context menu.
 - [Quickstart Intro](https://appium.io/docs/en/latest/quickstart/)
 - [Download ApiClient : REST API Client APK](https://apiclient-rest-api-client.en.softonic.com/android/download)
 - [ChatGPT](https://chatgpt.com/)
+- [ROBOT FRAMEWORK + APPIUM: EXECUÇÃO NO GITHUB ACTION SEM DEVICE FARM](https://www.youtube.com/watch?v=I_vg26U7M40)
 
 # Tips:
 
 - UI and API tests to send password reset link to user's email and API tests to verify a password reset token and reset a user's password must be tested manually as they rely on e-mail verification.  
-- ChatGPT helped a lot when dealing with github actions.  
