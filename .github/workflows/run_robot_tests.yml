@@ -18,7 +18,8 @@ jobs:
           cache: 'pip'
 
       - name: Install Dependencies
-        run:
+        run: |
+          python -m pip install --upgrade pip
           pip install -r requirements.txt
 
       - name: Set up Java
@@ -38,28 +39,30 @@ jobs:
       - name: Install Appium
         run: |
           npm install -g appium
+          appium --version
 
       - name: Install UiAutomator2
         run: |
           appium driver install uiautomator2
 
-      - name: Start up Appium
+      - name: Start Appium Server
         run: |
-          nohup appium -p 4723 -pa /wd/hub &
+          nohup appium -p 4723 --base-path /wd/hub > appium.log 2>&1 &
 
       - name: Install Android SDK system image
         run: |
           sdkmanager --install "system-images;android-34;google_apis;x86_64"
+          sdkmanager --licenses
 
-      - name: Create Device
+      - name: Create Android Virtual Device (AVD)
         run: |
           echo no | avdmanager create avd -n "Pixel_7_Pro_API_34" -k "system-images;android-34;google_apis;x86_64" -d pixel_7_pro
+          avdmanager list avd
 
-      - name: Enable KVM group perms
+      - name: Configure KVM
         run: |
-          echo 'KERNEL=="kvm", GROUP="kvm", MODE="0666", OPTIONS+="static_node=kvm"' | sudo tee /etc/udev/rules.d/99-kvm4all.rules
-          sudo udevadm control --reload-rules
-          sudo udevadm trigger --name-match=kvm
+          sudo usermod -aG kvm $USER
+          sudo chmod 666 /dev/kvm
 
       - name: Run Android Emulator
         uses: reactivecircus/android-emulator-runner@v2
@@ -69,12 +72,19 @@ jobs:
           arch: x86_64
           profile: pixel_6_pro
           script: |
-            avdmanager list device
-            robot -d ./reports -v APPIUM_PORT:4725 .
+            adb devices
+            robot -d ./reports -v APPIUM_PORT:4723 .
 
-      - name: Upload test results
+      - name: Upload Test Results
         uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: reports
+          name: test-reports
           path: reports
+
+      - name: Upload Appium Logs
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: appium-logs
+          path: appium.log
