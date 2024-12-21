@@ -45,7 +45,7 @@ jobs:
 
       - name: Start up Appium
         run: |
-          nohup appium -p 4725 -pa /wd/hub &
+          nohup appium -p 4723 -pa /wd/hub &
 
       - name: Install Android SDK system image
         run: |
