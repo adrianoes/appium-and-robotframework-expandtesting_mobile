@@ -18,7 +18,7 @@ jobs:
           cache: 'pip'
 
       - name: Install Dependencies
-        run: |
+        run:
           pip install -r requirements.txt
 
       - name: Set up Java
@@ -38,47 +38,43 @@ jobs:
       - name: Install Appium
         run: |
           npm install -g appium
-          appium --version
 
-      - name: Start Appium Server
+      - name: Install UiAutomator2
         run: |
-          nohup appium -p 4723 --base-path /wd/hub > appium.log 2>&1 &
+          appium driver install uiautomator2
 
-      - name: Verify Appium Server
+      - name: Start up Appium
         run: |
-          curl -X GET http://localhost:4723/wd/hub/status
+          nohup appium -p 4723 -pa /wd/hub &
 
       - name: Install Android SDK system image
         run: |
-          sdkmanager --install "system-images;android-34;google_apis;x86_64"
-          sdkmanager --licenses
+          sdkmanager --install "system-images;android-29;google_apis;x86_64"
 
-      - name: Create Android Virtual Device (AVD)
+      - name: Create Device
         run: |
-          echo no | avdmanager create avd -n "Pixel_7_Pro_API_34" -k "system-images;android-34;google_apis;x86_64" -d pixel_7_pro
+          echo no | avdmanager create avd -n "Pixel_4_API_29" -k "system-images;android-29;google_apis;x86_64" -d pixel_4
+
+      - name: Enable KVM group perms
+        run: |
+          echo 'KERNEL=="kvm", GROUP="kvm", MODE="0666", OPTIONS+="static_node=kvm"' | sudo tee /etc/udev/rules.d/99-kvm4all.rules
+          sudo udevadm control --reload-rules
+          sudo udevadm trigger --name-match=kvm
 
       - name: Run Android Emulator
         uses: reactivecircus/android-emulator-runner@v2
         with:
-          api-level: 34
+          api-level: 29
           target: google_apis
           arch: x86_64
-          profile: pixel_6_pro
+          profile: pixel_4
           script: |
-            adb devices
-            adb shell getprop sys.boot_completed
+            avdmanager list device
             robot -d ./reports -v APPIUM_PORT:4723 .
 
-      - name: Upload Test Results
+      - name: Upload test results
         uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: test-reports
+          name: reports
           path: reports
-
-      - name: Upload Appium Logs
-        uses: actions/upload-artifact@v4
-        if: always()
-        with:
-          name: appium-logs
-          path: appium.log
