@@ -17,9 +17,10 @@ UI testing in [expandtesting](https://practice.expandtesting.com/notes/app/) not
 | uiautomator2 driver             | 3.9.2          |                                                                 |
 | Virtual device                  | Pixel 4        |                                                                 |
 | API                             | 29             |                                                                 |
-| uiautomator2 driver             | 3.9.2          |                                                                 |
 | Robot Framework                 | 7.1.1          | -                                                               | 
 | robotframework-appiumlibrary    | 2.1.0          | -                                                               | 
+| robotframework-faker            | 5.0.0          | -                                                               |
+| setuptools                      | 75.1.0         | -                                                               | 
 | Robot Framework Language Server | 1.13.0         | -                                                               | 
 
 # Installation:
@@ -60,6 +61,8 @@ Check then both to add both options in context menu.
   ```  
 - Open windows propmpt as admin and execute ```pip install robotframework``` to install Robot Framework.
 - Open windows propmpt as admin and execute ```pip install robotframework-appiumlibrary``` to install Appium Library for Robot Framework.
+- Open windows propmpt as admin and execute ```pip install robotframework-faker``` to install robotframework-faker.
+- Open windows propmpt as admin and execute ```pip install setuptools==75.1.0``` to install setuptools package.
 - Look for Robot Framework Language Server in the extensions marketplace and install the one from Robocorp.
 - Open your terminal in your project directory and execute ```npx appium``` to start appium session.
 - Execute Virtual Device Manager on Android Studio.
