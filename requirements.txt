@@ -2,3 +2,4 @@ robotframework
 robotframework-appiumlibrary
 robotframework-faker
 setuptools
+robotframework-jsonlibrary

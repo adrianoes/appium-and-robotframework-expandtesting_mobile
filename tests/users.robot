@@ -3,13 +3,16 @@
 
 Library    AppiumLibrary
 Library    FakerLibrary
+Library    JSONLibrary
+Library    OperatingSystem
+Library    Collections
 
 *** Variables ***
 
 ${APPIUM_PORT}    4723
 # for local testing, use the URL without "/wd/hub ". When commiting, use the complete one and comment the short one.
-${APPIUM_URL}    http://localhost:${APPIUM_PORT}/wd/hub 
-# ${APPIUM_URL}    http://localhost:${APPIUM_PORT}
+# ${APPIUM_URL}    http://localhost:${APPIUM_PORT}/wd/hub 
+${APPIUM_URL}    http://localhost:${APPIUM_PORT}
 ${PLATFORM_NAME}    android
 ${AUTOMATION_NAME}    UIAutomator2
 ${APP_PATH}    ${EXECDIR}/apps/apiClient.apk 
@@ -24,6 +27,7 @@ ${TIMEOUT}            10
 *** Test Cases ***
     
 Creates a new user account via API
+    ${randomNumber}    FakerLibrary.creditCardNumber
     ${random_letter}    FakerLibrary.Random Lowercase Letter
     ${random_email}    FakerLibrary.Email
     ${user_email}    Catenate    SEPARATOR=    ${random_letter}    ${random_email}
@@ -38,10 +42,12 @@ Creates a new user account via API
     ...                 app=${APP_PATH}
     ...                 adbExecTimeout=${ADB_TIMEOUT}
     ...                 autoGrantPermissions=${AUTO_GRANT_PERMISSIONS}
+    ...                 appActivity=com.ab.apiclient.ui.Splash
+    ...                 appWaitActivity=com.ab.apiclient.ui.Splash,com.ab.apiclient.*,com.ab.apiclient.ui.MainActivity
+    ...                 appWaitDuration=20000
 
-    Sleep  10
-    Log Source
-    Capture Page Screenshot
+    Sleep  5
+
     # select post
     Wait Until Element Is Visible    id=com.ab.apiclient:id/spHttpMethod    ${TIMEOUT}
     Click Element    id=com.ab.apiclient:id/spHttpMethod
@@ -59,9 +65,9 @@ Creates a new user account via API
     Click Element    xpath=//android.widget.ImageView[@resource-id="com.ab.apiclient:id/iconDown"]    
     Wait Until Element Is Visible    xpath=//android.widget.TextView[@resource-id="android:id/text1" and @text="Accept"]    ${TIMEOUT}
     Click Element    xpath=//android.widget.TextView[@resource-id="android:id/text1" and @text="Accept"]      
-    Wait Until Element Is Visible    xpath=//android.widget.ImageView[@resource-id="com.ab.apiclient:id/iconDownVal"]
+    Wait Until Element Is Visible    xpath=//android.widget.ImageView[@resource-id="com.ab.apiclient:id/iconDownVal"]    ${TIMEOUT}
     Click Element    xpath=//android.widget.ImageView[@resource-id="com.ab.apiclient:id/iconDownVal"]
-    Wait Until Element Is Visible    xpath=//android.widget.TextView[@resource-id="android:id/text1" and @text="application/xml"]
+    Wait Until Element Is Visible    xpath=//android.widget.TextView[@resource-id="android:id/text1" and @text="application/xml"]    ${TIMEOUT}
     Click Element    xpath=//android.widget.TextView[@resource-id="android:id/text1" and @text="application/xml"]
     
     # add second header
@@ -71,7 +77,7 @@ Creates a new user account via API
     Click Element    xpath=(//android.widget.ImageView[@resource-id="com.ab.apiclient:id/iconDown"])[2]   
     Wait Until Element Is Visible    xpath=//android.widget.TextView[@resource-id="android:id/text1" and @text="Content-Type"]    ${TIMEOUT}
     Click Element    xpath=//android.widget.TextView[@resource-id="android:id/text1" and @text="Content-Type"]
-    Wait Until Element Is Visible    xpath=(//android.widget.ImageView[@resource-id="com.ab.apiclient:id/iconDownVal"])[2]
+    Wait Until Element Is Visible    xpath=(//android.widget.ImageView[@resource-id="com.ab.apiclient:id/iconDownVal"])[2]    ${TIMEOUT}
     Click Element    xpath=(//android.widget.ImageView[@resource-id="com.ab.apiclient:id/iconDownVal"])[2]   
     Wait Until Element Is Visible    xpath=//android.widget.TextView[@resource-id="android:id/text1" and @text="application/x-www-form-urlencoded"]    ${TIMEOUT}
     Click Element    xpath=//android.widget.TextView[@resource-id="android:id/text1" and @text="application/x-www-form-urlencoded"]
@@ -101,7 +107,44 @@ Creates a new user account via API
     # send request
     Click Element    xpath=//android.widget.Button[@resource-id="com.ab.apiclient:id/btnSend"]
     
-    Sleep  10
+    #save response
+    Wait Until Element Is Visible    xpath=//android.widget.LinearLayout[@content-desc="Raw"]    ${TIMEOUT}
+    Click Element    xpath=//android.widget.LinearLayout[@content-desc="Raw"]
+    Wait Until Element Is Visible    xpath=//android.widget.TextView[@resource-id="com.ab.apiclient:id/tvResult"]    ${TIMEOUT}
+    Click Element    xpath=//android.widget.TextView[@resource-id="com.ab.apiclient:id/tvResult"]
+    ${response_cu_string}=    Get Text    xpath=//android.widget.TextView[@resource-id="com.ab.apiclient:id/tvResult"]
+    Log    string response is: ${response_cu_string}
+    ${response_cu_json}    Convert String To Json    ${response_cu_string}
+ 
+    # Capturing variable values for assertions
+    ${success} =    Get Value From Json    ${response_cu_json}    $.success
+    ${status} =     Get Value From Json    ${response_cu_json}    $.status
+    ${status_value}=    Get From List    ${status}    0
+    ${status_str} =    Convert To String    ${status_value}
+    ${message} =    Get Value From Json    ${response_cu_json}    $.message
+    ${message_value}=    Get From List    ${message}    0
+    ${message_str} =    Convert To String    ${message_value}
+    ${user_name_resp} =  Get Value From Json    ${response_cu_json}    $.data.name
+    ${user_name_value}=    Get From List    ${user_name_resp}    0
+    ${user_name_str} =    Convert To String    ${user_name_value}
+    ${user_email_resp}=    Get Value From Json    ${response_cu_json}    $.data.email
+    ${user_email_value}=    Get From List    ${user_email_resp}    0
+    ${user_email_str} =    Convert To String    ${user_email_value}
+    ${user_id}=    Get Value From Json    ${response_cu_json}    $.data.id
+    ${user_id_value}=    Get From List    ${user_id}    0
+    ${user_id_str} =    Convert To String    ${user_id_value}
+
+    # assertions
+    Should Be True    ${success}    True
+    Should Be Equal    ${status_str}    201
+    Should Be Equal    ${message_str}    User account created successfully
+    Should Be Equal    ${user_name_str}  ${user_name}
+    Should Be Equal    ${user_email_str}    ${user_email}
+
+    # creating .json file
+    Create File    tests/fixtures/testdata-${randomNumber}.json	{"user_email":"${user_email}","user_id":"${user_id}","user_name":"${user_name}","user_password":"${user_password}"}
+
+    Sleep  5
     [Teardown]    Close Application
     
 

@@ -21,6 +21,7 @@ UI testing in [expandtesting](https://practice.expandtesting.com/notes/app/) not
 | robotframework-appiumlibrary    | 2.1.0          | -                                                               | 
 | robotframework-faker            | 5.0.0          | -                                                               |
 | setuptools                      | 75.1.0         | -                                                               | 
+| JSONLibrary                     | 0.5            | -                                                               |
 | Robot Framework Language Server | 1.13.0         | -                                                               | 
 
 # Installation:
@@ -61,8 +62,9 @@ Check then both to add both options in context menu.
   ```  
 - Open windows propmpt as admin and execute ```pip install robotframework``` to install Robot Framework.
 - Open windows propmpt as admin and execute ```pip install robotframework-appiumlibrary``` to install Appium Library for Robot Framework.
+- Open windows propmpt as admin and execute ```pip install robotframework-jsonlibrary``` to install JSONLibrary.
 - Open windows propmpt as admin and execute ```pip install robotframework-faker``` to install robotframework-faker.
-- Open windows propmpt as admin and execute ```pip install setuptools==75.1.0``` to install setuptools package.
+- Open windows propmpt as admin and execute ```pip install setuptools``` to install setuptools package.
 - Look for Robot Framework Language Server in the extensions marketplace and install the one from Robocorp.
 - Open your terminal in your project directory and execute ```npx appium``` to start appium session.
 - Execute Virtual Device Manager on Android Studio.
@@ -82,7 +84,10 @@ Check then both to add both options in context menu.
 - [Download ApiClient : REST API Client APK](https://apiclient-rest-api-client.en.softonic.com/android/download)
 - [ChatGPT](https://chatgpt.com/)
 - [ROBOT FRAMEWORK + APPIUM: EXECUÇÃO NO GITHUB ACTION SEM DEVICE FARM](https://www.youtube.com/watch?v=I_vg26U7M40)
+- [Error occured while starting App. Original error: com.abc.xyz.ui.SplashActivity or com.abc.xyz.dev.com.abc.xyz.ui.SplashActivity never started](https://stackoverflow.com/a/48531998)
+- [Convert String To Json](https://robotframework-thailand.github.io/robotframework-jsonlibrary/JSONLibrary.html#Convert%20String%20To%20Json)
+- [Convert To String](https://robotframework.org/robotframework/latest/libraries/BuiltIn.html#Convert%20To%20String)
 
 # Tips:
 
-- UI and API tests to send password reset link to user's email and API tests to verify a password reset token and reset a user's password must be tested manually as they rely on e-mail verification.  
+- UI and API tests to send password reset link to user's email and API tests to verify a password reset token and reset a user's password must be tested manually as they rely on e-mail verification. 

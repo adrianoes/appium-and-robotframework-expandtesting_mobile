@@ -7,8 +7,8 @@ Library    AppiumLibrary
 
 ${APPIUM_PORT}    4723
 # for local testing, use the URL without "/wd/hub ". When commiting, use the complete one and comment the short one.
-${APPIUM_URL}    http://localhost:${APPIUM_PORT}/wd/hub 
-# ${APPIUM_URL}    http://localhost:${APPIUM_PORT}
+# ${APPIUM_URL}    http://localhost:${APPIUM_PORT}/wd/hub 
+${APPIUM_URL}    http://localhost:${APPIUM_PORT} 
 ${PLATFORM_NAME}    android
 ${AUTOMATION_NAME}    UIAutomator2
 ${APP_PATH}    ${EXECDIR}/apps/apiClient.apk 
@@ -28,10 +28,12 @@ Check api healt
     ...                 app=${APP_PATH}
     ...                 adbExecTimeout=${ADB_TIMEOUT}
     ...                 autoGrantPermissions=${AUTO_GRANT_PERMISSIONS}
+    ...                 appActivity=com.ab.apiclient.ui.Splash
+    ...                 appWaitActivity=com.ab.apiclient.ui.Splash,com.ab.apiclient.*,com.ab.apiclient.ui.MainActivity
+    ...                 appWaitDuration=20000
 
-    Sleep  10
-    Log Source
-    Capture Page Screenshot
+    Sleep  5
+
     [Teardown]    Close Application
 
 
