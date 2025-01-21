@@ -239,11 +239,36 @@ Log in as an existing user
     
     deleteJsonFile(${randomNumber})
 
+# Retrieve user profile information
+#     ${randomNumber}    FakerLibrary.creditCardNumber
+#     createUser(${randomNumber})
+#     logInUser(${randomNumber})
+#     ${data}    Load Json From File    tests/fixtures/testdata-${randomNumber}.json
+#     ${user_email_data}    Get Value From Json    ${data}    $.user_email
+#     ${user_email_str}    Convert JSON To String	 ${user_email_data}
+#     ${user_email}    Remove String    ${user_email_str}    [    ]    '    " 
+#     ${user_id_data}    Get Value From Json    ${data}    $.user_id
+#     ${user_id_str}    Convert JSON To String	 ${user_id_data}
+#     ${user_id}    Remove String    ${user_id_str}    [    ]    '    " 
+#     ${user_name_data}    Get Value From Json    ${data}    $.user_name
+#     ${user_name_str}    Convert JSON To String	 ${user_name_data}
+#     ${user_name}    Remove String    ${user_name_str}    [    ]    '    "
+#     ${user_token_data}    Get Value From Json    ${data}    $.user_token
+#     ${user_token_str}    Convert JSON To String	 ${user_token_data}
+#     ${user_token}    Remove String    ${user_token_str}    [    ]    '    "
+
+#     deleteUser(${randomNumber})
+    
+#     Sleep  5
+#     [Teardown]    Close Application
+    
+#     deleteJsonFile(${randomNumber})
+
 Delete user account
     ${randomNumber}    FakerLibrary.creditCardNumber
     createUser(${randomNumber})
     logInUser(${randomNumber})
-        ${data}    Load Json From File    tests/fixtures/testdata-${randomNumber}.json
+    ${data}    Load Json From File    tests/fixtures/testdata-${randomNumber}.json
     ${user_token_data}    Get Value From Json    ${data}    $.user_token
     ${user_token_str}    Convert JSON To String	 ${user_token_data}
     ${user_token}    Remove String    ${user_token_str}    [    ]    '    "
