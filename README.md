@@ -10,7 +10,7 @@ UI testing in [expandtesting](https://practice.expandtesting.com/notes/app/) not
 | Node.js                         | 22.11.0        | -                                                               |
 | Python                          | 3.13.1         | -                                                               |
 | JDK                             | 23             | -                                                               |
-| Anroid Studio                   | 2024.2.1.11    | -                                                               |
+| Android Studio                  | 2024.2.1.11    | -                                                               |
 | Appium                          | 2.13.1         | -                                                               |
 | Appium Doctor                   | 1.16.2         | -                                                               |
 | Appium Inspector                | 2024.12.1      | -                                                               |
@@ -52,12 +52,15 @@ Check then both to add both options in context menu.
   ```
   {
     "platformName": "Android",
-    "platformVersion": "10.0",
+    "appium:platformVersion": "10.0",
     "appium:deviceName": "Pixel_4_API_29",
     "appium:automationName": "UIAutomator2",
     "appium:app": "C:\\appium-expandtesting_UI\\apps\\apiClient.apk",
-    "appium:adbExecTimeout": 60000,
-    "appium:autoGrantPermissions": true
+    "appium:adbExecTimeout": 120000,
+    "appium:autoGrantPermissions": true,
+    "appium:appActivity": "com.ab.apiclient.ui.Splash",
+    "appium:appWaitActivity": "com.ab.apiclient.ui.Splash,com.ab.apiclient.*,com.ab.apiclient.ui.MainActivity",
+    "appium:appWaitDuration": 20000
   }
   ```  
 - Open windows propmpt as admin and execute ```pip install robotframework``` to install Robot Framework.
@@ -87,6 +90,8 @@ Check then both to add both options in context menu.
 - [Error occured while starting App. Original error: com.abc.xyz.ui.SplashActivity or com.abc.xyz.dev.com.abc.xyz.ui.SplashActivity never started](https://stackoverflow.com/a/48531998)
 - [Convert String To Json](https://robotframework-thailand.github.io/robotframework-jsonlibrary/JSONLibrary.html#Convert%20String%20To%20Json)
 - [Convert To String](https://robotframework.org/robotframework/latest/libraries/BuiltIn.html#Convert%20To%20String)
+- [How to send Back key in Robot framework Appium ? [Android]](https://stackoverflow.com/a/49398014)
+- [Robot Framework Text Field Clearing and Inputting](https://stackoverflow.com/a/74390477)
 
 # Tips:
 
