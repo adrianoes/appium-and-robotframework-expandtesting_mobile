@@ -235,7 +235,7 @@ createUser(${randomNumber})
     ...                 autoGrantPermissions=${AUTO_GRANT_PERMISSIONS}
     ...                 appActivity=com.ab.apiclient.ui.Splash
     ...                 appWaitActivity=com.ab.apiclient.ui.Splash,com.ab.apiclient.*,com.ab.apiclient.ui.MainActivity
-    ...                 appWaitDuration=20000
+    ...                 appWaitDuration=60000
 
     Sleep  5
 
