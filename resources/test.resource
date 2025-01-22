@@ -21,7 +21,7 @@ ${ADB_TIMEOUT}    60000
 ${AUTO_GRANT_PERMISSIONS}    true
 ${PLATFORM_VERSION}    10.0
 ${DEVICE_NAME}    Pixel_4_API_29
-${TIMEOUT}            20
+${TIMEOUT}            30
 
 *** Keywords ***
 
@@ -39,12 +39,59 @@ logInUser(${randomNumber})
     ${user_password_data}    Get Value From Json    ${data}    $.user_password
     ${user_password_str}    Convert JSON To String	 ${user_password_data}
     ${user_password}    Remove String    ${user_password_str}    [    ]    '    " 
-     # login 
-    Wait Until Element Is Visible    xpath=//android.widget.EditText[@resource-id="com.ab.apiclient:id/etUrl"]    ${TIMEOUT}
-    Clear Text    xpath=//android.widget.EditText[@resource-id="com.ab.apiclient:id/etUrl"]
-    Input Text    xpath=//android.widget.EditText[@resource-id="com.ab.apiclient:id/etUrl"]    https://practice.expandtesting.com/notes/api/users/login
-    Click Element    xpath=(//android.widget.ImageView[@resource-id="com.ab.apiclient:id/btnRemove"])[1]
+
+    # select post
+    Wait Until Element Is Visible    id=com.ab.apiclient:id/spHttpMethod    ${TIMEOUT}
+    Click Element    id=com.ab.apiclient:id/spHttpMethod
+    Wait Until Element Is Visible    xpath=//android.widget.CheckedTextView[@resource-id="android:id/text1" and @text="POST"]    ${TIMEOUT}
+    Click Element    xpath=//android.widget.CheckedTextView[@resource-id="android:id/text1" and @text="POST"]
     
+    # input base url and endpoint
+    Wait Until Element Is Visible    xpath=//android.widget.EditText[@resource-id="com.ab.apiclient:id/etUrl"]    ${TIMEOUT}
+    Input Text    xpath=//android.widget.EditText[@resource-id="com.ab.apiclient:id/etUrl"]    https://practice.expandtesting.com/notes/api/users/login
+    
+    # add first header
+    Wait Until Element Is Visible    xpath=//android.widget.ImageView    ${TIMEOUT}
+    Click Element    xpath=//android.widget.ImageView    
+    Wait Until Element Is Visible    xpath=//android.widget.ImageView[@resource-id="com.ab.apiclient:id/iconDown"]    ${TIMEOUT}
+    Click Element    xpath=//android.widget.ImageView[@resource-id="com.ab.apiclient:id/iconDown"]    
+    Wait Until Element Is Visible    xpath=//android.widget.TextView[@resource-id="android:id/text1" and @text="Accept"]    ${TIMEOUT}
+    Click Element    xpath=//android.widget.TextView[@resource-id="android:id/text1" and @text="Accept"]      
+    Wait Until Element Is Visible    xpath=//android.widget.ImageView[@resource-id="com.ab.apiclient:id/iconDownVal"]    ${TIMEOUT}
+    Click Element    xpath=//android.widget.ImageView[@resource-id="com.ab.apiclient:id/iconDownVal"]
+    Wait Until Element Is Visible    xpath=//android.widget.TextView[@resource-id="android:id/text1" and @text="application/xml"]    ${TIMEOUT}
+    Click Element    xpath=//android.widget.TextView[@resource-id="android:id/text1" and @text="application/xml"]
+    
+    # add second header
+    Wait Until Element Is Visible    xpath=//android.widget.LinearLayout[@resource-id="com.ab.apiclient:id/llAddHeader"]/android.widget.ImageView    ${TIMEOUT}
+    Click Element    xpath=//android.widget.LinearLayout[@resource-id="com.ab.apiclient:id/llAddHeader"]/android.widget.ImageView    
+    Wait Until Element Is Visible    xpath=(//android.widget.ImageView[@resource-id="com.ab.apiclient:id/iconDown"])[2]    ${TIMEOUT}
+    Click Element    xpath=(//android.widget.ImageView[@resource-id="com.ab.apiclient:id/iconDown"])[2]   
+    Wait Until Element Is Visible    xpath=//android.widget.TextView[@resource-id="android:id/text1" and @text="Content-Type"]    ${TIMEOUT}
+    Click Element    xpath=//android.widget.TextView[@resource-id="android:id/text1" and @text="Content-Type"]
+    Wait Until Element Is Visible    xpath=(//android.widget.ImageView[@resource-id="com.ab.apiclient:id/iconDownVal"])[2]    ${TIMEOUT}
+    Click Element    xpath=(//android.widget.ImageView[@resource-id="com.ab.apiclient:id/iconDownVal"])[2]   
+    Wait Until Element Is Visible    xpath=//android.widget.TextView[@resource-id="android:id/text1" and @text="application/x-www-form-urlencoded"]    ${TIMEOUT}
+    Click Element    xpath=//android.widget.TextView[@resource-id="android:id/text1" and @text="application/x-www-form-urlencoded"]
+
+    # select body format
+    Wait Until Element Is Visible    xpath=//android.widget.RadioButton[@resource-id="com.ab.apiclient:id/rbFormUrlEncode"]    ${TIMEOUT}
+    Click Element    xpath=//android.widget.RadioButton[@resource-id="com.ab.apiclient:id/rbFormUrlEncode"]
+    
+    # fill body                            
+    Wait Until Element Is Visible    xpath=//android.widget.EditText[@resource-id="com.ab.apiclient:id/etKey" and @text="Key"]    ${TIMEOUT}
+    Input Text    xpath=//android.widget.EditText[@resource-id="com.ab.apiclient:id/etKey" and @text="Key"]    email
+    Input Text    xpath=//android.widget.EditText[@resource-id="com.ab.apiclient:id/etValue" and @text="Value"]    ${user_email}
+    Click Element    xpath=//android.widget.TextView[@resource-id="com.ab.apiclient:id/btnAdd"]
+    Wait Until Element Is Visible    xpath=//android.widget.EditText[@resource-id="com.ab.apiclient:id/etKey" and @text="Key"]    ${TIMEOUT}
+    Input Text    xpath=//android.widget.EditText[@resource-id="com.ab.apiclient:id/etKey" and @text="Key"]    password
+    Input Text    xpath=//android.widget.EditText[@resource-id="com.ab.apiclient:id/etValue" and @text="Value"]    ${user_password}                         
+    Click Element    xpath=//android.widget.TextView[@resource-id="com.ab.apiclient:id/btnAdd"]
+
+    Swipe By Percent    50    80    50    20    1000
+    Click Element    xpath=//android.widget.TextView[@resource-id="com.ab.apiclient:id/btnAdd"]
+    Wait Until Element Is Visible    xpath=//android.widget.EditText[@resource-id="com.ab.apiclient:id/etKey" and @text="Key"]    ${TIMEOUT}
+
     # send request
     Click Element    xpath=//android.widget.Button[@resource-id="com.ab.apiclient:id/btnSend"]
 
@@ -89,12 +136,12 @@ logInUser(${randomNumber})
     # creating .json file
     Create File    tests/fixtures/testdata-${randomNumber}.json	{"user_email":"${user_email}","user_id":"${user_id}","user_name":"${user_name}","user_password":"${user_password}","user_token":"${user_token}"}
     
-    # press back key
+    # press back key and create a new request
     Press Keycode             4
-    
-    # if click send here, app does not get that password was inuted. need to add a blank field
-    Swipe By Percent    50    20    50    80    1000
-    Wait Until Element Is Visible    xpath=//android.widget.EditText[@resource-id="com.ab.apiclient:id/etUrl"]    ${TIMEOUT}
+    Wait Until Element Is Visible    xpath=//android.widget.ImageButton    ${TIMEOUT}
+    Click Element    xpath=//android.widget.ImageButton
+    Wait Until Element Is Visible    xpath=//android.widget.CheckedTextView[@resource-id="com.ab.apiclient:id/design_menu_item_text" and @text="New Request"]    ${TIMEOUT}
+    Click Element    xpath=//android.widget.CheckedTextView[@resource-id="com.ab.apiclient:id/design_menu_item_text" and @text="New Request"]
 
 deleteUser(${randomNumber})
     ${data}    Load Json From File    tests/fixtures/testdata-${randomNumber}.json
@@ -102,21 +149,29 @@ deleteUser(${randomNumber})
     ${user_token_str}    Convert JSON To String	 ${user_token_data}
     ${user_token}    Remove String    ${user_token_str}    [    ]    '    "
 
-    # url
-    Wait Until Element Is Visible    xpath=//android.widget.EditText[@resource-id="com.ab.apiclient:id/etUrl"]    ${TIMEOUT}
-    Clear Text    xpath=//android.widget.EditText[@resource-id="com.ab.apiclient:id/etUrl"]
-    Input Text    xpath=//android.widget.EditText[@resource-id="com.ab.apiclient:id/etUrl"]    https://practice.expandtesting.com/notes/api/users/delete-account
-    # Click Element    xpath=(//android.widget.ImageView[@resource-id="com.ab.apiclient:id/btnRemove"])[1]
-
-    # selecting method delete 
-    Wait Until Element Is Visible    xpath=//android.widget.TextView[@resource-id="android:id/text1"]    ${TIMEOUT}
-    Click Element    xpath=//android.widget.TextView[@resource-id="android:id/text1"]
+    # select delete
+    Wait Until Element Is Visible    id=com.ab.apiclient:id/spHttpMethod    ${TIMEOUT}
+    Click Element    id=com.ab.apiclient:id/spHttpMethod
     Wait Until Element Is Visible    xpath=//android.widget.CheckedTextView[@resource-id="android:id/text1" and @text="DELETE"]    ${TIMEOUT}
     Click Element    xpath=//android.widget.CheckedTextView[@resource-id="android:id/text1" and @text="DELETE"]
+    
+    # input base url and endpoint
+    Wait Until Element Is Visible    xpath=//android.widget.EditText[@resource-id="com.ab.apiclient:id/etUrl"]    ${TIMEOUT}
+    Input Text    xpath=//android.widget.EditText[@resource-id="com.ab.apiclient:id/etUrl"]    https://practice.expandtesting.com/notes/api/users/delete-account
+    
+    # add first header
+    Wait Until Element Is Visible    xpath=//android.widget.ImageView    ${TIMEOUT}
+    Click Element    xpath=//android.widget.ImageView    
+    Wait Until Element Is Visible    xpath=//android.widget.ImageView[@resource-id="com.ab.apiclient:id/iconDown"]    ${TIMEOUT}
+    Click Element    xpath=//android.widget.ImageView[@resource-id="com.ab.apiclient:id/iconDown"]    
+    Wait Until Element Is Visible    xpath=//android.widget.TextView[@resource-id="android:id/text1" and @text="Accept"]    ${TIMEOUT}
+    Click Element    xpath=//android.widget.TextView[@resource-id="android:id/text1" and @text="Accept"]      
+    Wait Until Element Is Visible    xpath=//android.widget.ImageView[@resource-id="com.ab.apiclient:id/iconDownVal"]    ${TIMEOUT}
+    Click Element    xpath=//android.widget.ImageView[@resource-id="com.ab.apiclient:id/iconDownVal"]
+    Wait Until Element Is Visible    xpath=//android.widget.TextView[@resource-id="android:id/text1" and @text="application/xml"]    ${TIMEOUT}
+    Click Element    xpath=//android.widget.TextView[@resource-id="android:id/text1" and @text="application/xml"]
 
     # configuring token 
-    Wait Until Element Is Visible    xpath=(//android.widget.ImageView[@resource-id="com.ab.apiclient:id/imgRemove"])[2]    ${TIMEOUT}
-    Click Element    xpath=(//android.widget.ImageView[@resource-id="com.ab.apiclient:id/imgRemove"])[2]
     Wait Until Element Is Visible    xpath=//android.widget.LinearLayout[@resource-id="com.ab.apiclient:id/llAddHeader"]/android.widget.ImageView    ${TIMEOUT}
     Click Element    xpath=//android.widget.LinearLayout[@resource-id="com.ab.apiclient:id/llAddHeader"]/android.widget.ImageView
     Wait Until Element Is Visible    xpath=//android.widget.EditText[@resource-id="com.ab.apiclient:id/etKey" and @text="Key"]    ${TIMEOUT}
@@ -151,6 +206,13 @@ deleteUser(${randomNumber})
     Should Be True    ${success}    True
     Should Be Equal    ${status_str}    200
     Should Be Equal    ${message_str}    Account successfully deleted
+
+    # press back key and create a new request
+    Press Keycode             4
+    Wait Until Element Is Visible    xpath=//android.widget.ImageButton    ${TIMEOUT}
+    Click Element    xpath=//android.widget.ImageButton
+    Wait Until Element Is Visible    xpath=//android.widget.CheckedTextView[@resource-id="com.ab.apiclient:id/design_menu_item_text" and @text="New Request"]    ${TIMEOUT}
+    Click Element    xpath=//android.widget.CheckedTextView[@resource-id="com.ab.apiclient:id/design_menu_item_text" and @text="New Request"]
 
 deleteJsonFile(${randomNumber})
     Remove File    tests/fixtures/testdata-${randomNumber}.json
@@ -273,9 +335,9 @@ createUser(${randomNumber})
     # creating .json file
     Create File    tests/fixtures/testdata-${randomNumber}.json	{"user_email":"${user_email}","user_id":"${user_id}","user_name":"${user_name}","user_password":"${user_password}"}
 
-    # press back key
+    # press back key and create a new request
     Press Keycode             4
-
-    # if click send here, app does not get that password was inuted. need to add a blank field
-    Swipe By Percent    50    20    50    80    1000
-    Wait Until Element Is Visible    xpath=//android.widget.EditText[@resource-id="com.ab.apiclient:id/etUrl"]    ${TIMEOUT}
+    Wait Until Element Is Visible    xpath=//android.widget.ImageButton    ${TIMEOUT}
+    Click Element    xpath=//android.widget.ImageButton
+    Wait Until Element Is Visible    xpath=//android.widget.CheckedTextView[@resource-id="com.ab.apiclient:id/design_menu_item_text" and @text="New Request"]    ${TIMEOUT}
+    Click Element    xpath=//android.widget.CheckedTextView[@resource-id="com.ab.apiclient:id/design_menu_item_text" and @text="New Request"]
