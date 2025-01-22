@@ -467,6 +467,101 @@ Update the user profile information
     
     deleteJsonFile(${randomNumber})
 
+Change a user\'s password
+    ${randomNumber}    FakerLibrary.creditCardNumber
+    createUser(${randomNumber})
+    logInUser(${randomNumber})
+    ${data}    Load Json From File    tests/fixtures/testdata-${randomNumber}.json
+    ${user_password_data}    Get Value From Json    ${data}    $.user_password
+    ${user_password_str}    Convert JSON To String	 ${user_password_data}
+    ${user_password}    Remove String    ${user_password_str}    [    ]    '    "
+    ${user_token_data}    Get Value From Json    ${data}    $.user_token
+    ${user_token_str}    Convert JSON To String	 ${user_token_data}
+    ${user_token}    Remove String    ${user_token_str}    [    ]    '    " 
+    ${updated_user_password}    FakerLibrary.password
+
+    # select POST
+    Wait Until Element Is Visible    id=com.ab.apiclient:id/spHttpMethod    ${TIMEOUT}
+    Click Element    id=com.ab.apiclient:id/spHttpMethod
+    Wait Until Element Is Visible    xpath=//android.widget.CheckedTextView[@resource-id="android:id/text1" and @text="POST"]    ${TIMEOUT}
+    Click Element    xpath=//android.widget.CheckedTextView[@resource-id="android:id/text1" and @text="POST"]
+    
+    # input base url and endpoint
+    Wait Until Element Is Visible    xpath=//android.widget.EditText[@resource-id="com.ab.apiclient:id/etUrl"]    ${TIMEOUT}
+    Input Text    xpath=//android.widget.EditText[@resource-id="com.ab.apiclient:id/etUrl"]    https://practice.expandtesting.com/notes/api/users/change-password
+
+    # configuring token 
+    Wait Until Element Is Visible    xpath=//android.widget.LinearLayout[@resource-id="com.ab.apiclient:id/llAddHeader"]/android.widget.ImageView    ${TIMEOUT}
+    Click Element    xpath=//android.widget.LinearLayout[@resource-id="com.ab.apiclient:id/llAddHeader"]/android.widget.ImageView
+    Wait Until Element Is Visible    xpath=//android.widget.EditText[@resource-id="com.ab.apiclient:id/etKey" and @text="Key"]    ${TIMEOUT}
+    Input Text    xpath=//android.widget.EditText[@resource-id="com.ab.apiclient:id/etKey" and @text="Key"]    x-auth-token
+    Wait Until Element Is Visible    xpath=//android.widget.EditText[@resource-id="com.ab.apiclient:id/etValue" and @text="Value"]    ${TIMEOUT}
+    Input Text    xpath=//android.widget.EditText[@resource-id="com.ab.apiclient:id/etValue" and @text="Value"]    ${user_token}    
+
+    Wait Until Element Is Visible    xpath=(//android.widget.ImageView[@resource-id="com.ab.apiclient:id/btnRemove"])[1]    ${TIMEOUT}
+    Click Element    xpath=(//android.widget.ImageView[@resource-id="com.ab.apiclient:id/btnRemove"])[1]
+    Wait Until Element Is Visible    xpath=//android.widget.ImageView[@resource-id="com.ab.apiclient:id/btnRemove"]    ${TIMEOUT}
+    Click Element    xpath=//android.widget.ImageView[@resource-id="com.ab.apiclient:id/btnRemove"]
+
+    # filling the field to be updated      
+    Wait Until Element Is Visible    xpath=//android.widget.EditText[@resource-id="com.ab.apiclient:id/etKey" and @text="Key"]    ${TIMEOUT}
+    Input Text    xpath=//android.widget.EditText[@resource-id="com.ab.apiclient:id/etKey" and @text="Key"]    currentPassword
+    Wait Until Element Is Visible    xpath=//android.widget.EditText[@resource-id="com.ab.apiclient:id/etValue" and @text="Value"]    ${TIMEOUT}
+    Input Text    xpath=//android.widget.EditText[@resource-id="com.ab.apiclient:id/etValue" and @text="Value"]    ${user_password}
+    
+    Wait Until Element Is Visible    xpath=//android.widget.TextView[@resource-id="com.ab.apiclient:id/btnAdd"]
+    Click Element    xpath=//android.widget.TextView[@resource-id="com.ab.apiclient:id/btnAdd"]
+    Swipe By Percent    50    80    50    20    1000
+
+    # since first key is already filled at this point, this locator receives the same name of the first xpath, and the first one receives the name with the values instead of "value" and "keys"
+    Wait Until Element Is Visible    xpath=//android.widget.EditText[@resource-id="com.ab.apiclient:id/etKey" and @text="Key"]    ${TIMEOUT}
+    Input Text    xpath=//android.widget.EditText[@resource-id="com.ab.apiclient:id/etKey" and @text="Key"]    newPassword
+    Wait Until Element Is Visible    xpath=//android.widget.EditText[@resource-id="com.ab.apiclient:id/etValue" and @text="Value"]    ${TIMEOUT}
+    Input Text    xpath=//android.widget.EditText[@resource-id="com.ab.apiclient:id/etValue" and @text="Value"]    ${updated_user_password}
+
+    Wait Until Element Is Visible    xpath=//android.widget.TextView[@resource-id="com.ab.apiclient:id/btnAdd"]    ${TIMEOUT}
+    Click Element    xpath=//android.widget.TextView[@resource-id="com.ab.apiclient:id/btnAdd"]
+    
+    # send request
+    Click Element    xpath=//android.widget.Button[@resource-id="com.ab.apiclient:id/btnSend"]
+
+    #save response
+    Wait Until Element Is Visible    xpath=//android.widget.LinearLayout[@content-desc="Raw"]    ${TIMEOUT}
+    Click Element    xpath=//android.widget.LinearLayout[@content-desc="Raw"]
+    Wait Until Element Is Visible    xpath=//android.widget.TextView[@resource-id="com.ab.apiclient:id/tvResult"]    ${TIMEOUT}
+    Click Element    xpath=//android.widget.TextView[@resource-id="com.ab.apiclient:id/tvResult"]
+    ${response_cup_string}=    Get Text    xpath=//android.widget.TextView[@resource-id="com.ab.apiclient:id/tvResult"]
+    Log    string response is: ${response_cup_string}
+    ${response_cup_json}    Convert String To Json    ${response_cup_string}
+ 
+    # Capturing variable values for assertions
+    ${success} =    Get Value From Json    ${response_cup_json}    $.success
+    ${status} =     Get Value From Json    ${response_cup_json}    $.status
+    ${status_value}=    Get From List    ${status}    0
+    ${status_str} =    Convert To String    ${status_value}
+    ${message} =    Get Value From Json    ${response_cup_json}    $.message
+    ${message_value}=    Get From List    ${message}    0
+    ${message_str} =    Convert To String    ${message_value}
+
+    # assertions
+    Should Be True    ${success}    True
+    Should Be Equal    ${status_str}    200
+    Should Be Equal    ${message_str}    The password was successfully updated
+
+    # press back key
+    Press Keycode             4
+    
+    # if click send here, app does not get that password was inuted. need to add a blank field
+    Swipe By Percent    50    20    50    80    1000
+    Wait Until Element Is Visible    xpath=//android.widget.EditText[@resource-id="com.ab.apiclient:id/etUrl"]    ${TIMEOUT}
+    
+    deleteUser(${randomNumber})
+    
+    Sleep  5
+    [Teardown]    Close Application
+    
+    deleteJsonFile(${randomNumber})
+
 Delete user account
     ${randomNumber}    FakerLibrary.creditCardNumber
     createUser(${randomNumber})

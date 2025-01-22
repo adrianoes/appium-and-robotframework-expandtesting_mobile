@@ -16,7 +16,7 @@ UI testing in [expandtesting](https://practice.expandtesting.com/notes/app/) not
 | Appium Inspector                | 2024.12.1      | -                                                               |
 | uiautomator2 driver             | 3.9.2          |                                                                 |
 | Virtual device                  | Pixel 4        |                                                                 |
-| API                             | 29             |                                                                 |
+| Virtual device API              | 29             |                                                                 |
 | Robot Framework                 | 7.1.1          | -                                                               | 
 | robotframework-appiumlibrary    | 2.1.0          | -                                                               | 
 | robotframework-faker            | 5.0.0          | -                                                               |
