@@ -175,7 +175,8 @@ Log in as an existing user
     ${user_password_data}    Get Value From Json    ${data}    $.user_password
     ${user_password_str}    Convert JSON To String	 ${user_password_data}
     ${user_password}    Remove String    ${user_password_str}    [    ]    '    " 
-     # login 
+
+    # login 
     Wait Until Element Is Visible    xpath=//android.widget.EditText[@resource-id="com.ab.apiclient:id/etUrl"]    ${TIMEOUT}
     Clear Text    xpath=//android.widget.EditText[@resource-id="com.ab.apiclient:id/etUrl"]
     Input Text    xpath=//android.widget.EditText[@resource-id="com.ab.apiclient:id/etUrl"]    https://practice.expandtesting.com/notes/api/users/login
@@ -239,30 +240,97 @@ Log in as an existing user
     
     deleteJsonFile(${randomNumber})
 
-# Retrieve user profile information
-#     ${randomNumber}    FakerLibrary.creditCardNumber
-#     createUser(${randomNumber})
-#     logInUser(${randomNumber})
-#     ${data}    Load Json From File    tests/fixtures/testdata-${randomNumber}.json
-#     ${user_email_data}    Get Value From Json    ${data}    $.user_email
-#     ${user_email_str}    Convert JSON To String	 ${user_email_data}
-#     ${user_email}    Remove String    ${user_email_str}    [    ]    '    " 
-#     ${user_id_data}    Get Value From Json    ${data}    $.user_id
-#     ${user_id_str}    Convert JSON To String	 ${user_id_data}
-#     ${user_id}    Remove String    ${user_id_str}    [    ]    '    " 
-#     ${user_name_data}    Get Value From Json    ${data}    $.user_name
-#     ${user_name_str}    Convert JSON To String	 ${user_name_data}
-#     ${user_name}    Remove String    ${user_name_str}    [    ]    '    "
-#     ${user_token_data}    Get Value From Json    ${data}    $.user_token
-#     ${user_token_str}    Convert JSON To String	 ${user_token_data}
-#     ${user_token}    Remove String    ${user_token_str}    [    ]    '    "
+Retrieve user profile information
+    ${randomNumber}    FakerLibrary.creditCardNumber
+    createUser(${randomNumber})
+    logInUser(${randomNumber})
+    ${data}    Load Json From File    tests/fixtures/testdata-${randomNumber}.json
+    ${user_email_data}    Get Value From Json    ${data}    $.user_email
+    ${user_email_str}    Convert JSON To String	 ${user_email_data}
+    ${user_email}    Remove String    ${user_email_str}    [    ]    '    " 
+    ${user_id_data}    Get Value From Json    ${data}    $.user_id
+    ${user_id_str}    Convert JSON To String	 ${user_id_data}
+    ${user_id}    Remove String    ${user_id_str}    [    ]    '    " 
+    ${user_name_data}    Get Value From Json    ${data}    $.user_name
+    ${user_name_str}    Convert JSON To String	 ${user_name_data}
+    ${user_name}    Remove String    ${user_name_str}    [    ]    '    "
+    ${user_token_data}    Get Value From Json    ${data}    $.user_token
+    ${user_token_str}    Convert JSON To String	 ${user_token_data}
+    ${user_token}    Remove String    ${user_token_str}    [    ]    '    "
 
-#     deleteUser(${randomNumber})
+    # select get
+    Wait Until Element Is Visible    id=com.ab.apiclient:id/spHttpMethod    ${TIMEOUT}
+    Click Element    id=com.ab.apiclient:id/spHttpMethod
+    Wait Until Element Is Visible    xpath=//android.widget.CheckedTextView[@resource-id="android:id/text1" and @text="GET"]    ${TIMEOUT}
+    Click Element    xpath=//android.widget.CheckedTextView[@resource-id="android:id/text1" and @text="GET"]
     
-#     Sleep  5
-#     [Teardown]    Close Application
+    # input base url and endpoint
+    Wait Until Element Is Visible    xpath=//android.widget.EditText[@resource-id="com.ab.apiclient:id/etUrl"]    ${TIMEOUT}
+    Input Text    xpath=//android.widget.EditText[@resource-id="com.ab.apiclient:id/etUrl"]    https://practice.expandtesting.com/notes/api/users/profile
+
+    # configuring token 
+    Wait Until Element Is Visible    xpath=(//android.widget.ImageView[@resource-id="com.ab.apiclient:id/imgRemove"])[2]    ${TIMEOUT}
+    Click Element    xpath=(//android.widget.ImageView[@resource-id="com.ab.apiclient:id/imgRemove"])[2]
+    Wait Until Element Is Visible    xpath=//android.widget.LinearLayout[@resource-id="com.ab.apiclient:id/llAddHeader"]/android.widget.ImageView    ${TIMEOUT}
+    Click Element    xpath=//android.widget.LinearLayout[@resource-id="com.ab.apiclient:id/llAddHeader"]/android.widget.ImageView
+    Wait Until Element Is Visible    xpath=//android.widget.EditText[@resource-id="com.ab.apiclient:id/etKey" and @text="Key"]    ${TIMEOUT}
+    Input Text    xpath=//android.widget.EditText[@resource-id="com.ab.apiclient:id/etKey" and @text="Key"]    x-auth-token
+    Wait Until Element Is Visible    xpath=//android.widget.EditText[@resource-id="com.ab.apiclient:id/etValue" and @text="Value"]    ${TIMEOUT}
+    Input Text    xpath=//android.widget.EditText[@resource-id="com.ab.apiclient:id/etValue" and @text="Value"]    ${user_token}
+    Wait Until Element Is Visible    xpath=//android.widget.LinearLayout[@resource-id="com.ab.apiclient:id/llAddHeader"]/android.widget.ImageView    ${TIMEOUT}
+    Click Element    xpath=//android.widget.LinearLayout[@resource-id="com.ab.apiclient:id/llAddHeader"]/android.widget.ImageView
+
+    # send request
+    Click Element    xpath=//android.widget.Button[@resource-id="com.ab.apiclient:id/btnSend"]
+
+    #save response
+    Wait Until Element Is Visible    xpath=//android.widget.LinearLayout[@content-desc="Raw"]    ${TIMEOUT}
+    Click Element    xpath=//android.widget.LinearLayout[@content-desc="Raw"]
+    Wait Until Element Is Visible    xpath=//android.widget.TextView[@resource-id="com.ab.apiclient:id/tvResult"]    ${TIMEOUT}
+    Click Element    xpath=//android.widget.TextView[@resource-id="com.ab.apiclient:id/tvResult"]
+    ${response_ru_string}=    Get Text    xpath=//android.widget.TextView[@resource-id="com.ab.apiclient:id/tvResult"]
+    Log    string response is: ${response_ru_string}
+    ${response_ru_json}    Convert String To Json    ${response_ru_string}
+ 
+    # Capturing variable values for assertions
+    ${success} =    Get Value From Json    ${response_ru_json}    $.success
+    ${status} =     Get Value From Json    ${response_ru_json}    $.status
+    ${status_value}=    Get From List    ${status}    0
+    ${status_str} =    Convert To String    ${status_value}
+    ${message} =    Get Value From Json    ${response_ru_json}    $.message
+    ${message_value}=    Get From List    ${message}    0
+    ${message_str} =    Convert To String    ${message_value}
+    ${user_name_resp} =  Get Value From Json    ${response_ru_json}    $.data.name
+    ${user_name_value}=    Get From List    ${user_name_resp}    0
+    ${user_name_str} =    Convert To String    ${user_name_value}
+    ${user_email_resp}=    Get Value From Json    ${response_ru_json}    $.data.email
+    ${user_email_value}=    Get From List    ${user_email_resp}    0
+    ${user_email_str} =    Convert To String    ${user_email_value}
+    ${user_id_resp}=    Get Value From Json    ${response_ru_json}    $.data.id
+    ${user_id_value}=    Get From List    ${user_id_resp}    0
+    ${user_id_str} =    Convert To String    ${user_id_value}
+
+    # assertions
+    Should Be True    ${success}    True
+    Should Be Equal    ${status_str}    200
+    Should Be Equal    ${message_str}    Profile successful
+    Should Be Equal    ${user_id_str}    ${user_id}
+    Should Be Equal    ${user_name_str}  ${user_name}
+    Should Be Equal    ${user_email_str}    ${user_email}
+
+    # press back key
+    Press Keycode             4
     
-#     deleteJsonFile(${randomNumber})
+    # if click send here, app does not get that password was inuted. need to add a blank field
+    Swipe By Percent    50    20    50    80    1000
+    Wait Until Element Is Visible    xpath=//android.widget.EditText[@resource-id="com.ab.apiclient:id/etUrl"]    ${TIMEOUT}
+    
+    deleteUser(${randomNumber})
+    
+    Sleep  5
+    [Teardown]    Close Application
+    
+    deleteJsonFile(${randomNumber})
 
 Delete user account
     ${randomNumber}    FakerLibrary.creditCardNumber
@@ -328,3 +396,8 @@ Delete user account
     [Teardown]    Close Application
     
     deleteJsonFile(${randomNumber})
+
+
+
+
+    

@@ -101,13 +101,12 @@ deleteUser(${randomNumber})
     ${user_token_data}    Get Value From Json    ${data}    $.user_token
     ${user_token_str}    Convert JSON To String	 ${user_token_data}
     ${user_token}    Remove String    ${user_token_str}    [    ]    '    "
-    #deleting user 
 
     # url
     Wait Until Element Is Visible    xpath=//android.widget.EditText[@resource-id="com.ab.apiclient:id/etUrl"]    ${TIMEOUT}
     Clear Text    xpath=//android.widget.EditText[@resource-id="com.ab.apiclient:id/etUrl"]
     Input Text    xpath=//android.widget.EditText[@resource-id="com.ab.apiclient:id/etUrl"]    https://practice.expandtesting.com/notes/api/users/delete-account
-    Click Element    xpath=(//android.widget.ImageView[@resource-id="com.ab.apiclient:id/btnRemove"])[1]
+    # Click Element    xpath=(//android.widget.ImageView[@resource-id="com.ab.apiclient:id/btnRemove"])[1]
 
     # selecting method delete 
     Wait Until Element Is Visible    xpath=//android.widget.TextView[@resource-id="android:id/text1"]    ${TIMEOUT}
