@@ -1,6 +1,6 @@
 # appium-expandtesting_UI
 
-UI testing in [expandtesting](https://practice.expandtesting.com/notes/app/) note app. This project contains basic examples on how to use Appium and Robot Framework to test UI tests. Good practices such as hooks, custom commands and tags, among others, are used. All the necessary support documentation to develop this project is placed here. 
+UI testing in ApiClient apk using [expandtesting](https://practice.expandtesting.com/notes/app/). This project contains basic examples on how to use Appium and Robot Framework to test UI tests. Good practices such as hooks, custom commands and tags, among others, are used. All the necessary support documentation to develop this project is placed here. 
 
 # Pre-requirements:
 
@@ -11,12 +11,13 @@ UI testing in [expandtesting](https://practice.expandtesting.com/notes/app/) not
 | Python                          | 3.13.1         | -                                                               |
 | JDK                             | 23             | -                                                               |
 | Android Studio                  | 2024.2.1.11    | -                                                               |
+| ApiClient apk                   | 2.4.7          | -                                                               |
 | Appium                          | 2.13.1         | -                                                               |
 | Appium Doctor                   | 1.16.2         | -                                                               |
 | Appium Inspector                | 2024.12.1      | -                                                               |
-| uiautomator2 driver             | 3.9.2          |                                                                 |
-| Virtual device                  | Pixel 4        |                                                                 |
-| Virtual device API              | 29             |                                                                 |
+| uiautomator2 driver             | 3.9.2          | -                                                               |
+| Virtual device                  | Pixel 4        | -                                                               |
+| Virtual device API              | 29             | -                                                               |
 | Robot Framework                 | 7.1.1          | -                                                               | 
 | robotframework-appiumlibrary    | 2.1.0          | -                                                               | 
 | robotframework-faker            | 5.0.0          | -                                                               |
@@ -60,7 +61,7 @@ Check then both to add both options in context menu.
     "appium:autoGrantPermissions": true,
     "appium:appActivity": "com.ab.apiclient.ui.Splash",
     "appium:appWaitActivity": "com.ab.apiclient.ui.Splash,com.ab.apiclient.*,com.ab.apiclient.ui.MainActivity",
-    "appium:appWaitDuration": 20000
+    "appium:appWaitDuration": 60000
   }
   ```  
 - Open windows propmpt as admin and execute ```pip install robotframework``` to install Robot Framework.
