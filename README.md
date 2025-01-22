@@ -61,7 +61,11 @@ Check then both to add both options in context menu.
     "appium:autoGrantPermissions": true,
     "appium:appActivity": "com.ab.apiclient.ui.Splash",
     "appium:appWaitActivity": "com.ab.apiclient.ui.Splash,com.ab.apiclient.*,com.ab.apiclient.ui.MainActivity",
-    "appium:appWaitDuration": 60000
+    "appium:appWaitDuration": 20000,
+    "appium:uiautomator2ServerInstallTimeout": 60000,
+    "appium:newCommandTimeout": 300,
+    "appium:noReset": true,
+    "appium:fullReset": false
   }
   ```  
 - Open windows propmpt as admin and execute ```pip install robotframework``` to install Robot Framework.

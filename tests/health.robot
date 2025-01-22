@@ -36,7 +36,12 @@ Check api healt
     ...                 autoGrantPermissions=${AUTO_GRANT_PERMISSIONS}
     ...                 appActivity=com.ab.apiclient.ui.Splash
     ...                 appWaitActivity=com.ab.apiclient.ui.Splash,com.ab.apiclient.*,com.ab.apiclient.ui.MainActivity
-    ...                 appWaitDuration=60000
+    ...                 appWaitDuration=20000
+    ...                 uiautomator2ServerInstallTimeout=60000
+    ...                 newCommandTimeout=300
+    ...                 noReset=true
+    ...                 fullReset=false
+
 
     Sleep  5
 
