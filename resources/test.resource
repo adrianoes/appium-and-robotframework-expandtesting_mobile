@@ -1,4 +1,3 @@
-
 *** Settings ***
 
 Library    AppiumLibrary
@@ -59,18 +58,17 @@ logInUser(${randomNumber})
     Click Element    xpath=//android.widget.RadioButton[@resource-id="com.ab.apiclient:id/rbFormUrlEncode"]
     
     # fill body                            
-    Wait Until Element Is Visible    xpath=//android.widget.EditText[@resource-id="com.ab.apiclient:id/etKey" and @text="Key"]    ${TIMEOUT}
-    Input Text    xpath=//android.widget.EditText[@resource-id="com.ab.apiclient:id/etKey" and @text="Key"]    email
-    Input Text    xpath=//android.widget.EditText[@resource-id="com.ab.apiclient:id/etValue" and @text="Value"]    ${user_email}
-    Click Element    xpath=//android.widget.TextView[@resource-id="com.ab.apiclient:id/btnAdd"]
-    Wait Until Element Is Visible    xpath=//android.widget.EditText[@resource-id="com.ab.apiclient:id/etKey" and @text="Key"]    ${TIMEOUT}
-    Input Text    xpath=//android.widget.EditText[@resource-id="com.ab.apiclient:id/etKey" and @text="Key"]    password
-    Input Text    xpath=//android.widget.EditText[@resource-id="com.ab.apiclient:id/etValue" and @text="Value"]    ${user_password}                         
-    Click Element    xpath=//android.widget.TextView[@resource-id="com.ab.apiclient:id/btnAdd"]
-
+    Wait Until Element Is Visible    android=new UiSelector().text("Key")    ${TIMEOUT}
+    Input Text    android=new UiSelector().text("Key")    email
+    Input Text    android=new UiSelector().text("Value")    ${user_email}                         
     Swipe By Percent    50    80    50    20    1000
-    Click Element    xpath=//android.widget.TextView[@resource-id="com.ab.apiclient:id/btnAdd"]
-    Wait Until Element Is Visible    xpath=//android.widget.EditText[@resource-id="com.ab.apiclient:id/etKey" and @text="Key"]    ${TIMEOUT}
+    Click Element    id=com.ab.apiclient:id/btnAdd
+    Wait Until Element Is Visible    android=new UiSelector().text("Key")    ${TIMEOUT}
+    Input Text    android=new UiSelector().text("Key")    password
+    Input Text    android=new UiSelector().text("Value")    ${user_password}    
+    Swipe By Percent    50    80    50    20    1000
+    Click Element    id=com.ab.apiclient:id/btnAdd
+    Swipe By Percent    50    80    50    20    1000
 
     # send request
     Click Element    xpath=//android.widget.Button[@resource-id="com.ab.apiclient:id/btnSend"]
@@ -203,6 +201,8 @@ createUser(${randomNumber})
 
     Sleep  5
 
+    increasingRequestResponseTimeout()
+
     # select post
     Wait Until Element Is Visible    id=com.ab.apiclient:id/spHttpMethod    ${TIMEOUT}
     Click Element    id=com.ab.apiclient:id/spHttpMethod
@@ -222,22 +222,22 @@ createUser(${randomNumber})
     Click Element    xpath=//android.widget.RadioButton[@resource-id="com.ab.apiclient:id/rbFormUrlEncode"]
 
     # fill body
-    Wait Until Element Is Visible    xpath=//android.widget.EditText[@resource-id="com.ab.apiclient:id/etKey" and @text="Key"]    ${TIMEOUT}
-    Input Text    xpath=//android.widget.EditText[@resource-id="com.ab.apiclient:id/etKey" and @text="Key"]    name
-    Input Text    xpath=//android.widget.EditText[@resource-id="com.ab.apiclient:id/etValue" and @text="Value"]    ${user_name}
-    Click Element    xpath=//android.widget.TextView[@resource-id="com.ab.apiclient:id/btnAdd"]
-    Wait Until Element Is Visible    xpath=//android.widget.EditText[@resource-id="com.ab.apiclient:id/etKey" and @text="Key"]    ${TIMEOUT}
-    Input Text    xpath=//android.widget.EditText[@resource-id="com.ab.apiclient:id/etKey" and @text="Key"]    email
-    Input Text    xpath=//android.widget.EditText[@resource-id="com.ab.apiclient:id/etValue" and @text="Value"]    ${user_email}                         
-    Click Element    xpath=//android.widget.TextView[@resource-id="com.ab.apiclient:id/btnAdd"]
-    Wait Until Element Is Visible    xpath=//android.widget.EditText[@resource-id="com.ab.apiclient:id/etKey" and @text="Key"]    ${TIMEOUT}
-    Input Text    xpath=//android.widget.EditText[@resource-id="com.ab.apiclient:id/etKey" and @text="Key"]    password
-    Input Text    xpath=//android.widget.EditText[@resource-id="com.ab.apiclient:id/etValue" and @text="Value"]    ${user_password}
-
-    # if click send here, app does not get that password was inuted. need to add a blank field
+    Wait Until Element Is Visible    android=new UiSelector().text("Key")    ${TIMEOUT}
+    Input Text    android=new UiSelector().text("Key")    name
+    Input Text    android=new UiSelector().text("Value")    ${user_name}
     Swipe By Percent    50    80    50    20    1000
-    Click Element    xpath=//android.widget.TextView[@resource-id="com.ab.apiclient:id/btnAdd"]
-    Wait Until Element Is Visible    xpath=//android.widget.EditText[@resource-id="com.ab.apiclient:id/etKey" and @text="Key"]    ${TIMEOUT}
+    Click Element    id=com.ab.apiclient:id/btnAdd
+    Wait Until Element Is Visible    android=new UiSelector().text("Key")    ${TIMEOUT}
+    Input Text    android=new UiSelector().text("Key")    email
+    Input Text    android=new UiSelector().text("Value")    ${user_email}                         
+    Swipe By Percent    50    80    50    20    1000
+    Click Element    id=com.ab.apiclient:id/btnAdd
+    Wait Until Element Is Visible    android=new UiSelector().text("Key")    ${TIMEOUT}
+    Input Text    android=new UiSelector().text("Key")    password
+    Input Text    android=new UiSelector().text("Value")    ${user_password}    
+    Swipe By Percent    50    80    50    20    1000
+    Click Element    id=com.ab.apiclient:id/btnAdd
+    Swipe By Percent    50    80    50    20    1000
 
     # send request
     Click Element    xpath=//android.widget.Button[@resource-id="com.ab.apiclient:id/btnSend"]
@@ -320,5 +320,22 @@ addTokenHeader(${randomNumber})
     Input Text    xpath=//android.widget.EditText[@resource-id="com.ab.apiclient:id/etKey" and @text="Key"]    x-auth-token
     Wait Until Element Is Visible    xpath=//android.widget.EditText[@resource-id="com.ab.apiclient:id/etValue" and @text="Value"]    ${TIMEOUT}
     Input Text    xpath=//android.widget.EditText[@resource-id="com.ab.apiclient:id/etValue" and @text="Value"]    ${user_token}
-    Wait Until Element Is Visible    xpath=//android.widget.LinearLayout[@resource-id="com.ab.apiclient:id/llAddHeader"]/android.widget.ImageView    ${TIMEOUT}
-    Click Element    xpath=//android.widget.LinearLayout[@resource-id="com.ab.apiclient:id/llAddHeader"]/android.widget.ImageView
+
+increasingRequestResponseTimeout()
+    Wait Until Element Is Visible    class=android.widget.ImageButton    ${TIMEOUT}
+    Click Element    class=android.widget.ImageButton
+    Wait Until Element Is Visible    android=new UiSelector().text("Settings")   ${TIMEOUT}
+    Click Element    android=new UiSelector().text("Settings")
+    Wait Until Element Is Visible    id=com.ab.apiclient:id/etTimeoutConnection    ${TIMEOUT}
+    Clear Text    id=com.ab.apiclient:id/etTimeoutConnection
+    Input Text    id=com.ab.apiclient:id/etTimeoutConnection    120
+    Wait Until Element Is Visible    id=com.ab.apiclient:id/etTimeoutREAD    ${TIMEOUT}
+    Clear Text    id=com.ab.apiclient:id/etTimeoutREAD
+    Input Text    id=com.ab.apiclient:id/etTimeoutREAD    120    
+    Wait Until Element Is Visible    id=com.ab.apiclient:id/etTimeoutWRITE    ${TIMEOUT}
+    Clear Text    id=com.ab.apiclient:id/etTimeoutWRITE
+    Input Text    id=com.ab.apiclient:id/etTimeoutWRITE    120
+    Wait Until Element Is Visible    class=android.widget.ImageButton    ${TIMEOUT}
+    Click Element    class=android.widget.ImageButton
+    Wait Until Element Is Visible    android=new UiSelector().text("New Request")
+    Click Element    android=new UiSelector().text("New Request")

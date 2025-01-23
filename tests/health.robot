@@ -45,6 +45,8 @@ Check api healt
 
     Sleep  5
 
+    increasingRequestResponseTimeout()
+
     # input base url and endpoint
     Wait Until Element Is Visible    xpath=//android.widget.EditText[@resource-id="com.ab.apiclient:id/etUrl"]    ${TIMEOUT}
     Input Text    xpath=//android.widget.EditText[@resource-id="com.ab.apiclient:id/etUrl"]    https://practice.expandtesting.com/notes/api/health-check
