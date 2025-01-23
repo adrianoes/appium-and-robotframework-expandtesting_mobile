@@ -49,17 +49,8 @@ Check api healt
     Wait Until Element Is Visible    xpath=//android.widget.EditText[@resource-id="com.ab.apiclient:id/etUrl"]    ${TIMEOUT}
     Input Text    xpath=//android.widget.EditText[@resource-id="com.ab.apiclient:id/etUrl"]    https://practice.expandtesting.com/notes/api/health-check
     
-    # add first header
-    Wait Until Element Is Visible    xpath=//android.widget.ImageView    ${TIMEOUT}
-    Click Element    xpath=//android.widget.ImageView    
-    Wait Until Element Is Visible    xpath=//android.widget.ImageView[@resource-id="com.ab.apiclient:id/iconDown"]    ${TIMEOUT}
-    Click Element    xpath=//android.widget.ImageView[@resource-id="com.ab.apiclient:id/iconDown"]    
-    Wait Until Element Is Visible    xpath=//android.widget.TextView[@resource-id="android:id/text1" and @text="Accept"]    ${TIMEOUT}
-    Click Element    xpath=//android.widget.TextView[@resource-id="android:id/text1" and @text="Accept"]      
-    Wait Until Element Is Visible    xpath=//android.widget.ImageView[@resource-id="com.ab.apiclient:id/iconDownVal"]    ${TIMEOUT}
-    Click Element    xpath=//android.widget.ImageView[@resource-id="com.ab.apiclient:id/iconDownVal"]
-    Wait Until Element Is Visible    xpath=//android.widget.TextView[@resource-id="android:id/text1" and @text="application/xml"]    ${TIMEOUT}
-    Click Element    xpath=//android.widget.TextView[@resource-id="android:id/text1" and @text="application/xml"]
+   # add Accept header
+    addAcceptHeader()
 
      # send request
     Click Element    xpath=//android.widget.Button[@resource-id="com.ab.apiclient:id/btnSend"]

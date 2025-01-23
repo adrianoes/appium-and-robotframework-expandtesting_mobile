@@ -62,29 +62,9 @@ Creates a new user account
     Wait Until Element Is Visible    xpath=//android.widget.EditText[@resource-id="com.ab.apiclient:id/etUrl"]    ${TIMEOUT}
     Input Text    xpath=//android.widget.EditText[@resource-id="com.ab.apiclient:id/etUrl"]    https://practice.expandtesting.com/notes/api/users/register
     
-    # add first header
-    Wait Until Element Is Visible    xpath=//android.widget.ImageView    ${TIMEOUT}
-    Click Element    xpath=//android.widget.ImageView    
-    Wait Until Element Is Visible    xpath=//android.widget.ImageView[@resource-id="com.ab.apiclient:id/iconDown"]    ${TIMEOUT}
-    Click Element    xpath=//android.widget.ImageView[@resource-id="com.ab.apiclient:id/iconDown"]    
-    Wait Until Element Is Visible    xpath=//android.widget.TextView[@resource-id="android:id/text1" and @text="Accept"]    ${TIMEOUT}
-    Click Element    xpath=//android.widget.TextView[@resource-id="android:id/text1" and @text="Accept"]      
-    Wait Until Element Is Visible    xpath=//android.widget.ImageView[@resource-id="com.ab.apiclient:id/iconDownVal"]    ${TIMEOUT}
-    Click Element    xpath=//android.widget.ImageView[@resource-id="com.ab.apiclient:id/iconDownVal"]
-    Wait Until Element Is Visible    xpath=//android.widget.TextView[@resource-id="android:id/text1" and @text="application/xml"]    ${TIMEOUT}
-    Click Element    xpath=//android.widget.TextView[@resource-id="android:id/text1" and @text="application/xml"]
-    
-    # add second header
-    Wait Until Element Is Visible    xpath=//android.widget.LinearLayout[@resource-id="com.ab.apiclient:id/llAddHeader"]/android.widget.ImageView    ${TIMEOUT}
-    Click Element    xpath=//android.widget.LinearLayout[@resource-id="com.ab.apiclient:id/llAddHeader"]/android.widget.ImageView    
-    Wait Until Element Is Visible    xpath=(//android.widget.ImageView[@resource-id="com.ab.apiclient:id/iconDown"])[2]    ${TIMEOUT}
-    Click Element    xpath=(//android.widget.ImageView[@resource-id="com.ab.apiclient:id/iconDown"])[2]   
-    Wait Until Element Is Visible    xpath=//android.widget.TextView[@resource-id="android:id/text1" and @text="Content-Type"]    ${TIMEOUT}
-    Click Element    xpath=//android.widget.TextView[@resource-id="android:id/text1" and @text="Content-Type"]
-    Wait Until Element Is Visible    xpath=(//android.widget.ImageView[@resource-id="com.ab.apiclient:id/iconDownVal"])[2]    ${TIMEOUT}
-    Click Element    xpath=(//android.widget.ImageView[@resource-id="com.ab.apiclient:id/iconDownVal"])[2]   
-    Wait Until Element Is Visible    xpath=//android.widget.TextView[@resource-id="android:id/text1" and @text="application/x-www-form-urlencoded"]    ${TIMEOUT}
-    Click Element    xpath=//android.widget.TextView[@resource-id="android:id/text1" and @text="application/x-www-form-urlencoded"]
+    # add Accept and Content Tyepe headers
+    addAcceptHeader()    
+    addContentTypeHeader()
 
     # select body format
     Wait Until Element Is Visible    xpath=//android.widget.RadioButton[@resource-id="com.ab.apiclient:id/rbFormUrlEncode"]    ${TIMEOUT}
@@ -189,29 +169,9 @@ Log in as an existing user
     Wait Until Element Is Visible    xpath=//android.widget.EditText[@resource-id="com.ab.apiclient:id/etUrl"]    ${TIMEOUT}
     Input Text    xpath=//android.widget.EditText[@resource-id="com.ab.apiclient:id/etUrl"]    https://practice.expandtesting.com/notes/api/users/login
     
-    # add first header
-    Wait Until Element Is Visible    xpath=//android.widget.ImageView    ${TIMEOUT}
-    Click Element    xpath=//android.widget.ImageView    
-    Wait Until Element Is Visible    xpath=//android.widget.ImageView[@resource-id="com.ab.apiclient:id/iconDown"]    ${TIMEOUT}
-    Click Element    xpath=//android.widget.ImageView[@resource-id="com.ab.apiclient:id/iconDown"]    
-    Wait Until Element Is Visible    xpath=//android.widget.TextView[@resource-id="android:id/text1" and @text="Accept"]    ${TIMEOUT}
-    Click Element    xpath=//android.widget.TextView[@resource-id="android:id/text1" and @text="Accept"]      
-    Wait Until Element Is Visible    xpath=//android.widget.ImageView[@resource-id="com.ab.apiclient:id/iconDownVal"]    ${TIMEOUT}
-    Click Element    xpath=//android.widget.ImageView[@resource-id="com.ab.apiclient:id/iconDownVal"]
-    Wait Until Element Is Visible    xpath=//android.widget.TextView[@resource-id="android:id/text1" and @text="application/xml"]    ${TIMEOUT}
-    Click Element    xpath=//android.widget.TextView[@resource-id="android:id/text1" and @text="application/xml"]
-    
-    # add second header
-    Wait Until Element Is Visible    xpath=//android.widget.LinearLayout[@resource-id="com.ab.apiclient:id/llAddHeader"]/android.widget.ImageView    ${TIMEOUT}
-    Click Element    xpath=//android.widget.LinearLayout[@resource-id="com.ab.apiclient:id/llAddHeader"]/android.widget.ImageView    
-    Wait Until Element Is Visible    xpath=(//android.widget.ImageView[@resource-id="com.ab.apiclient:id/iconDown"])[2]    ${TIMEOUT}
-    Click Element    xpath=(//android.widget.ImageView[@resource-id="com.ab.apiclient:id/iconDown"])[2]   
-    Wait Until Element Is Visible    xpath=//android.widget.TextView[@resource-id="android:id/text1" and @text="Content-Type"]    ${TIMEOUT}
-    Click Element    xpath=//android.widget.TextView[@resource-id="android:id/text1" and @text="Content-Type"]
-    Wait Until Element Is Visible    xpath=(//android.widget.ImageView[@resource-id="com.ab.apiclient:id/iconDownVal"])[2]    ${TIMEOUT}
-    Click Element    xpath=(//android.widget.ImageView[@resource-id="com.ab.apiclient:id/iconDownVal"])[2]   
-    Wait Until Element Is Visible    xpath=//android.widget.TextView[@resource-id="android:id/text1" and @text="application/x-www-form-urlencoded"]    ${TIMEOUT}
-    Click Element    xpath=//android.widget.TextView[@resource-id="android:id/text1" and @text="application/x-www-form-urlencoded"]
+    # add Accept and Content Tyepe headers
+    addAcceptHeader()    
+    addContentTypeHeader()
 
     # select body format
     Wait Until Element Is Visible    xpath=//android.widget.RadioButton[@resource-id="com.ab.apiclient:id/rbFormUrlEncode"]    ${TIMEOUT}
@@ -316,27 +276,9 @@ Retrieve user profile information
     Wait Until Element Is Visible    xpath=//android.widget.EditText[@resource-id="com.ab.apiclient:id/etUrl"]    ${TIMEOUT}
     Input Text    xpath=//android.widget.EditText[@resource-id="com.ab.apiclient:id/etUrl"]    https://practice.expandtesting.com/notes/api/users/profile
     
-    # add first header
-    Wait Until Element Is Visible    xpath=//android.widget.ImageView    ${TIMEOUT}
-    Click Element    xpath=//android.widget.ImageView    
-    Wait Until Element Is Visible    xpath=//android.widget.ImageView[@resource-id="com.ab.apiclient:id/iconDown"]    ${TIMEOUT}
-    Click Element    xpath=//android.widget.ImageView[@resource-id="com.ab.apiclient:id/iconDown"]    
-    Wait Until Element Is Visible    xpath=//android.widget.TextView[@resource-id="android:id/text1" and @text="Accept"]    ${TIMEOUT}
-    Click Element    xpath=//android.widget.TextView[@resource-id="android:id/text1" and @text="Accept"]      
-    Wait Until Element Is Visible    xpath=//android.widget.ImageView[@resource-id="com.ab.apiclient:id/iconDownVal"]    ${TIMEOUT}
-    Click Element    xpath=//android.widget.ImageView[@resource-id="com.ab.apiclient:id/iconDownVal"]
-    Wait Until Element Is Visible    xpath=//android.widget.TextView[@resource-id="android:id/text1" and @text="application/xml"]    ${TIMEOUT}
-    Click Element    xpath=//android.widget.TextView[@resource-id="android:id/text1" and @text="application/xml"]
-
-    # configuring token 
-    Wait Until Element Is Visible    xpath=//android.widget.LinearLayout[@resource-id="com.ab.apiclient:id/llAddHeader"]/android.widget.ImageView    ${TIMEOUT}
-    Click Element    xpath=//android.widget.LinearLayout[@resource-id="com.ab.apiclient:id/llAddHeader"]/android.widget.ImageView
-    Wait Until Element Is Visible    xpath=//android.widget.EditText[@resource-id="com.ab.apiclient:id/etKey" and @text="Key"]    ${TIMEOUT}
-    Input Text    xpath=//android.widget.EditText[@resource-id="com.ab.apiclient:id/etKey" and @text="Key"]    x-auth-token
-    Wait Until Element Is Visible    xpath=//android.widget.EditText[@resource-id="com.ab.apiclient:id/etValue" and @text="Value"]    ${TIMEOUT}
-    Input Text    xpath=//android.widget.EditText[@resource-id="com.ab.apiclient:id/etValue" and @text="Value"]    ${user_token}
-    Wait Until Element Is Visible    xpath=//android.widget.LinearLayout[@resource-id="com.ab.apiclient:id/llAddHeader"]/android.widget.ImageView    ${TIMEOUT}
-    Click Element    xpath=//android.widget.LinearLayout[@resource-id="com.ab.apiclient:id/llAddHeader"]/android.widget.ImageView
+    # add Accept and Token headers
+    addAcceptHeader()    
+    addTokenHeader(${randomNumber})
 
     # send request
     Click Element    xpath=//android.widget.Button[@resource-id="com.ab.apiclient:id/btnSend"]
@@ -423,37 +365,10 @@ Update the user profile information
     Wait Until Element Is Visible    xpath=//android.widget.EditText[@resource-id="com.ab.apiclient:id/etUrl"]    ${TIMEOUT}
     Input Text    xpath=//android.widget.EditText[@resource-id="com.ab.apiclient:id/etUrl"]    https://practice.expandtesting.com/notes/api/users/profile
     
-    # add first header
-    Wait Until Element Is Visible    xpath=//android.widget.ImageView    ${TIMEOUT}
-    Click Element    xpath=//android.widget.ImageView    
-    Wait Until Element Is Visible    xpath=//android.widget.ImageView[@resource-id="com.ab.apiclient:id/iconDown"]    ${TIMEOUT}
-    Click Element    xpath=//android.widget.ImageView[@resource-id="com.ab.apiclient:id/iconDown"]    
-    Wait Until Element Is Visible    xpath=//android.widget.TextView[@resource-id="android:id/text1" and @text="Accept"]    ${TIMEOUT}
-    Click Element    xpath=//android.widget.TextView[@resource-id="android:id/text1" and @text="Accept"]      
-    Wait Until Element Is Visible    xpath=//android.widget.ImageView[@resource-id="com.ab.apiclient:id/iconDownVal"]    ${TIMEOUT}
-    Click Element    xpath=//android.widget.ImageView[@resource-id="com.ab.apiclient:id/iconDownVal"]
-    Wait Until Element Is Visible    xpath=//android.widget.TextView[@resource-id="android:id/text1" and @text="application/xml"]    ${TIMEOUT}
-    Click Element    xpath=//android.widget.TextView[@resource-id="android:id/text1" and @text="application/xml"]
-    
-    # add second header
-    Wait Until Element Is Visible    xpath=//android.widget.LinearLayout[@resource-id="com.ab.apiclient:id/llAddHeader"]/android.widget.ImageView    ${TIMEOUT}
-    Click Element    xpath=//android.widget.LinearLayout[@resource-id="com.ab.apiclient:id/llAddHeader"]/android.widget.ImageView    
-    Wait Until Element Is Visible    xpath=(//android.widget.ImageView[@resource-id="com.ab.apiclient:id/iconDown"])[2]    ${TIMEOUT}
-    Click Element    xpath=(//android.widget.ImageView[@resource-id="com.ab.apiclient:id/iconDown"])[2]   
-    Wait Until Element Is Visible    xpath=//android.widget.TextView[@resource-id="android:id/text1" and @text="Content-Type"]    ${TIMEOUT}
-    Click Element    xpath=//android.widget.TextView[@resource-id="android:id/text1" and @text="Content-Type"]
-    Wait Until Element Is Visible    xpath=(//android.widget.ImageView[@resource-id="com.ab.apiclient:id/iconDownVal"])[2]    ${TIMEOUT}
-    Click Element    xpath=(//android.widget.ImageView[@resource-id="com.ab.apiclient:id/iconDownVal"])[2]   
-    Wait Until Element Is Visible    xpath=//android.widget.TextView[@resource-id="android:id/text1" and @text="application/x-www-form-urlencoded"]    ${TIMEOUT}
-    Click Element    xpath=//android.widget.TextView[@resource-id="android:id/text1" and @text="application/x-www-form-urlencoded"]
-
-    # configuring token 
-    Wait Until Element Is Visible    xpath=//android.widget.LinearLayout[@resource-id="com.ab.apiclient:id/llAddHeader"]/android.widget.ImageView    ${TIMEOUT}
-    Click Element    xpath=//android.widget.LinearLayout[@resource-id="com.ab.apiclient:id/llAddHeader"]/android.widget.ImageView
-    Wait Until Element Is Visible    xpath=//android.widget.EditText[@resource-id="com.ab.apiclient:id/etKey" and @text="Key"]    ${TIMEOUT}
-    Input Text    xpath=//android.widget.EditText[@resource-id="com.ab.apiclient:id/etKey" and @text="Key"]    x-auth-token
-    Wait Until Element Is Visible    xpath=//android.widget.EditText[@resource-id="com.ab.apiclient:id/etValue" and @text="Value"]    ${TIMEOUT}
-    Input Text    xpath=//android.widget.EditText[@resource-id="com.ab.apiclient:id/etValue" and @text="Value"]    ${user_token}  
+    # add Accept, Content Type and Token headers
+    addAcceptHeader()    
+    addContentTypeHeader()
+    addTokenHeader(${randomNumber})
 
     # select body format
     Wait Until Element Is Visible    xpath=//android.widget.RadioButton[@resource-id="com.ab.apiclient:id/rbFormUrlEncode"]    ${TIMEOUT}
@@ -562,37 +477,10 @@ Change a user\'s password
     Wait Until Element Is Visible    xpath=//android.widget.EditText[@resource-id="com.ab.apiclient:id/etUrl"]    ${TIMEOUT}
     Input Text    xpath=//android.widget.EditText[@resource-id="com.ab.apiclient:id/etUrl"]    https://practice.expandtesting.com/notes/api/users/change-password
     
-    # add first header
-    Wait Until Element Is Visible    xpath=//android.widget.ImageView    ${TIMEOUT}
-    Click Element    xpath=//android.widget.ImageView    
-    Wait Until Element Is Visible    xpath=//android.widget.ImageView[@resource-id="com.ab.apiclient:id/iconDown"]    ${TIMEOUT}
-    Click Element    xpath=//android.widget.ImageView[@resource-id="com.ab.apiclient:id/iconDown"]    
-    Wait Until Element Is Visible    xpath=//android.widget.TextView[@resource-id="android:id/text1" and @text="Accept"]    ${TIMEOUT}
-    Click Element    xpath=//android.widget.TextView[@resource-id="android:id/text1" and @text="Accept"]      
-    Wait Until Element Is Visible    xpath=//android.widget.ImageView[@resource-id="com.ab.apiclient:id/iconDownVal"]    ${TIMEOUT}
-    Click Element    xpath=//android.widget.ImageView[@resource-id="com.ab.apiclient:id/iconDownVal"]
-    Wait Until Element Is Visible    xpath=//android.widget.TextView[@resource-id="android:id/text1" and @text="application/xml"]    ${TIMEOUT}
-    Click Element    xpath=//android.widget.TextView[@resource-id="android:id/text1" and @text="application/xml"]
-    
-    # add second header
-    Wait Until Element Is Visible    xpath=//android.widget.LinearLayout[@resource-id="com.ab.apiclient:id/llAddHeader"]/android.widget.ImageView    ${TIMEOUT}
-    Click Element    xpath=//android.widget.LinearLayout[@resource-id="com.ab.apiclient:id/llAddHeader"]/android.widget.ImageView    
-    Wait Until Element Is Visible    xpath=(//android.widget.ImageView[@resource-id="com.ab.apiclient:id/iconDown"])[2]    ${TIMEOUT}
-    Click Element    xpath=(//android.widget.ImageView[@resource-id="com.ab.apiclient:id/iconDown"])[2]   
-    Wait Until Element Is Visible    xpath=//android.widget.TextView[@resource-id="android:id/text1" and @text="Content-Type"]    ${TIMEOUT}
-    Click Element    xpath=//android.widget.TextView[@resource-id="android:id/text1" and @text="Content-Type"]
-    Wait Until Element Is Visible    xpath=(//android.widget.ImageView[@resource-id="com.ab.apiclient:id/iconDownVal"])[2]    ${TIMEOUT}
-    Click Element    xpath=(//android.widget.ImageView[@resource-id="com.ab.apiclient:id/iconDownVal"])[2]   
-    Wait Until Element Is Visible    xpath=//android.widget.TextView[@resource-id="android:id/text1" and @text="application/x-www-form-urlencoded"]    ${TIMEOUT}
-    Click Element    xpath=//android.widget.TextView[@resource-id="android:id/text1" and @text="application/x-www-form-urlencoded"]
-
-    # configuring token 
-    Wait Until Element Is Visible    xpath=//android.widget.LinearLayout[@resource-id="com.ab.apiclient:id/llAddHeader"]/android.widget.ImageView    ${TIMEOUT}
-    Click Element    xpath=//android.widget.LinearLayout[@resource-id="com.ab.apiclient:id/llAddHeader"]/android.widget.ImageView
-    Wait Until Element Is Visible    xpath=//android.widget.EditText[@resource-id="com.ab.apiclient:id/etKey" and @text="Key"]    ${TIMEOUT}
-    Input Text    xpath=//android.widget.EditText[@resource-id="com.ab.apiclient:id/etKey" and @text="Key"]    x-auth-token
-    Wait Until Element Is Visible    xpath=//android.widget.EditText[@resource-id="com.ab.apiclient:id/etValue" and @text="Value"]    ${TIMEOUT}
-    Input Text    xpath=//android.widget.EditText[@resource-id="com.ab.apiclient:id/etValue" and @text="Value"]    ${user_token}  
+    # add Accept, Content Type and Token headers
+    addAcceptHeader()    
+    addContentTypeHeader()
+    addTokenHeader(${randomNumber})
 
     # select body format
     Wait Until Element Is Visible    xpath=//android.widget.RadioButton[@resource-id="com.ab.apiclient:id/rbFormUrlEncode"]    ${TIMEOUT}
@@ -672,28 +560,10 @@ Log out a user via API
     Wait Until Element Is Visible    xpath=//android.widget.EditText[@resource-id="com.ab.apiclient:id/etUrl"]    ${TIMEOUT}
     Input Text    xpath=//android.widget.EditText[@resource-id="com.ab.apiclient:id/etUrl"]    https://practice.expandtesting.com/notes/api/users/logout
     
-    # add first header
-    Wait Until Element Is Visible    xpath=//android.widget.ImageView    ${TIMEOUT}
-    Click Element    xpath=//android.widget.ImageView    
-    Wait Until Element Is Visible    xpath=//android.widget.ImageView[@resource-id="com.ab.apiclient:id/iconDown"]    ${TIMEOUT}
-    Click Element    xpath=//android.widget.ImageView[@resource-id="com.ab.apiclient:id/iconDown"]    
-    Wait Until Element Is Visible    xpath=//android.widget.TextView[@resource-id="android:id/text1" and @text="Accept"]    ${TIMEOUT}
-    Click Element    xpath=//android.widget.TextView[@resource-id="android:id/text1" and @text="Accept"]      
-    Wait Until Element Is Visible    xpath=//android.widget.ImageView[@resource-id="com.ab.apiclient:id/iconDownVal"]    ${TIMEOUT}
-    Click Element    xpath=//android.widget.ImageView[@resource-id="com.ab.apiclient:id/iconDownVal"]
-    Wait Until Element Is Visible    xpath=//android.widget.TextView[@resource-id="android:id/text1" and @text="application/xml"]    ${TIMEOUT}
-    Click Element    xpath=//android.widget.TextView[@resource-id="android:id/text1" and @text="application/xml"]
+    # add Accept and Token headers
+    addAcceptHeader()
+    addTokenHeader(${randomNumber})
 
-    # configuring token 
-    Wait Until Element Is Visible    xpath=//android.widget.LinearLayout[@resource-id="com.ab.apiclient:id/llAddHeader"]/android.widget.ImageView    ${TIMEOUT}
-    Click Element    xpath=//android.widget.LinearLayout[@resource-id="com.ab.apiclient:id/llAddHeader"]/android.widget.ImageView
-    Wait Until Element Is Visible    xpath=//android.widget.EditText[@resource-id="com.ab.apiclient:id/etKey" and @text="Key"]    ${TIMEOUT}
-    Input Text    xpath=//android.widget.EditText[@resource-id="com.ab.apiclient:id/etKey" and @text="Key"]    x-auth-token
-    Wait Until Element Is Visible    xpath=//android.widget.EditText[@resource-id="com.ab.apiclient:id/etValue" and @text="Value"]    ${TIMEOUT}
-    Input Text    xpath=//android.widget.EditText[@resource-id="com.ab.apiclient:id/etValue" and @text="Value"]    ${user_token}
-    Wait Until Element Is Visible    xpath=//android.widget.LinearLayout[@resource-id="com.ab.apiclient:id/llAddHeader"]/android.widget.ImageView    ${TIMEOUT}
-    Click Element    xpath=//android.widget.LinearLayout[@resource-id="com.ab.apiclient:id/llAddHeader"]/android.widget.ImageView
-    
     # send request
     Click Element    xpath=//android.widget.Button[@resource-id="com.ab.apiclient:id/btnSend"]
 
@@ -753,27 +623,9 @@ Delete user account
     Wait Until Element Is Visible    xpath=//android.widget.EditText[@resource-id="com.ab.apiclient:id/etUrl"]    ${TIMEOUT}
     Input Text    xpath=//android.widget.EditText[@resource-id="com.ab.apiclient:id/etUrl"]    https://practice.expandtesting.com/notes/api/users/delete-account
     
-    # add first header
-    Wait Until Element Is Visible    xpath=//android.widget.ImageView    ${TIMEOUT}
-    Click Element    xpath=//android.widget.ImageView    
-    Wait Until Element Is Visible    xpath=//android.widget.ImageView[@resource-id="com.ab.apiclient:id/iconDown"]    ${TIMEOUT}
-    Click Element    xpath=//android.widget.ImageView[@resource-id="com.ab.apiclient:id/iconDown"]    
-    Wait Until Element Is Visible    xpath=//android.widget.TextView[@resource-id="android:id/text1" and @text="Accept"]    ${TIMEOUT}
-    Click Element    xpath=//android.widget.TextView[@resource-id="android:id/text1" and @text="Accept"]      
-    Wait Until Element Is Visible    xpath=//android.widget.ImageView[@resource-id="com.ab.apiclient:id/iconDownVal"]    ${TIMEOUT}
-    Click Element    xpath=//android.widget.ImageView[@resource-id="com.ab.apiclient:id/iconDownVal"]
-    Wait Until Element Is Visible    xpath=//android.widget.TextView[@resource-id="android:id/text1" and @text="application/xml"]    ${TIMEOUT}
-    Click Element    xpath=//android.widget.TextView[@resource-id="android:id/text1" and @text="application/xml"]
-
-    # configuring token 
-    Wait Until Element Is Visible    xpath=//android.widget.LinearLayout[@resource-id="com.ab.apiclient:id/llAddHeader"]/android.widget.ImageView    ${TIMEOUT}
-    Click Element    xpath=//android.widget.LinearLayout[@resource-id="com.ab.apiclient:id/llAddHeader"]/android.widget.ImageView
-    Wait Until Element Is Visible    xpath=//android.widget.EditText[@resource-id="com.ab.apiclient:id/etKey" and @text="Key"]    ${TIMEOUT}
-    Input Text    xpath=//android.widget.EditText[@resource-id="com.ab.apiclient:id/etKey" and @text="Key"]    x-auth-token
-    Wait Until Element Is Visible    xpath=//android.widget.EditText[@resource-id="com.ab.apiclient:id/etValue" and @text="Value"]    ${TIMEOUT}
-    Input Text    xpath=//android.widget.EditText[@resource-id="com.ab.apiclient:id/etValue" and @text="Value"]    ${user_token}
-    Wait Until Element Is Visible    xpath=//android.widget.LinearLayout[@resource-id="com.ab.apiclient:id/llAddHeader"]/android.widget.ImageView    ${TIMEOUT}
-    Click Element    xpath=//android.widget.LinearLayout[@resource-id="com.ab.apiclient:id/llAddHeader"]/android.widget.ImageView
+    # add Accept and Token headers
+    addAcceptHeader()
+    addTokenHeader(${randomNumber})
 
     # send request
     Click Element    xpath=//android.widget.Button[@resource-id="com.ab.apiclient:id/btnSend"]
