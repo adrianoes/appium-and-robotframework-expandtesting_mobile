@@ -62,10 +62,7 @@ Check then both to add both options in context menu.
     "appium:appActivity": "com.ab.apiclient.ui.Splash",
     "appium:appWaitActivity": "com.ab.apiclient.ui.Splash,com.ab.apiclient.*,com.ab.apiclient.ui.MainActivity",
     "appium:appWaitDuration": 20000,
-    "appium:uiautomator2ServerInstallTimeout": 60000,
-    "appium:newCommandTimeout": 300,
-    "appium:noReset": true,
-    "appium:fullReset": false
+    "appium:uiautomator2ServerInstallTimeout": 60000
   }
   ```  
 - Open windows propmpt as admin and execute ```pip install robotframework``` to install Robot Framework.
@@ -97,6 +94,7 @@ Check then both to add both options in context menu.
 - [Convert To String](https://robotframework.org/robotframework/latest/libraries/BuiltIn.html#Convert%20To%20String)
 - [How to send Back key in Robot framework Appium ? [Android]](https://stackoverflow.com/a/49398014)
 - [Robot Framework Text Field Clearing and Inputting](https://stackoverflow.com/a/74390477)
+- [Unable to install APK. Try to increase the 20000ms adb execution timeout represented by 'adbExecTimeout' capability"](https://github.com/appium/appium/issues/12287#issuecomment-1353643684)
 
 # Tips:
 
