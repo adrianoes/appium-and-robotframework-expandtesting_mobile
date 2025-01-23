@@ -65,11 +65,10 @@ Check api healt
     Click Element    xpath=//android.widget.Button[@resource-id="com.ab.apiclient:id/btnSend"]
     
     #save response
-    Wait Until Element Is Visible    xpath=//android.widget.LinearLayout[@content-desc="Raw"]    ${TIMEOUT}
-    Click Element    xpath=//android.widget.LinearLayout[@content-desc="Raw"]
-    Wait Until Element Is Visible    xpath=//android.widget.TextView[@resource-id="com.ab.apiclient:id/tvResult"]    ${TIMEOUT}
-    Click Element    xpath=//android.widget.TextView[@resource-id="com.ab.apiclient:id/tvResult"]
-    ${response_ch_string}=    Get Text    xpath=//android.widget.TextView[@resource-id="com.ab.apiclient:id/tvResult"]
+    Wait Until Element Is Visible    accessibility_id=Raw    ${TIMEOUT}
+    Click Element    accessibility_id=Raw
+    Wait Until Element Is Visible    id=com.ab.apiclient:id/tvResult    ${TIMEOUT}
+    ${response_ch_string}=    Get Text    id=com.ab.apiclient:id/tvResult    ${TIMEOUT}
     Log    string response is: ${response_ch_string}
     ${response_ch_json}    Convert String To Json    ${response_ch_string}
  

@@ -112,11 +112,10 @@ Creates a new user account
     Click Element    xpath=//android.widget.Button[@resource-id="com.ab.apiclient:id/btnSend"]
     
     #save response
-    Wait Until Element Is Visible    xpath=//android.widget.LinearLayout[@content-desc="Raw"]    ${TIMEOUT}
-    Click Element    xpath=//android.widget.LinearLayout[@content-desc="Raw"]
-    Wait Until Element Is Visible    xpath=//android.widget.TextView[@resource-id="com.ab.apiclient:id/tvResult"]    ${TIMEOUT}
-    Click Element    xpath=//android.widget.TextView[@resource-id="com.ab.apiclient:id/tvResult"]
-    ${response_cu_string}=    Get Text    xpath=//android.widget.TextView[@resource-id="com.ab.apiclient:id/tvResult"]
+    Wait Until Element Is Visible    accessibility_id=Raw    ${TIMEOUT}
+    Click Element    accessibility_id=Raw
+    Wait Until Element Is Visible    id=com.ab.apiclient:id/tvResult    ${TIMEOUT}
+    ${response_cu_string}=    Get Text    id=com.ab.apiclient:id/tvResult
     Log    string response is: ${response_cu_string}
     ${response_cu_json}    Convert String To Json    ${response_cu_string}
  
@@ -236,11 +235,10 @@ Log in as an existing user
     Click Element    xpath=//android.widget.Button[@resource-id="com.ab.apiclient:id/btnSend"]
 
     #save response
-    Wait Until Element Is Visible    xpath=//android.widget.LinearLayout[@content-desc="Raw"]    ${TIMEOUT}
-    Click Element    xpath=//android.widget.LinearLayout[@content-desc="Raw"]
-    Wait Until Element Is Visible    xpath=//android.widget.TextView[@resource-id="com.ab.apiclient:id/tvResult"]    ${TIMEOUT}
-    Click Element    xpath=//android.widget.TextView[@resource-id="com.ab.apiclient:id/tvResult"]
-    ${response_lu_string}=    Get Text    xpath=//android.widget.TextView[@resource-id="com.ab.apiclient:id/tvResult"]
+    Wait Until Element Is Visible    accessibility_id=Raw    ${TIMEOUT}
+    Click Element    accessibility_id=Raw
+    Wait Until Element Is Visible    id=com.ab.apiclient:id/tvResult    ${TIMEOUT}
+    ${response_lu_string}=    Get Text    id=com.ab.apiclient:id/tvResult
     Log    string response is: ${response_lu_string}
     ${response_lu_json}    Convert String To Json    ${response_lu_string}
  
@@ -344,11 +342,10 @@ Retrieve user profile information
     Click Element    xpath=//android.widget.Button[@resource-id="com.ab.apiclient:id/btnSend"]
 
     #save response
-    Wait Until Element Is Visible    xpath=//android.widget.LinearLayout[@content-desc="Raw"]    ${TIMEOUT}
-    Click Element    xpath=//android.widget.LinearLayout[@content-desc="Raw"]
-    Wait Until Element Is Visible    xpath=//android.widget.TextView[@resource-id="com.ab.apiclient:id/tvResult"]    ${TIMEOUT}
-    Click Element    xpath=//android.widget.TextView[@resource-id="com.ab.apiclient:id/tvResult"]
-    ${response_ru_string}=    Get Text    xpath=//android.widget.TextView[@resource-id="com.ab.apiclient:id/tvResult"]
+    Wait Until Element Is Visible    accessibility_id=Raw    ${TIMEOUT}
+    Click Element    accessibility_id=Raw
+    Wait Until Element Is Visible    id=com.ab.apiclient:id/tvResult    ${TIMEOUT}
+    ${response_ru_string}=    Get Text    id=com.ab.apiclient:id/tvResult
     Log    string response is: ${response_ru_string}
     ${response_ru_json}    Convert String To Json    ${response_ru_string}
  
@@ -487,11 +484,10 @@ Update the user profile information
     Click Element    xpath=//android.widget.Button[@resource-id="com.ab.apiclient:id/btnSend"]
 
     #save response
-    Wait Until Element Is Visible    xpath=//android.widget.LinearLayout[@content-desc="Raw"]    ${TIMEOUT}
-    Click Element    xpath=//android.widget.LinearLayout[@content-desc="Raw"]
-    Wait Until Element Is Visible    xpath=//android.widget.TextView[@resource-id="com.ab.apiclient:id/tvResult"]    ${TIMEOUT}
-    Click Element    xpath=//android.widget.TextView[@resource-id="com.ab.apiclient:id/tvResult"]
-    ${response_uu_string}=    Get Text    xpath=//android.widget.TextView[@resource-id="com.ab.apiclient:id/tvResult"]
+    Wait Until Element Is Visible    accessibility_id=Raw    ${TIMEOUT}
+    Click Element    accessibility_id=Raw
+    Wait Until Element Is Visible    id=com.ab.apiclient:id/tvResult    ${TIMEOUT}
+    ${response_uu_string}=    Get Text    id=com.ab.apiclient:id/tvResult
     Log    string response is: ${response_uu_string}
     ${response_uu_json}    Convert String To Json    ${response_uu_string}
  
@@ -622,11 +618,10 @@ Change a user\'s password
     Click Element    xpath=//android.widget.Button[@resource-id="com.ab.apiclient:id/btnSend"]
 
     #save response
-    Wait Until Element Is Visible    xpath=//android.widget.LinearLayout[@content-desc="Raw"]    ${TIMEOUT}
-    Click Element    xpath=//android.widget.LinearLayout[@content-desc="Raw"]
-    Wait Until Element Is Visible    xpath=//android.widget.TextView[@resource-id="com.ab.apiclient:id/tvResult"]    ${TIMEOUT}
-    Click Element    xpath=//android.widget.TextView[@resource-id="com.ab.apiclient:id/tvResult"]
-    ${response_cup_string}=    Get Text    xpath=//android.widget.TextView[@resource-id="com.ab.apiclient:id/tvResult"]
+    Wait Until Element Is Visible    accessibility_id=Raw    ${TIMEOUT}
+    Click Element    accessibility_id=Raw
+    Wait Until Element Is Visible    id=com.ab.apiclient:id/tvResult    ${TIMEOUT}
+    ${response_cup_string}=    Get Text    id=com.ab.apiclient:id/tvResult
     Log    string response is: ${response_cup_string}
     ${response_cup_json}    Convert String To Json    ${response_cup_string}
  
@@ -703,20 +698,19 @@ Log out a user via API
     Click Element    xpath=//android.widget.Button[@resource-id="com.ab.apiclient:id/btnSend"]
 
     #save response
-    Wait Until Element Is Visible    xpath=//android.widget.LinearLayout[@content-desc="Raw"]    ${TIMEOUT}
-    Click Element    xpath=//android.widget.LinearLayout[@content-desc="Raw"]
-    Wait Until Element Is Visible    xpath=//android.widget.TextView[@resource-id="com.ab.apiclient:id/tvResult"]    ${TIMEOUT}
-    Click Element    xpath=//android.widget.TextView[@resource-id="com.ab.apiclient:id/tvResult"]
-    ${response_cup_string}=    Get Text    xpath=//android.widget.TextView[@resource-id="com.ab.apiclient:id/tvResult"]
-    Log    string response is: ${response_cup_string}
-    ${response_cup_json}    Convert String To Json    ${response_cup_string}
+    Wait Until Element Is Visible    accessibility_id=Raw    ${TIMEOUT}
+    Click Element    accessibility_id=Raw
+    Wait Until Element Is Visible    id=com.ab.apiclient:id/tvResult    ${TIMEOUT}
+    ${response_lou_string}=    Get Text    id=com.ab.apiclient:id/tvResult    ${TIMEOUT}
+    Log    string response is: ${response_lou_string}
+    ${response_lou_json}    Convert String To Json    ${response_lou_string}
  
     # Capturing variable values for assertions
-    ${success} =    Get Value From Json    ${response_cup_json}    $.success
-    ${status} =     Get Value From Json    ${response_cup_json}    $.status
+    ${success} =    Get Value From Json    ${response_lou_json}    $.success
+    ${status} =     Get Value From Json    ${response_lou_json}    $.status
     ${status_value}=    Get From List    ${status}    0
     ${status_str} =    Convert To String    ${status_value}
-    ${message} =    Get Value From Json    ${response_cup_json}    $.message
+    ${message} =    Get Value From Json    ${response_lou_json}    $.message
     ${message_value}=    Get From List    ${message}    0
     ${message_str} =    Convert To String    ${message_value}
 
@@ -784,12 +778,11 @@ Delete user account
     # send request
     Click Element    xpath=//android.widget.Button[@resource-id="com.ab.apiclient:id/btnSend"]
 
-    #save response 
-    Wait Until Element Is Visible    xpath=//android.widget.LinearLayout[@content-desc="Raw"]    ${TIMEOUT}
-    Click Element    xpath=//android.widget.LinearLayout[@content-desc="Raw"]
-    Wait Until Element Is Visible    xpath=//android.widget.TextView[@resource-id="com.ab.apiclient:id/tvResult"]    ${TIMEOUT}
-    Click Element    xpath=//android.widget.TextView[@resource-id="com.ab.apiclient:id/tvResult"]
-    ${response_du_string}=    Get Text    xpath=//android.widget.TextView[@resource-id="com.ab.apiclient:id/tvResult"]
+    #save response
+    Wait Until Element Is Visible    accessibility_id=Raw    ${TIMEOUT}
+    Click Element    accessibility_id=Raw
+    Wait Until Element Is Visible    id=com.ab.apiclient:id/tvResult    ${TIMEOUT}
+    ${response_du_string}=    Get Text    id=com.ab.apiclient:id/tvResult
     Log    string response is: ${response_du_string}
     ${response_du_json}    Convert String To Json    ${response_du_string}
  
