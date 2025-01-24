@@ -148,65 +148,6 @@ Creates a new note
     deleteJsonFile(${randomNumber})
 
 
-    ${randomNumber}    FakerLibrary.creditCardNumber
-    createUser(${randomNumber})
-    logInUser(${randomNumber})
-    ${data}    Load Json From File    tests/fixtures/testdata-${randomNumber}.json
-    ${user_token_data}    Get Value From Json    ${data}    $.user_token
-    ${user_token_str}    Convert JSON To String	 ${user_token_data}
-    ${user_token}    Remove String    ${user_token_str}    [    ]    '    "
-
-    # select delete
-    Wait Until Element Is Visible    id=com.ab.apiclient:id/spHttpMethod    ${TIMEOUT}
-    Click Element    id=com.ab.apiclient:id/spHttpMethod
-    Wait Until Element Is Visible    xpath=//android.widget.CheckedTextView[@resource-id="android:id/text1" and @text="DELETE"]    ${TIMEOUT}
-    Click Element    xpath=//android.widget.CheckedTextView[@resource-id="android:id/text1" and @text="DELETE"]
-    
-    # input base url and endpoint
-    Wait Until Element Is Visible    xpath=//android.widget.EditText[@resource-id="com.ab.apiclient:id/etUrl"]    ${TIMEOUT}
-    Input Text    xpath=//android.widget.EditText[@resource-id="com.ab.apiclient:id/etUrl"]    https://practice.expandtesting.com/notes/api/users/delete-account
-    
-    # add Accept and Token headers
-    addAcceptHeader()
-    addTokenHeader(${randomNumber})
-
-    # send request
-    Click Element    xpath=//android.widget.Button[@resource-id="com.ab.apiclient:id/btnSend"]
-
-    #save response
-    Wait Until Element Is Visible    accessibility_id=Raw    ${TIMEOUT}
-    Click Element    accessibility_id=Raw
-    Wait Until Element Is Visible    id=com.ab.apiclient:id/tvResult    ${TIMEOUT}
-    ${response_du_string}=    Get Text    id=com.ab.apiclient:id/tvResult
-    Log    string response is: ${response_du_string}
-    ${response_du_json}    Convert String To Json    ${response_du_string}
- 
-    # Capturing variable values for assertions
-    ${success} =    Get Value From Json    ${response_du_json}    $.success
-    ${status} =     Get Value From Json    ${response_du_json}    $.status
-    ${status_value}=    Get From List    ${status}    0
-    ${status_str} =    Convert To String    ${status_value}
-    ${message} =    Get Value From Json    ${response_du_json}    $.message
-    ${message_value}=    Get From List    ${message}    0
-    ${message_str} =    Convert To String    ${message_value}
-
-    # assertions
-    Should Be True    ${success}    True
-    Should Be Equal    ${status_str}    200
-    Should Be Equal    ${message_str}    Account successfully deleted
-
-    # press back key and create a new request
-    Press Keycode             4
-    Wait Until Element Is Visible    xpath=//android.widget.ImageButton    ${TIMEOUT}
-    Click Element    xpath=//android.widget.ImageButton
-    Wait Until Element Is Visible    xpath=//android.widget.CheckedTextView[@resource-id="com.ab.apiclient:id/design_menu_item_text" and @text="New Request"]    ${TIMEOUT}
-    Click Element    xpath=//android.widget.CheckedTextView[@resource-id="com.ab.apiclient:id/design_menu_item_text" and @text="New Request"]
-
-    Sleep  5
-    [Teardown]    Close Application
-    
-    deleteJsonFile(${randomNumber})
-
 
 
 
