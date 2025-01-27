@@ -102,3 +102,4 @@ Check then both to add both options in context menu.
 
 - UI and API tests to send password reset link to user's email and API tests to verify a password reset token and reset a user's password must be tested manually as they rely on e-mail verification. 
 - Disable wifi when the apk presents connections problems.
+- Use the versions mentioned it this documentation. They have been checked already.
