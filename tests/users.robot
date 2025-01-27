@@ -96,8 +96,8 @@ Creates a new user account
 
     #save response
     # xpath=//android.widget.TextView[@text="Raw"]
-    Wait Until Element Is Visible    accessibility_id=Raw    ${TIMEOUT}
-    Click Element    accessibility_id=Raw
+    Wait Until Element Is Visible    xpath=//android.widget.TextView[@text="Raw"]    ${TIMEOUT}
+    Click Element    xpath=//android.widget.TextView[@text="Raw"]
     Sleep  5
     Wait Until Element Is Visible    id=com.ab.apiclient:id/tvResult    ${TIMEOUT}
     ${response_cu_string}=    Get Text    id=com.ab.apiclient:id/tvResult
@@ -201,8 +201,8 @@ Log in as an existing user
     Sleep  5
 
     #save response
-    Wait Until Element Is Visible    accessibility_id=Raw    ${TIMEOUT}
-    Click Element    accessibility_id=Raw
+    Wait Until Element Is Visible    xpath=//android.widget.TextView[@text="Raw"]    ${TIMEOUT}
+    Click Element    xpath=//android.widget.TextView[@text="Raw"]
     Sleep  5
     Wait Until Element Is Visible    id=com.ab.apiclient:id/tvResult    ${TIMEOUT}
     ${response_lu_string}=    Get Text    id=com.ab.apiclient:id/tvResult
@@ -293,8 +293,8 @@ Retrieve user profile information
     Sleep  5
 
     #save response
-    Wait Until Element Is Visible    accessibility_id=Raw    ${TIMEOUT}
-    Click Element    accessibility_id=Raw
+    Wait Until Element Is Visible    xpath=//android.widget.TextView[@text="Raw"]    ${TIMEOUT}
+    Click Element    xpath=//android.widget.TextView[@text="Raw"]
     Sleep  5
     Wait Until Element Is Visible    id=com.ab.apiclient:id/tvResult    ${TIMEOUT}
     ${response_ru_string}=    Get Text    id=com.ab.apiclient:id/tvResult
@@ -408,8 +408,8 @@ Update the user profile information
     Sleep  5
 
     #save response
-    Wait Until Element Is Visible    accessibility_id=Raw    ${TIMEOUT}
-    Click Element    accessibility_id=Raw
+    Wait Until Element Is Visible    xpath=//android.widget.TextView[@text="Raw"]    ${TIMEOUT}
+    Click Element    xpath=//android.widget.TextView[@text="Raw"]
     Sleep  5
     Wait Until Element Is Visible    id=com.ab.apiclient:id/tvResult    ${TIMEOUT}
     ${response_uu_string}=    Get Text    id=com.ab.apiclient:id/tvResult
@@ -515,8 +515,8 @@ Change a user\'s password
     Sleep  5
 
     #save response
-    Wait Until Element Is Visible    accessibility_id=Raw    ${TIMEOUT}
-    Click Element    accessibility_id=Raw
+    Wait Until Element Is Visible    xpath=//android.widget.TextView[@text="Raw"]    ${TIMEOUT}
+    Click Element    xpath=//android.widget.TextView[@text="Raw"]
     Sleep  5
     Wait Until Element Is Visible    id=com.ab.apiclient:id/tvResult    ${TIMEOUT}
     ${response_cup_string}=    Get Text    id=com.ab.apiclient:id/tvResult
@@ -580,8 +580,8 @@ Log out a user via API
     Sleep  5
 
     #save response
-    Wait Until Element Is Visible    accessibility_id=Raw    ${TIMEOUT}
-    Click Element    accessibility_id=Raw
+    Wait Until Element Is Visible    xpath=//android.widget.TextView[@text="Raw"]    ${TIMEOUT}
+    Click Element    xpath=//android.widget.TextView[@text="Raw"]
     Sleep  5
     Wait Until Element Is Visible    id=com.ab.apiclient:id/tvResult    ${TIMEOUT}
     ${response_lou_string}=    Get Text    id=com.ab.apiclient:id/tvResult    ${TIMEOUT}
@@ -646,8 +646,8 @@ Delete user account
     Sleep  5
 
     #save response
-    Wait Until Element Is Visible    accessibility_id=Raw    ${TIMEOUT}
-    Click Element    accessibility_id=Raw
+    Wait Until Element Is Visible    xpath=//android.widget.TextView[@text="Raw"]    ${TIMEOUT}
+    Click Element    xpath=//android.widget.TextView[@text="Raw"]
     Sleep  5
     Wait Until Element Is Visible    id=com.ab.apiclient:id/tvResult    ${TIMEOUT}
     ${response_du_string}=    Get Text    id=com.ab.apiclient:id/tvResult
