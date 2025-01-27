@@ -60,8 +60,8 @@ Check api healt
     Sleep  5
 
     #save response
-    Wait Until Element Is Visible    xpath=//android.widget.TextView[@text="Raw"]    ${TIMEOUT}
-    Click Element    xpath=//android.widget.TextView[@text="Raw"]
+    Wait Until Element Is Visible    android=new UiSelector().text("Raw")    ${TIMEOUT}
+    Click Element    android=new UiSelector().text("Raw")
     Sleep  5
     Wait Until Element Is Visible    id=com.ab.apiclient:id/tvResult    ${TIMEOUT}
     ${response_ch_string}=    Get Text    id=com.ab.apiclient:id/tvResult    ${TIMEOUT}
