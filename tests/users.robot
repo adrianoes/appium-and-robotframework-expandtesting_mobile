@@ -92,9 +92,13 @@ Creates a new user account
     # send request
     Click Element    xpath=//android.widget.Button[@resource-id="com.ab.apiclient:id/btnSend"]
     
+    Sleep  5
+
     #save response
+    # xpath=//android.widget.TextView[@text="Raw"]
     Wait Until Element Is Visible    accessibility_id=Raw    ${TIMEOUT}
     Click Element    accessibility_id=Raw
+    Sleep  5
     Wait Until Element Is Visible    id=com.ab.apiclient:id/tvResult    ${TIMEOUT}
     ${response_cu_string}=    Get Text    id=com.ab.apiclient:id/tvResult
     Log    string response is: ${response_cu_string}
@@ -194,9 +198,12 @@ Log in as an existing user
     # send request
     Click Element    xpath=//android.widget.Button[@resource-id="com.ab.apiclient:id/btnSend"]
 
+    Sleep  5
+
     #save response
     Wait Until Element Is Visible    accessibility_id=Raw    ${TIMEOUT}
     Click Element    accessibility_id=Raw
+    Sleep  5
     Wait Until Element Is Visible    id=com.ab.apiclient:id/tvResult    ${TIMEOUT}
     ${response_lu_string}=    Get Text    id=com.ab.apiclient:id/tvResult
     Log    string response is: ${response_lu_string}
@@ -283,9 +290,12 @@ Retrieve user profile information
     # send request
     Click Element    xpath=//android.widget.Button[@resource-id="com.ab.apiclient:id/btnSend"]
 
+    Sleep  5
+
     #save response
     Wait Until Element Is Visible    accessibility_id=Raw    ${TIMEOUT}
     Click Element    accessibility_id=Raw
+    Sleep  5
     Wait Until Element Is Visible    id=com.ab.apiclient:id/tvResult    ${TIMEOUT}
     ${response_ru_string}=    Get Text    id=com.ab.apiclient:id/tvResult
     Log    string response is: ${response_ru_string}
@@ -395,9 +405,12 @@ Update the user profile information
     # send request
     Click Element    id=com.ab.apiclient:id/btnSend
 
+    Sleep  5
+
     #save response
     Wait Until Element Is Visible    accessibility_id=Raw    ${TIMEOUT}
     Click Element    accessibility_id=Raw
+    Sleep  5
     Wait Until Element Is Visible    id=com.ab.apiclient:id/tvResult    ${TIMEOUT}
     ${response_uu_string}=    Get Text    id=com.ab.apiclient:id/tvResult
     Log    string response is: ${response_uu_string}
@@ -499,9 +512,12 @@ Change a user\'s password
     # send request
     Click Element    xpath=//android.widget.Button[@resource-id="com.ab.apiclient:id/btnSend"]
 
+    Sleep  5
+
     #save response
     Wait Until Element Is Visible    accessibility_id=Raw    ${TIMEOUT}
     Click Element    accessibility_id=Raw
+    Sleep  5
     Wait Until Element Is Visible    id=com.ab.apiclient:id/tvResult    ${TIMEOUT}
     ${response_cup_string}=    Get Text    id=com.ab.apiclient:id/tvResult
     Log    string response is: ${response_cup_string}
@@ -560,10 +576,13 @@ Log out a user via API
 
     # send request
     Click Element    xpath=//android.widget.Button[@resource-id="com.ab.apiclient:id/btnSend"]
+    
+    Sleep  5
 
     #save response
     Wait Until Element Is Visible    accessibility_id=Raw    ${TIMEOUT}
     Click Element    accessibility_id=Raw
+    Sleep  5
     Wait Until Element Is Visible    id=com.ab.apiclient:id/tvResult    ${TIMEOUT}
     ${response_lou_string}=    Get Text    id=com.ab.apiclient:id/tvResult    ${TIMEOUT}
     Log    string response is: ${response_lou_string}
@@ -624,9 +643,12 @@ Delete user account
     # send request
     Click Element    xpath=//android.widget.Button[@resource-id="com.ab.apiclient:id/btnSend"]
 
+    Sleep  5
+
     #save response
     Wait Until Element Is Visible    accessibility_id=Raw    ${TIMEOUT}
     Click Element    accessibility_id=Raw
+    Sleep  5
     Wait Until Element Is Visible    id=com.ab.apiclient:id/tvResult    ${TIMEOUT}
     ${response_du_string}=    Get Text    id=com.ab.apiclient:id/tvResult
     Log    string response is: ${response_du_string}

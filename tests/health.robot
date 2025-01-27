@@ -51,15 +51,18 @@ Check api healt
     Wait Until Element Is Visible    xpath=//android.widget.EditText[@resource-id="com.ab.apiclient:id/etUrl"]    ${TIMEOUT}
     Input Text    xpath=//android.widget.EditText[@resource-id="com.ab.apiclient:id/etUrl"]    https://practice.expandtesting.com/notes/api/health-check
     
-   # add Accept header
+    # add Accept header
     addAcceptHeader()
 
-     # send request
+    # send request
     Click Element    xpath=//android.widget.Button[@resource-id="com.ab.apiclient:id/btnSend"]
     
+    Sleep  5
+
     #save response
     Wait Until Element Is Visible    accessibility_id=Raw    ${TIMEOUT}
     Click Element    accessibility_id=Raw
+    Sleep  5
     Wait Until Element Is Visible    id=com.ab.apiclient:id/tvResult    ${TIMEOUT}
     ${response_ch_string}=    Get Text    id=com.ab.apiclient:id/tvResult    ${TIMEOUT}
     Log    string response is: ${response_ch_string}

@@ -80,9 +80,12 @@ Creates a new note
     # send request
     Click Element    id=com.ab.apiclient:id/btnSend
 
+    Sleep  5
+
     #save response
     Wait Until Element Is Visible    accessibility_id=Raw    ${TIMEOUT}
     Click Element    accessibility_id=Raw
+    Sleep  5
     Wait Until Element Is Visible    id=com.ab.apiclient:id/tvResult    ${TIMEOUT}
     ${response_cn_string}=    Get Text    id=com.ab.apiclient:id/tvResult
     Log    string response is: ${response_cn_string}
@@ -140,12 +143,12 @@ Creates a new note
     Wait Until Element Is Visible    xpath=//android.widget.CheckedTextView[@resource-id="com.ab.apiclient:id/design_menu_item_text" and @text="New Request"]    ${TIMEOUT}
     Click Element    xpath=//android.widget.CheckedTextView[@resource-id="com.ab.apiclient:id/design_menu_item_text" and @text="New Request"]
 
-    # deleteUser(${randomNumber})
+    deleteUser(${randomNumber})
     
-    # Sleep  5
-    # [Teardown]    Close Application
+    Sleep  5
+    [Teardown]    Close Application
     
-    # deleteJsonFile(${randomNumber})
+    deleteJsonFile(${randomNumber})
 
 Get note by ID
     ${randomNumber}    FakerLibrary.creditCardNumber
@@ -195,9 +198,12 @@ Get note by ID
    # send request
     Click Element    id=com.ab.apiclient:id/btnSend
 
+    Sleep  5
+
     #save response
     Wait Until Element Is Visible    accessibility_id=Raw    ${TIMEOUT}
     Click Element    accessibility_id=Raw
+    Sleep  5
     Wait Until Element Is Visible    id=com.ab.apiclient:id/tvResult    ${TIMEOUT}
     ${response_cn_string}=    Get Text    id=com.ab.apiclient:id/tvResult
     Log    string response is: ${response_cn_string}
@@ -471,9 +477,12 @@ Update the completed status of a note
     # send request
     Click Element    id=com.ab.apiclient:id/btnSend
 
+    Sleep  5
+
     #save response
     Wait Until Element Is Visible    accessibility_id=Raw    ${TIMEOUT}
     Click Element    accessibility_id=Raw
+    Sleep  5
     Wait Until Element Is Visible    id=com.ab.apiclient:id/tvResult    ${TIMEOUT}
     ${response_cn_string}=    Get Text    id=com.ab.apiclient:id/tvResult
     Log    string response is: ${response_cn_string}
@@ -569,9 +578,12 @@ Delete a note by ID
     # send request
     Click Element    xpath=//android.widget.Button[@resource-id="com.ab.apiclient:id/btnSend"]
 
+    Sleep  5
+
     #save response
     Wait Until Element Is Visible    accessibility_id=Raw    ${TIMEOUT}
     Click Element    accessibility_id=Raw
+    Sleep  5
     Wait Until Element Is Visible    id=com.ab.apiclient:id/tvResult    ${TIMEOUT}
     ${response_dn_string}=    Get Text    id=com.ab.apiclient:id/tvResult
     Log    string response is: ${response_dn_string}

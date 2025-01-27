@@ -73,9 +73,12 @@ logInUser(${randomNumber})
     # send request
     Click Element    xpath=//android.widget.Button[@resource-id="com.ab.apiclient:id/btnSend"]
 
+    Sleep  5
+
     #save response
     Wait Until Element Is Visible    accessibility_id=Raw    ${TIMEOUT}
     Click Element    accessibility_id=Raw
+    Sleep  5
     Wait Until Element Is Visible    id=com.ab.apiclient:id/tvResult    ${TIMEOUT}
     ${response_lu_string}=    Get Text    id=com.ab.apiclient:id/tvResult
     Log    string response is: ${response_lu_string}
@@ -143,9 +146,12 @@ deleteUser(${randomNumber})
     # send request
     Click Element    xpath=//android.widget.Button[@resource-id="com.ab.apiclient:id/btnSend"]
 
+    Sleep  5
+
     #save response
     Wait Until Element Is Visible    accessibility_id=Raw    ${TIMEOUT}
     Click Element    accessibility_id=Raw
+    Sleep  5
     Wait Until Element Is Visible    id=com.ab.apiclient:id/tvResult    ${TIMEOUT}
     ${response_du_string}=    Get Text    id=com.ab.apiclient:id/tvResult
     Log    string response is: ${response_du_string}
@@ -242,9 +248,13 @@ createUser(${randomNumber})
     # send request
     Click Element    xpath=//android.widget.Button[@resource-id="com.ab.apiclient:id/btnSend"]
     
+    # sometimes, element below (raw code) was not found. I think that this is due to the fact that Send button is placed in one screen, and Raw Code button is placed in the next screen. So I will add this sleep here to try to wait for the Raw button to be selected in the right screen
+    Sleep  5
+
     #save response
     Wait Until Element Is Visible    accessibility_id=Raw    ${TIMEOUT}
     Click Element    accessibility_id=Raw
+    Sleep  5
     Wait Until Element Is Visible    id=com.ab.apiclient:id/tvResult    ${TIMEOUT}
     ${response_cu_string}=    Get Text    id=com.ab.apiclient:id/tvResult
     Log    string response is: ${response_cu_string}
@@ -341,7 +351,7 @@ increasingRequestResponseTimeout()
     Click Element    android=new UiSelector().text("New Request")
 
 createANewNote(${randomNumber})
-        ${data}    Load Json From File    tests/fixtures/testdata-${randomNumber}.json
+    ${data}    Load Json From File    tests/fixtures/testdata-${randomNumber}.json
     ${user_id_data}    Get Value From Json    ${data}    $.user_id
     ${user_id_str}    Convert JSON To String	 ${user_id_data}
     ${user_id}    Remove String    ${user_id_str}    [    ]    '    " 
@@ -392,9 +402,12 @@ createANewNote(${randomNumber})
     # send request
     Click Element    id=com.ab.apiclient:id/btnSend
 
+    Sleep  5
+
     #save response
     Wait Until Element Is Visible    accessibility_id=Raw    ${TIMEOUT}
     Click Element    accessibility_id=Raw
+    Sleep  5
     Wait Until Element Is Visible    id=com.ab.apiclient:id/tvResult    ${TIMEOUT}
     ${response_cn_string}=    Get Text    id=com.ab.apiclient:id/tvResult
     Log    string response is: ${response_cn_string}

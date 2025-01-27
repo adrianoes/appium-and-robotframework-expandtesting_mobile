@@ -99,3 +99,4 @@ Check then both to add both options in context menu.
 # Tips:
 
 - UI and API tests to send password reset link to user's email and API tests to verify a password reset token and reset a user's password must be tested manually as they rely on e-mail verification. 
+- I fixed [StaleElementReferenceException](https://www.selenium.dev/documentation/webdriver/troubleshooting/errors/#staleelementreferenceexception) by implementing "Sleep 5" in the places I thought it was necessary.
