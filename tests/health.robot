@@ -38,10 +38,10 @@ Check api healt
     ...                 appWaitActivity=com.ab.apiclient.ui.Splash,com.ab.apiclient.*,com.ab.apiclient.ui.MainActivity
     ...                 appWaitDuration=20000
     ...                 uiautomator2ServerInstallTimeout=60000
+    # ...                 avdArgs=--dns-server=8.8.8.8,8.8.4.4
     # ...                 newCommandTimeout=300
     # ...                 noReset=true
     # ...                 fullReset=false
-
 
     Sleep  5
 
@@ -55,14 +55,11 @@ Check api healt
     addAcceptHeader()
 
     # send request
-    Click Element    xpath=//android.widget.Button[@resource-id="com.ab.apiclient:id/btnSend"]
-    
-    Sleep  5
+    Click Element    id=com.ab.apiclient:id/btnSend
 
     #save response
     Wait Until Element Is Visible    android=new UiSelector().text("Raw")    ${TIMEOUT}
     Click Element    android=new UiSelector().text("Raw")
-    Sleep  5
     Wait Until Element Is Visible    id=com.ab.apiclient:id/tvResult    ${TIMEOUT}
     ${response_ch_string}=    Get Text    id=com.ab.apiclient:id/tvResult    ${TIMEOUT}
     Log    string response is: ${response_ch_string}

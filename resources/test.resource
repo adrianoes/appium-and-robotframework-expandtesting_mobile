@@ -71,14 +71,11 @@ logInUser(${randomNumber})
     Swipe By Percent    50    80    50    20    1000
 
     # send request
-    Click Element    xpath=//android.widget.Button[@resource-id="com.ab.apiclient:id/btnSend"]
-
-    Sleep  5
+    Click Element    id=com.ab.apiclient:id/btnSend
 
     #save response
     Wait Until Element Is Visible    android=new UiSelector().text("Raw")    ${TIMEOUT}
     Click Element    android=new UiSelector().text("Raw")
-    Sleep  5
     Wait Until Element Is Visible    id=com.ab.apiclient:id/tvResult    ${TIMEOUT}
     ${response_lu_string}=    Get Text    id=com.ab.apiclient:id/tvResult
     Log    string response is: ${response_lu_string}
@@ -144,14 +141,11 @@ deleteUser(${randomNumber})
     addTokenHeader(${randomNumber})
 
     # send request
-    Click Element    xpath=//android.widget.Button[@resource-id="com.ab.apiclient:id/btnSend"]
-
-    Sleep  5
+    Click Element    id=com.ab.apiclient:id/btnSend
 
     #save response
     Wait Until Element Is Visible    android=new UiSelector().text("Raw")    ${TIMEOUT}
     Click Element    android=new UiSelector().text("Raw")
-    Sleep  5
     Wait Until Element Is Visible    id=com.ab.apiclient:id/tvResult    ${TIMEOUT}
     ${response_du_string}=    Get Text    id=com.ab.apiclient:id/tvResult
     Log    string response is: ${response_du_string}
@@ -201,6 +195,7 @@ createUser(${randomNumber})
     ...                 appWaitActivity=com.ab.apiclient.ui.Splash,com.ab.apiclient.*,com.ab.apiclient.ui.MainActivity
     ...                 appWaitDuration=20000
     ...                 uiautomator2ServerInstallTimeout=60000
+    # ...                 avdArgs=--dns-server=8.8.8.8,8.8.4.4
     # ...                 newCommandTimeout=300
     # ...                 noReset=true
     # ...                 fullReset=false
@@ -246,15 +241,11 @@ createUser(${randomNumber})
     Swipe By Percent    50    80    50    20    1000
 
     # send request
-    Click Element    xpath=//android.widget.Button[@resource-id="com.ab.apiclient:id/btnSend"]
-    
-    # sometimes, element below (raw code) was not found. I think that this is due to the fact that Send button is placed in one screen, and Raw Code button is placed in the next screen. So I will add this sleep here to try to wait for the Raw button to be selected in the right screen
-    Sleep  5
+    Click Element    id=com.ab.apiclient:id/btnSend
 
     #save response
     Wait Until Element Is Visible    android=new UiSelector().text("Raw")    ${TIMEOUT}
     Click Element    android=new UiSelector().text("Raw")
-    Sleep  5
     Wait Until Element Is Visible    id=com.ab.apiclient:id/tvResult    ${TIMEOUT}
     ${response_cu_string}=    Get Text    id=com.ab.apiclient:id/tvResult
     Log    string response is: ${response_cu_string}
@@ -402,12 +393,9 @@ createANewNote(${randomNumber})
     # send request
     Click Element    id=com.ab.apiclient:id/btnSend
 
-    Sleep  5
-
     #save response
     Wait Until Element Is Visible    android=new UiSelector().text("Raw")    ${TIMEOUT}
     Click Element    android=new UiSelector().text("Raw")
-    Sleep  5
     Wait Until Element Is Visible    id=com.ab.apiclient:id/tvResult    ${TIMEOUT}
     ${response_cn_string}=    Get Text    id=com.ab.apiclient:id/tvResult
     Log    string response is: ${response_cn_string}

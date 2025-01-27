@@ -80,12 +80,9 @@ Creates a new note
     # send request
     Click Element    id=com.ab.apiclient:id/btnSend
 
-    Sleep  5
-
     #save response
     Wait Until Element Is Visible    android=new UiSelector().text("Raw")    ${TIMEOUT}
     Click Element    android=new UiSelector().text("Raw")
-    Sleep  5
     Wait Until Element Is Visible    id=com.ab.apiclient:id/tvResult    ${TIMEOUT}
     ${response_cn_string}=    Get Text    id=com.ab.apiclient:id/tvResult
     Log    string response is: ${response_cn_string}
@@ -195,15 +192,12 @@ Get note by ID
     addAcceptHeader()    
     addTokenHeader(${randomNumber})
 
-   # send request
+    # send request
     Click Element    id=com.ab.apiclient:id/btnSend
-
-    Sleep  5
 
     #save response
     Wait Until Element Is Visible    android=new UiSelector().text("Raw")    ${TIMEOUT}
     Click Element    android=new UiSelector().text("Raw")
-    Sleep  5
     Wait Until Element Is Visible    id=com.ab.apiclient:id/tvResult    ${TIMEOUT}
     ${response_cn_string}=    Get Text    id=com.ab.apiclient:id/tvResult
     Log    string response is: ${response_cn_string}
@@ -477,12 +471,9 @@ Update the completed status of a note
     # send request
     Click Element    id=com.ab.apiclient:id/btnSend
 
-    Sleep  5
-
     #save response
     Wait Until Element Is Visible    android=new UiSelector().text("Raw")    ${TIMEOUT}
     Click Element    android=new UiSelector().text("Raw")
-    Sleep  5
     Wait Until Element Is Visible    id=com.ab.apiclient:id/tvResult    ${TIMEOUT}
     ${response_cn_string}=    Get Text    id=com.ab.apiclient:id/tvResult
     Log    string response is: ${response_cn_string}
@@ -576,14 +567,11 @@ Delete a note by ID
     addTokenHeader(${randomNumber})
 
     # send request
-    Click Element    xpath=//android.widget.Button[@resource-id="com.ab.apiclient:id/btnSend"]
-
-    Sleep  5
+    Click Element    id=com.ab.apiclient:id/btnSend
 
     #save response
     Wait Until Element Is Visible    android=new UiSelector().text("Raw")    ${TIMEOUT}
     Click Element    android=new UiSelector().text("Raw")
-    Sleep  5
     Wait Until Element Is Visible    id=com.ab.apiclient:id/tvResult    ${TIMEOUT}
     ${response_dn_string}=    Get Text    id=com.ab.apiclient:id/tvResult
     Log    string response is: ${response_dn_string}

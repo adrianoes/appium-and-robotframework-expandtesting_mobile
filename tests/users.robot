@@ -45,6 +45,7 @@ Creates a new user account
     ...                 appWaitActivity=com.ab.apiclient.ui.Splash,com.ab.apiclient.*,com.ab.apiclient.ui.MainActivity
     ...                 appWaitDuration=20000
     ...                 uiautomator2ServerInstallTimeout=60000
+    # ...                 avdArgs=--dns-server=8.8.8.8,8.8.4.4
     # ...                 newCommandTimeout=300
     # ...                 noReset=true
     # ...                 fullReset=false
@@ -89,16 +90,13 @@ Creates a new user account
     Click Element    id=com.ab.apiclient:id/btnAdd
     Swipe By Percent    50    80    50    20    1000
 
-    # send request
-    Click Element    xpath=//android.widget.Button[@resource-id="com.ab.apiclient:id/btnSend"]
-    
-    Sleep  5
+     # send request
+    Click Element    id=com.ab.apiclient:id/btnSend
 
     #save response
     # xpath=//android.widget.TextView[@text="Raw"]
     Wait Until Element Is Visible    android=new UiSelector().text("Raw")    ${TIMEOUT}
     Click Element    android=new UiSelector().text("Raw")
-    Sleep  5
     Wait Until Element Is Visible    id=com.ab.apiclient:id/tvResult    ${TIMEOUT}
     ${response_cu_string}=    Get Text    id=com.ab.apiclient:id/tvResult
     Log    string response is: ${response_cu_string}
@@ -196,14 +194,11 @@ Log in as an existing user
     Swipe By Percent    50    80    50    20    1000
 
     # send request
-    Click Element    xpath=//android.widget.Button[@resource-id="com.ab.apiclient:id/btnSend"]
-
-    Sleep  5
+    Click Element    id=com.ab.apiclient:id/btnSend
 
     #save response
     Wait Until Element Is Visible    android=new UiSelector().text("Raw")    ${TIMEOUT}
     Click Element    android=new UiSelector().text("Raw")
-    Sleep  5
     Wait Until Element Is Visible    id=com.ab.apiclient:id/tvResult    ${TIMEOUT}
     ${response_lu_string}=    Get Text    id=com.ab.apiclient:id/tvResult
     Log    string response is: ${response_lu_string}
@@ -288,14 +283,11 @@ Retrieve user profile information
     addTokenHeader(${randomNumber})
 
     # send request
-    Click Element    xpath=//android.widget.Button[@resource-id="com.ab.apiclient:id/btnSend"]
-
-    Sleep  5
+    Click Element    id=com.ab.apiclient:id/btnSend
 
     #save response
     Wait Until Element Is Visible    android=new UiSelector().text("Raw")    ${TIMEOUT}
     Click Element    android=new UiSelector().text("Raw")
-    Sleep  5
     Wait Until Element Is Visible    id=com.ab.apiclient:id/tvResult    ${TIMEOUT}
     ${response_ru_string}=    Get Text    id=com.ab.apiclient:id/tvResult
     Log    string response is: ${response_ru_string}
@@ -405,12 +397,9 @@ Update the user profile information
     # send request
     Click Element    id=com.ab.apiclient:id/btnSend
 
-    Sleep  5
-
     #save response
     Wait Until Element Is Visible    android=new UiSelector().text("Raw")    ${TIMEOUT}
     Click Element    android=new UiSelector().text("Raw")
-    Sleep  5
     Wait Until Element Is Visible    id=com.ab.apiclient:id/tvResult    ${TIMEOUT}
     ${response_uu_string}=    Get Text    id=com.ab.apiclient:id/tvResult
     Log    string response is: ${response_uu_string}
@@ -510,14 +499,11 @@ Change a user\'s password
     Swipe By Percent    50    80    50    20    1000
 
     # send request
-    Click Element    xpath=//android.widget.Button[@resource-id="com.ab.apiclient:id/btnSend"]
-
-    Sleep  5
+    Click Element    id=com.ab.apiclient:id/btnSend
 
     #save response
     Wait Until Element Is Visible    android=new UiSelector().text("Raw")    ${TIMEOUT}
     Click Element    android=new UiSelector().text("Raw")
-    Sleep  5
     Wait Until Element Is Visible    id=com.ab.apiclient:id/tvResult    ${TIMEOUT}
     ${response_cup_string}=    Get Text    id=com.ab.apiclient:id/tvResult
     Log    string response is: ${response_cup_string}
@@ -575,14 +561,11 @@ Log out a user via API
     addTokenHeader(${randomNumber})
 
     # send request
-    Click Element    xpath=//android.widget.Button[@resource-id="com.ab.apiclient:id/btnSend"]
-    
-    Sleep  5
+    Click Element    id=com.ab.apiclient:id/btnSend
 
     #save response
     Wait Until Element Is Visible    android=new UiSelector().text("Raw")    ${TIMEOUT}
     Click Element    android=new UiSelector().text("Raw")
-    Sleep  5
     Wait Until Element Is Visible    id=com.ab.apiclient:id/tvResult    ${TIMEOUT}
     ${response_lou_string}=    Get Text    id=com.ab.apiclient:id/tvResult    ${TIMEOUT}
     Log    string response is: ${response_lou_string}
@@ -641,14 +624,11 @@ Delete user account
     addTokenHeader(${randomNumber})
 
     # send request
-    Click Element    xpath=//android.widget.Button[@resource-id="com.ab.apiclient:id/btnSend"]
-
-    Sleep  5
+    Click Element    id=com.ab.apiclient:id/btnSend
 
     #save response
     Wait Until Element Is Visible    android=new UiSelector().text("Raw")    ${TIMEOUT}
     Click Element    android=new UiSelector().text("Raw")
-    Sleep  5
     Wait Until Element Is Visible    id=com.ab.apiclient:id/tvResult    ${TIMEOUT}
     ${response_du_string}=    Get Text    id=com.ab.apiclient:id/tvResult
     Log    string response is: ${response_du_string}
