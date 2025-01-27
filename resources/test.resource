@@ -298,8 +298,8 @@ addAcceptHeader()
     Click Element    xpath=//android.widget.TextView[@resource-id="android:id/text1" and @text="application/xml"]
 
 addContentTypeHeader()
-    Wait Until Element Is Visible    xpath=//android.widget.LinearLayout[@resource-id="com.ab.apiclient:id/llAddHeader"]/android.widget.ImageView    ${TIMEOUT}
-    Click Element    xpath=//android.widget.LinearLayout[@resource-id="com.ab.apiclient:id/llAddHeader"]/android.widget.ImageView    
+    Wait Until Element Is Visible    android=new UiSelector().className("android.widget.ImageView").instance(0)    ${TIMEOUT}
+    Click Element    android=new UiSelector().className("android.widget.ImageView").instance(0)    
     Wait Until Element Is Visible    xpath=(//android.widget.ImageView[@resource-id="com.ab.apiclient:id/iconDown"])[2]    ${TIMEOUT}
     Click Element    xpath=(//android.widget.ImageView[@resource-id="com.ab.apiclient:id/iconDown"])[2]   
     Wait Until Element Is Visible    xpath=//android.widget.TextView[@resource-id="android:id/text1" and @text="Content-Type"]    ${TIMEOUT}
