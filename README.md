@@ -62,7 +62,7 @@ Check then both to add both options in context menu.
     "appium:appActivity": "com.ab.apiclient.ui.Splash",
     "appium:appWaitActivity": "com.ab.apiclient.ui.Splash,com.ab.apiclient.*,com.ab.apiclient.ui.MainActivity",
     "appium:appWaitDuration": 20000,
-    "appium:uiautomator2ServerInstallTimeout": 60000
+    "appium:noReset": true
   }
   ```  
 - Open windows propmpt as admin and execute ```pip install robotframework``` to install Robot Framework.
@@ -97,9 +97,11 @@ Check then both to add both options in context menu.
 - [Unable to install APK. Try to increase the 20000ms adb execution timeout represented by 'adbExecTimeout' capability"](https://github.com/appium/appium/issues/12287#issuecomment-1353643684)
 - [Unable to resolve host "<URL here>" No address associated with host name [closed]](https://stackoverflow.com/a/31242237)
 - [How to turn off Wifi via ADB?](https://stackoverflow.com/a/10038568)
+- [how to handle app generated popups in appium](https://stackoverflow.com/a/54970700)
 
 # Tips:
 
 - UI and API tests to send password reset link to user's email and API tests to verify a password reset token and reset a user's password must be tested manually as they rely on e-mail verification. 
 - Disable wifi when the apk presents connections problems.
 - Use the versions mentioned it this documentation. They have been checked already.
+- noReset capability was added to start the apk normaly, avoiding pop ups.

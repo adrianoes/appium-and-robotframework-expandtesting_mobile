@@ -39,6 +39,7 @@ Check api healt
     ...                 appWaitActivity=com.ab.apiclient.ui.Splash,com.ab.apiclient.*,com.ab.apiclient.ui.MainActivity
     ...                 appWaitDuration=20000
     ...                 uiautomator2ServerInstallTimeout=60000
+    ...                 noReset=true
     # ...                 avdArgs=--dns-server=8.8.8.8,8.8.4.4
     # ...                 newCommandTimeout=300
     # ...                 noReset=true
