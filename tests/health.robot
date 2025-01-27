@@ -7,6 +7,7 @@ Library    JSONLibrary
 Library    OperatingSystem
 Library    Collections
 Library    String
+Library    Process
 
 *** Variables ***
 
@@ -42,6 +43,8 @@ Check api healt
     # ...                 newCommandTimeout=300
     # ...                 noReset=true
     # ...                 fullReset=false
+
+    Run Process    adb    shell    svc wifi disable
 
     Sleep  5
 

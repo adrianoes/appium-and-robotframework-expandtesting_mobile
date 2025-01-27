@@ -6,6 +6,7 @@ Library    JSONLibrary
 Library    OperatingSystem
 Library    Collections
 Library    String
+Library    Process
 
 *** Variables ***
 
@@ -200,6 +201,8 @@ createUser(${randomNumber})
     # ...                 noReset=true
     # ...                 fullReset=false
 
+    Run Process    adb    shell    svc wifi disable
+    
     Sleep  5
 
     increasingRequestResponseTimeout()

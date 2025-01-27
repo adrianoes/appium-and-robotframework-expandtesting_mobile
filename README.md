@@ -95,8 +95,10 @@ Check then both to add both options in context menu.
 - [How to send Back key in Robot framework Appium ? [Android]](https://stackoverflow.com/a/49398014)
 - [Robot Framework Text Field Clearing and Inputting](https://stackoverflow.com/a/74390477)
 - [Unable to install APK. Try to increase the 20000ms adb execution timeout represented by 'adbExecTimeout' capability"](https://github.com/appium/appium/issues/12287#issuecomment-1353643684)
+- [Unable to resolve host "<URL here>" No address associated with host name [closed]](https://stackoverflow.com/a/31242237)
+- [How to turn off Wifi via ADB?](https://stackoverflow.com/a/10038568)
 
 # Tips:
 
 - UI and API tests to send password reset link to user's email and API tests to verify a password reset token and reset a user's password must be tested manually as they rely on e-mail verification. 
-- I fixed [StaleElementReferenceException](https://www.selenium.dev/documentation/webdriver/troubleshooting/errors/#staleelementreferenceexception) by implementing "Sleep 5" in the places I thought it was necessary.
+- When the app presents connections problems, disable wifi.
