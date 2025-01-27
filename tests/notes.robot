@@ -147,6 +147,8 @@ Creates a new note
     
     deleteJsonFile(${randomNumber})
 
+# Get all notes
+
 Get note by ID
     ${randomNumber}    FakerLibrary.creditCardNumber
     createUser(${randomNumber})
