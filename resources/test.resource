@@ -327,6 +327,18 @@ addTokenHeader(${randomNumber})
     Wait Until Element Is Visible    android=new UiSelector().text("Value")    ${TIMEOUT}
     Input Text    android=new UiSelector().text("Value")    ${user_token}
 
+addTokenHeaderUnauthorized(${randomNumber})
+    ${data}    Load Json From File    tests/fixtures/testdata-${randomNumber}.json
+    ${user_token_data}    Get Value From Json    ${data}    $.user_token
+    ${user_token_str}    Convert JSON To String	 ${user_token_data}
+    ${user_token}    Remove String    ${user_token_str}    [    ]    '    "
+    Wait Until Element Is Visible    android=new UiSelector().className("android.widget.ImageView").instance(0)    ${TIMEOUT}
+    Click Element    android=new UiSelector().className("android.widget.ImageView").instance(0)    
+    Wait Until Element Is Visible    android=new UiSelector().text("Key")    ${TIMEOUT}
+    Input Text    android=new UiSelector().text("Key")    x-auth-token
+    Wait Until Element Is Visible    android=new UiSelector().text("Value")    ${TIMEOUT}
+    Input Text    android=new UiSelector().text("Value")    @${user_token}
+
 increasingRequestResponseTimeout()
     Wait Until Element Is Visible    class=android.widget.ImageButton    ${TIMEOUT}
     Click Element    class=android.widget.ImageButton

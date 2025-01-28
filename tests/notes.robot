@@ -147,6 +147,183 @@ Creates a new note
     
     deleteJsonFile(${randomNumber})
 
+Creates a new note - Bad request
+    ${randomNumber}    FakerLibrary.creditCardNumber
+    createUser(${randomNumber})
+    logInUser(${randomNumber})
+    ${data}    Load Json From File    tests/fixtures/testdata-${randomNumber}.json
+    ${user_id_data}    Get Value From Json    ${data}    $.user_id
+    ${user_id_str}    Convert JSON To String	 ${user_id_data}
+    ${user_id}    Remove String    ${user_id_str}    [    ]    '    " 
+    ${user_token_data}    Get Value From Json    ${data}    $.user_token
+    ${user_token_str}    Convert JSON To String	 ${user_token_data}
+    ${user_token}    Remove String    ${user_token_str}    [    ]    '    "
+    ${note_description}    FakerLibrary.Sentence    nb_words=4
+    ${note_title}    FakerLibrary.Sentence    nb_words=3
+
+    # select post
+    Wait Until Element Is Visible    id=com.ab.apiclient:id/spHttpMethod    ${TIMEOUT}
+    Click Element    id=com.ab.apiclient:id/spHttpMethod
+    Wait Until Element Is Visible    xpath=//android.widget.CheckedTextView[@resource-id="android:id/text1" and @text="POST"]    ${TIMEOUT}
+    Click Element    xpath=//android.widget.CheckedTextView[@resource-id="android:id/text1" and @text="POST"]
+    
+    # input base url and endpoint
+    Wait Until Element Is Visible    xpath=//android.widget.EditText[@resource-id="com.ab.apiclient:id/etUrl"]    ${TIMEOUT}
+    Input Text    xpath=//android.widget.EditText[@resource-id="com.ab.apiclient:id/etUrl"]    https://practice.expandtesting.com/notes/api/notes
+    
+    # add Accept, Content Type and Token headers
+    addAcceptHeader()    
+    addContentTypeHeader()
+    addTokenHeader(${randomNumber})
+
+    # select body format
+    Wait Until Element Is Visible    xpath=//android.widget.RadioButton[@resource-id="com.ab.apiclient:id/rbFormUrlEncode"]    ${TIMEOUT}
+    Click Element    xpath=//android.widget.RadioButton[@resource-id="com.ab.apiclient:id/rbFormUrlEncode"]
+
+    # fill body
+    Wait Until Element Is Visible    android=new UiSelector().text("Key")    ${TIMEOUT}
+    Input Text    android=new UiSelector().text("Key")    title
+    Input Text    android=new UiSelector().text("Value")    ${note_title}
+    Swipe By Percent    50    80    50    20    1000
+    Click Element    id=com.ab.apiclient:id/btnAdd
+    Wait Until Element Is Visible    android=new UiSelector().text("Key")    ${TIMEOUT}
+    Input Text    android=new UiSelector().text("Key")    description
+    Input Text    android=new UiSelector().text("Value")    ${note_description}                         
+    Swipe By Percent    50    80    50    20    1000
+    Click Element    id=com.ab.apiclient:id/btnAdd
+    Wait Until Element Is Visible    android=new UiSelector().text("Key")    ${TIMEOUT}
+    Input Text    android=new UiSelector().text("Key")    category
+    Input Text    android=new UiSelector().text("Value")    a    
+    Swipe By Percent    50    80    50    20    1000
+    Click Element    id=com.ab.apiclient:id/btnAdd
+    Swipe By Percent    50    80    50    20    1000
+    
+    # send request
+    Click Element    id=com.ab.apiclient:id/btnSend
+
+    #save response
+    Wait Until Element Is Visible    id=com.ab.apiclient:id/tvResult    ${TIMEOUT}
+    ${response_cnbr_string}=    Get Text    id=com.ab.apiclient:id/tvResult
+    Log    string response is: ${response_cnbr_string}
+    ${response_cnbr_json}    Convert String To Json    ${response_cnbr_string}
+ 
+    # Capturing variable values for assertions
+    ${success} =    Get Value From Json    ${response_cnbr_json}    $.success
+    ${status} =     Get Value From Json    ${response_cnbr_json}    $.status
+    ${status_value}=    Get From List    ${status}    0
+    ${status_str} =    Convert To String    ${status_value}
+    ${message} =    Get Value From Json    ${response_cnbr_json}    $.message
+    ${message_value}=    Get From List    ${message}    0
+    ${message_str} =    Convert To String    ${message_value}
+
+    # assertions
+    Should Be True    ${success}    False
+    Should Be Equal    ${status_str}    400
+    Should Be Equal    ${message_str}    Category must be one of the categories: Home, Work, Personal
+
+    # press back key and create a new request
+    Press Keycode             4
+    Wait Until Element Is Visible    xpath=//android.widget.ImageButton    ${TIMEOUT}
+    Click Element    xpath=//android.widget.ImageButton
+    Wait Until Element Is Visible    xpath=//android.widget.CheckedTextView[@resource-id="com.ab.apiclient:id/design_menu_item_text" and @text="New Request"]    ${TIMEOUT}
+    Click Element    xpath=//android.widget.CheckedTextView[@resource-id="com.ab.apiclient:id/design_menu_item_text" and @text="New Request"]
+
+    deleteUser(${randomNumber})
+    
+    Sleep  5
+    [Teardown]    Close Application
+    
+    deleteJsonFile(${randomNumber})
+
+Creates a new note - Unauthorized
+    ${randomNumber}    FakerLibrary.creditCardNumber
+    createUser(${randomNumber})
+    logInUser(${randomNumber})
+    ${data}    Load Json From File    tests/fixtures/testdata-${randomNumber}.json
+    ${user_id_data}    Get Value From Json    ${data}    $.user_id
+    ${user_id_str}    Convert JSON To String	 ${user_id_data}
+    ${user_id}    Remove String    ${user_id_str}    [    ]    '    " 
+    ${user_token_data}    Get Value From Json    ${data}    $.user_token
+    ${user_token_str}    Convert JSON To String	 ${user_token_data}
+    ${user_token}    Remove String    ${user_token_str}    [    ]    '    "
+    ${note_category}    FakerLibrary.Random Element    elements=('Home', 'Work', 'Personal')
+    ${note_description}    FakerLibrary.Sentence    nb_words=4
+    ${note_title}    FakerLibrary.Sentence    nb_words=3
+
+    # select post
+    Wait Until Element Is Visible    id=com.ab.apiclient:id/spHttpMethod    ${TIMEOUT}
+    Click Element    id=com.ab.apiclient:id/spHttpMethod
+    Wait Until Element Is Visible    xpath=//android.widget.CheckedTextView[@resource-id="android:id/text1" and @text="POST"]    ${TIMEOUT}
+    Click Element    xpath=//android.widget.CheckedTextView[@resource-id="android:id/text1" and @text="POST"]
+    
+    # input base url and endpoint
+    Wait Until Element Is Visible    xpath=//android.widget.EditText[@resource-id="com.ab.apiclient:id/etUrl"]    ${TIMEOUT}
+    Input Text    xpath=//android.widget.EditText[@resource-id="com.ab.apiclient:id/etUrl"]    https://practice.expandtesting.com/notes/api/notes
+    
+    # add Accept, Content Type and Token headers
+    addAcceptHeader()    
+    addContentTypeHeader()
+    addTokenHeaderUnauthorized(${randomNumber})
+
+    # select body format
+    Wait Until Element Is Visible    xpath=//android.widget.RadioButton[@resource-id="com.ab.apiclient:id/rbFormUrlEncode"]    ${TIMEOUT}
+    Click Element    xpath=//android.widget.RadioButton[@resource-id="com.ab.apiclient:id/rbFormUrlEncode"]
+
+    # fill body
+    Wait Until Element Is Visible    android=new UiSelector().text("Key")    ${TIMEOUT}
+    Input Text    android=new UiSelector().text("Key")    title
+    Input Text    android=new UiSelector().text("Value")    ${note_title}
+    Swipe By Percent    50    80    50    20    1000
+    Click Element    id=com.ab.apiclient:id/btnAdd
+    Wait Until Element Is Visible    android=new UiSelector().text("Key")    ${TIMEOUT}
+    Input Text    android=new UiSelector().text("Key")    description
+    Input Text    android=new UiSelector().text("Value")    ${note_description}                         
+    Swipe By Percent    50    80    50    20    1000
+    Click Element    id=com.ab.apiclient:id/btnAdd
+    Wait Until Element Is Visible    android=new UiSelector().text("Key")    ${TIMEOUT}
+    Input Text    android=new UiSelector().text("Key")    category
+    Input Text    android=new UiSelector().text("Value")    ${note_category}    
+    Swipe By Percent    50    80    50    20    1000
+    Click Element    id=com.ab.apiclient:id/btnAdd
+    Swipe By Percent    50    80    50    20    1000
+    
+    # send request
+    Click Element    id=com.ab.apiclient:id/btnSend
+
+    #save response
+    Wait Until Element Is Visible    id=com.ab.apiclient:id/tvResult    ${TIMEOUT}
+    ${response_cnbr_string}=    Get Text    id=com.ab.apiclient:id/tvResult
+    Log    string response is: ${response_cnbr_string}
+    ${response_cnbr_json}    Convert String To Json    ${response_cnbr_string}
+ 
+    # Capturing variable values for assertions
+    ${success} =    Get Value From Json    ${response_cnbr_json}    $.success
+    ${status} =     Get Value From Json    ${response_cnbr_json}    $.status
+    ${status_value}=    Get From List    ${status}    0
+    ${status_str} =    Convert To String    ${status_value}
+    ${message} =    Get Value From Json    ${response_cnbr_json}    $.message
+    ${message_value}=    Get From List    ${message}    0
+    ${message_str} =    Convert To String    ${message_value}
+
+    # assertions
+    Should Be True    ${success}    False
+    Should Be Equal    ${status_str}    401
+    Should Be Equal    ${message_str}    Access token is not valid or has expired, you will need to login
+
+    # press back key and create a new request
+    Press Keycode             4
+    Wait Until Element Is Visible    xpath=//android.widget.ImageButton    ${TIMEOUT}
+    Click Element    xpath=//android.widget.ImageButton
+    Wait Until Element Is Visible    xpath=//android.widget.CheckedTextView[@resource-id="com.ab.apiclient:id/design_menu_item_text" and @text="New Request"]    ${TIMEOUT}
+    Click Element    xpath=//android.widget.CheckedTextView[@resource-id="com.ab.apiclient:id/design_menu_item_text" and @text="New Request"]
+
+    deleteUser(${randomNumber})
+    
+    Sleep  5
+    [Teardown]    Close Application
+    
+    deleteJsonFile(${randomNumber})
+
 Get all notes
     ${randomNumber}    FakerLibrary.creditCardNumber
     createUser(${randomNumber})
@@ -775,6 +952,160 @@ Update the completed status of a note
     
     deleteJsonFile(${randomNumber})
 
+Update the completed status of a note - Bad request
+    ${randomNumber}    FakerLibrary.creditCardNumber
+    createUser(${randomNumber})
+    logInUser(${randomNumber})
+    createANewNote(${randomNumber})
+    ${data}    Load Json From File    tests/fixtures/testdata-${randomNumber}.json
+    ${note_id_data}    Get Value From Json    ${data}    $.note_id
+    ${note_id_str}    Convert JSON To String	 ${note_id_data}
+    ${note_id}    Remove String    ${note_id_str}    [    ]    '    " 
+    ${user_token_data}    Get Value From Json    ${data}    $.user_token
+    ${user_token_str}    Convert JSON To String	 ${user_token_data}
+    ${user_token}    Remove String    ${user_token_str}    [    ]    '    "
+
+    # select PATCH
+    Wait Until Element Is Visible    id=com.ab.apiclient:id/spHttpMethod    ${TIMEOUT}
+    Click Element    id=com.ab.apiclient:id/spHttpMethod
+    Wait Until Element Is Visible    xpath=//android.widget.CheckedTextView[@resource-id="android:id/text1" and @text="PATCH"]    ${TIMEOUT}
+    Click Element    xpath=//android.widget.CheckedTextView[@resource-id="android:id/text1" and @text="PATCH"]
+    
+    # input base url and endpoint
+    Wait Until Element Is Visible    xpath=//android.widget.EditText[@resource-id="com.ab.apiclient:id/etUrl"]    ${TIMEOUT}
+    Input Text    xpath=//android.widget.EditText[@resource-id="com.ab.apiclient:id/etUrl"]    https://practice.expandtesting.com/notes/api/notes/${note_id}
+    
+    # add Accept, Content Type and Token headers
+    addAcceptHeader()    
+    addContentTypeHeader()
+    addTokenHeader(${randomNumber})
+
+    # select body format
+    Wait Until Element Is Visible    xpath=//android.widget.RadioButton[@resource-id="com.ab.apiclient:id/rbFormUrlEncode"]    ${TIMEOUT}
+    Click Element    xpath=//android.widget.RadioButton[@resource-id="com.ab.apiclient:id/rbFormUrlEncode"]
+
+    # fill body
+    Wait Until Element Is Visible    android=new UiSelector().text("Key")    ${TIMEOUT}
+    Input Text    android=new UiSelector().text("Key")    completed
+    Input Text    android=new UiSelector().text("Value")    a    
+    Swipe By Percent    50    80    50    20    1000
+    Click Element    id=com.ab.apiclient:id/btnAdd
+    Swipe By Percent    50    80    50    20    1000    
+
+    # send request
+    Click Element    id=com.ab.apiclient:id/btnSend
+
+    #save response
+    Wait Until Element Is Visible    id=com.ab.apiclient:id/tvResult    ${TIMEOUT}
+    ${response_unbr_string}=    Get Text    id=com.ab.apiclient:id/tvResult
+    Log    string response is: ${response_unbr_string}
+    ${response_unbr_json}    Convert String To Json    ${response_unbr_string}
+ 
+    # Capturing variable values for assertions
+    ${success} =    Get Value From Json    ${response_unbr_json}    $.success
+    ${status} =     Get Value From Json    ${response_unbr_json}    $.status
+    ${status_value}=    Get From List    ${status}    0
+    ${status_str} =    Convert To String    ${status_value}
+    ${message} =    Get Value From Json    ${response_unbr_json}    $.message
+    ${message_value}=    Get From List    ${message}    0
+    ${message_str} =    Convert To String    ${message_value}
+
+    # assertions
+    Should Be True    ${success}    False
+    Should Be Equal    ${status_str}    400
+    Should Be Equal    ${message_str}    Note completed status must be boolean
+
+    # press back key and create a new request
+    Press Keycode             4
+    Wait Until Element Is Visible    xpath=//android.widget.ImageButton    ${TIMEOUT}
+    Click Element    xpath=//android.widget.ImageButton
+    Wait Until Element Is Visible    xpath=//android.widget.CheckedTextView[@resource-id="com.ab.apiclient:id/design_menu_item_text" and @text="New Request"]    ${TIMEOUT}
+    Click Element    xpath=//android.widget.CheckedTextView[@resource-id="com.ab.apiclient:id/design_menu_item_text" and @text="New Request"]
+
+    deleteUser(${randomNumber})
+    
+    Sleep  5
+    [Teardown]    Close Application
+    
+    deleteJsonFile(${randomNumber})
+
+Update the completed status of a note - Unauthorized
+    ${randomNumber}    FakerLibrary.creditCardNumber
+    createUser(${randomNumber})
+    logInUser(${randomNumber})
+    createANewNote(${randomNumber})
+    ${data}    Load Json From File    tests/fixtures/testdata-${randomNumber}.json
+    ${note_id_data}    Get Value From Json    ${data}    $.note_id
+    ${note_id_str}    Convert JSON To String	 ${note_id_data}
+    ${note_id}    Remove String    ${note_id_str}    [    ]    '    " 
+    ${user_token_data}    Get Value From Json    ${data}    $.user_token
+    ${user_token_str}    Convert JSON To String	 ${user_token_data}
+    ${user_token}    Remove String    ${user_token_str}    [    ]    '    "
+
+    # select PATCH
+    Wait Until Element Is Visible    id=com.ab.apiclient:id/spHttpMethod    ${TIMEOUT}
+    Click Element    id=com.ab.apiclient:id/spHttpMethod
+    Wait Until Element Is Visible    xpath=//android.widget.CheckedTextView[@resource-id="android:id/text1" and @text="PATCH"]    ${TIMEOUT}
+    Click Element    xpath=//android.widget.CheckedTextView[@resource-id="android:id/text1" and @text="PATCH"]
+    
+    # input base url and endpoint
+    Wait Until Element Is Visible    xpath=//android.widget.EditText[@resource-id="com.ab.apiclient:id/etUrl"]    ${TIMEOUT}
+    Input Text    xpath=//android.widget.EditText[@resource-id="com.ab.apiclient:id/etUrl"]    https://practice.expandtesting.com/notes/api/notes/${note_id}
+    
+    # add Accept, Content Type and Token headers
+    addAcceptHeader()    
+    addContentTypeHeader()
+    addTokenHeaderUnauthorized(${randomNumber})
+
+    # select body format
+    Wait Until Element Is Visible    xpath=//android.widget.RadioButton[@resource-id="com.ab.apiclient:id/rbFormUrlEncode"]    ${TIMEOUT}
+    Click Element    xpath=//android.widget.RadioButton[@resource-id="com.ab.apiclient:id/rbFormUrlEncode"]
+
+    # fill body
+    Wait Until Element Is Visible    android=new UiSelector().text("Key")    ${TIMEOUT}
+    Input Text    android=new UiSelector().text("Key")    completed
+    Input Text    android=new UiSelector().text("Value")    True    
+    Swipe By Percent    50    80    50    20    1000
+    Click Element    id=com.ab.apiclient:id/btnAdd
+    Swipe By Percent    50    80    50    20    1000    
+
+    # send request
+    Click Element    id=com.ab.apiclient:id/btnSend
+
+    #save response
+    Wait Until Element Is Visible    id=com.ab.apiclient:id/tvResult    ${TIMEOUT}
+    ${response_unbr_string}=    Get Text    id=com.ab.apiclient:id/tvResult
+    Log    string response is: ${response_unbr_string}
+    ${response_unbr_json}    Convert String To Json    ${response_unbr_string}
+ 
+    # Capturing variable values for assertions
+    ${success} =    Get Value From Json    ${response_unbr_json}    $.success
+    ${status} =     Get Value From Json    ${response_unbr_json}    $.status
+    ${status_value}=    Get From List    ${status}    0
+    ${status_str} =    Convert To String    ${status_value}
+    ${message} =    Get Value From Json    ${response_unbr_json}    $.message
+    ${message_value}=    Get From List    ${message}    0
+    ${message_str} =    Convert To String    ${message_value}
+
+    # assertions
+    Should Be True    ${success}    False
+    Should Be Equal    ${status_str}    401
+    Should Be Equal    ${message_str}    Access token is not valid or has expired, you will need to login
+
+    # press back key and create a new request
+    Press Keycode             4
+    Wait Until Element Is Visible    xpath=//android.widget.ImageButton    ${TIMEOUT}
+    Click Element    xpath=//android.widget.ImageButton
+    Wait Until Element Is Visible    xpath=//android.widget.CheckedTextView[@resource-id="com.ab.apiclient:id/design_menu_item_text" and @text="New Request"]    ${TIMEOUT}
+    Click Element    xpath=//android.widget.CheckedTextView[@resource-id="com.ab.apiclient:id/design_menu_item_text" and @text="New Request"]
+
+    deleteUser(${randomNumber})
+    
+    Sleep  5
+    [Teardown]    Close Application
+    
+    deleteJsonFile(${randomNumber})
+
 Delete a note by ID
     ${randomNumber}    FakerLibrary.creditCardNumber
     createUser(${randomNumber})
@@ -841,9 +1172,133 @@ Delete a note by ID
     
     deleteJsonFile(${randomNumber})
 
+Delete a note by ID - Bad request
+    ${randomNumber}    FakerLibrary.creditCardNumber
+    createUser(${randomNumber})
+    logInUser(${randomNumber})
+    createANewNote(${randomNumber})
+    ${data}    Load Json From File    tests/fixtures/testdata-${randomNumber}.json
+    ${note_id_data}    Get Value From Json    ${data}    $.note_id
+    ${note_id_str}    Convert JSON To String	 ${note_id_data}
+    ${note_id}    Remove String    ${note_id_str}    [    ]    '    " 
+    ${user_token_data}    Get Value From Json    ${data}    $.user_token
+    ${user_token_str}    Convert JSON To String	 ${user_token_data}
+    ${user_token}    Remove String    ${user_token_str}    [    ]    '    "
 
+    # select delete
+    Wait Until Element Is Visible    id=com.ab.apiclient:id/spHttpMethod    ${TIMEOUT}
+    Click Element    id=com.ab.apiclient:id/spHttpMethod
+    Wait Until Element Is Visible    xpath=//android.widget.CheckedTextView[@resource-id="android:id/text1" and @text="DELETE"]    ${TIMEOUT}
+    Click Element    xpath=//android.widget.CheckedTextView[@resource-id="android:id/text1" and @text="DELETE"]
+    
+    # input base url and endpoint
+    Wait Until Element Is Visible    xpath=//android.widget.EditText[@resource-id="com.ab.apiclient:id/etUrl"]    ${TIMEOUT}
+    Input Text    xpath=//android.widget.EditText[@resource-id="com.ab.apiclient:id/etUrl"]    https://practice.expandtesting.com/notes/api/notes/@${note_id}
+    
+    # add Accept and Token headers
+    addAcceptHeader()
+    addTokenHeader(${randomNumber})
 
+    # send request
+    Click Element    id=com.ab.apiclient:id/btnSend
 
+    #save response
+    Wait Until Element Is Visible    id=com.ab.apiclient:id/tvResult    ${TIMEOUT}
+    ${response_dn_string}=    Get Text    id=com.ab.apiclient:id/tvResult
+    Log    string response is: ${response_dn_string}
+    ${response_dn_json}    Convert String To Json    ${response_dn_string}
+ 
+    # Capturing variable values for assertions
+    ${success} =    Get Value From Json    ${response_dn_json}    $.success
+    ${status} =     Get Value From Json    ${response_dn_json}    $.status
+    ${status_value}=    Get From List    ${status}    0
+    ${status_str} =    Convert To String    ${status_value}
+    ${message} =    Get Value From Json    ${response_dn_json}    $.message
+    ${message_value}=    Get From List    ${message}    0
+    ${message_str} =    Convert To String    ${message_value}
+
+    # assertions
+    Should Be True    ${success}    False
+    Should Be Equal    ${status_str}    400
+    Should Be Equal    ${message_str}    Note ID must be a valid ID
+
+    # press back key and create a new request
+    Press Keycode             4
+    Wait Until Element Is Visible    xpath=//android.widget.ImageButton    ${TIMEOUT}
+    Click Element    xpath=//android.widget.ImageButton
+    Wait Until Element Is Visible    xpath=//android.widget.CheckedTextView[@resource-id="com.ab.apiclient:id/design_menu_item_text" and @text="New Request"]    ${TIMEOUT}
+    Click Element    xpath=//android.widget.CheckedTextView[@resource-id="com.ab.apiclient:id/design_menu_item_text" and @text="New Request"]
+
+    deleteUser(${randomNumber})
+    
+    Sleep  5
+    [Teardown]    Close Application
+    
+    deleteJsonFile(${randomNumber})
+
+Delete a note by ID - Unauthorizedt
+    ${randomNumber}    FakerLibrary.creditCardNumber
+    createUser(${randomNumber})
+    logInUser(${randomNumber})
+    createANewNote(${randomNumber})
+    ${data}    Load Json From File    tests/fixtures/testdata-${randomNumber}.json
+    ${note_id_data}    Get Value From Json    ${data}    $.note_id
+    ${note_id_str}    Convert JSON To String	 ${note_id_data}
+    ${note_id}    Remove String    ${note_id_str}    [    ]    '    " 
+    ${user_token_data}    Get Value From Json    ${data}    $.user_token
+    ${user_token_str}    Convert JSON To String	 ${user_token_data}
+    ${user_token}    Remove String    ${user_token_str}    [    ]    '    "
+
+    # select delete
+    Wait Until Element Is Visible    id=com.ab.apiclient:id/spHttpMethod    ${TIMEOUT}
+    Click Element    id=com.ab.apiclient:id/spHttpMethod
+    Wait Until Element Is Visible    xpath=//android.widget.CheckedTextView[@resource-id="android:id/text1" and @text="DELETE"]    ${TIMEOUT}
+    Click Element    xpath=//android.widget.CheckedTextView[@resource-id="android:id/text1" and @text="DELETE"]
+    
+    # input base url and endpoint
+    Wait Until Element Is Visible    xpath=//android.widget.EditText[@resource-id="com.ab.apiclient:id/etUrl"]    ${TIMEOUT}
+    Input Text    xpath=//android.widget.EditText[@resource-id="com.ab.apiclient:id/etUrl"]    https://practice.expandtesting.com/notes/api/notes/${note_id}
+    
+    # add Accept and Token headers
+    addAcceptHeader()
+    addTokenHeaderUnauthorized(${randomNumber})
+
+    # send request
+    Click Element    id=com.ab.apiclient:id/btnSend
+
+    #save response
+    Wait Until Element Is Visible    id=com.ab.apiclient:id/tvResult    ${TIMEOUT}
+    ${response_dn_string}=    Get Text    id=com.ab.apiclient:id/tvResult
+    Log    string response is: ${response_dn_string}
+    ${response_dn_json}    Convert String To Json    ${response_dn_string}
+ 
+    # Capturing variable values for assertions
+    ${success} =    Get Value From Json    ${response_dn_json}    $.success
+    ${status} =     Get Value From Json    ${response_dn_json}    $.status
+    ${status_value}=    Get From List    ${status}    0
+    ${status_str} =    Convert To String    ${status_value}
+    ${message} =    Get Value From Json    ${response_dn_json}    $.message
+    ${message_value}=    Get From List    ${message}    0
+    ${message_str} =    Convert To String    ${message_value}
+
+    # assertions
+    Should Be True    ${success}    False
+    Should Be Equal    ${status_str}    401
+    Should Be Equal    ${message_str}    Access token is not valid or has expired, you will need to login
+
+    # press back key and create a new request
+    Press Keycode             4
+    Wait Until Element Is Visible    xpath=//android.widget.ImageButton    ${TIMEOUT}
+    Click Element    xpath=//android.widget.ImageButton
+    Wait Until Element Is Visible    xpath=//android.widget.CheckedTextView[@resource-id="com.ab.apiclient:id/design_menu_item_text" and @text="New Request"]    ${TIMEOUT}
+    Click Element    xpath=//android.widget.CheckedTextView[@resource-id="com.ab.apiclient:id/design_menu_item_text" and @text="New Request"]
+
+    deleteUser(${randomNumber})
+    
+    Sleep  5
+    [Teardown]    Close Application
+    
+    deleteJsonFile(${randomNumber})
 
 
 
