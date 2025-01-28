@@ -579,43 +579,43 @@ Get note by ID
 #     Click Element    id=com.ab.apiclient:id/btnSend
 
 #     #save response
-#     Wait Until Element Is Visible    accessibility_id=Raw    ${TIMEOUT}
-#     Click Element    accessibility_id=Raw
+#     Wait Until Element Is Visible    android=new UiSelector().text("Raw")    ${TIMEOUT}
+#     Click Element    android=new UiSelector().text("Raw")
 #     Wait Until Element Is Visible    id=com.ab.apiclient:id/tvResult    ${TIMEOUT}
-#     ${response_cn_string}=    Get Text    id=com.ab.apiclient:id/tvResult
-#     Log    string response is: ${response_cn_string}
-#     ${response_cn_json}    Convert String To Json    ${response_cn_string}
+#     ${response_un_string}=    Get Text    id=com.ab.apiclient:id/tvResult
+#     Log    string response is: ${response_un_string}
+#     ${response_un_json}    Convert String To Json    ${response_un_string}
  
 #     # Capturing variable values for assertions
-#     ${success} =    Get Value From Json    ${response_cn_json}    $.success
-#     ${status} =     Get Value From Json    ${response_cn_json}    $.status
+#     ${success} =    Get Value From Json    ${response_un_json}    $.success
+#     ${status} =     Get Value From Json    ${response_un_json}    $.status
 #     ${status_value}=    Get From List    ${status}    0
 #     ${status_str} =    Convert To String    ${status_value}
-#     ${message} =    Get Value From Json    ${response_cn_json}    $.message
+#     ${message} =    Get Value From Json    ${response_un_json}    $.message
 #     ${message_value}=    Get From List    ${message}    0
 #     ${message_str} =    Convert To String    ${message_value}
-#     ${note_id_resp}=    Get Value From Json    ${response_cn_json}    $.data.id
+#     ${note_id_resp}=    Get Value From Json    ${response_un_json}    $.data.id
 #     ${note_id_value}=    Get From List    ${note_id_resp}    0
 #     ${note_id_str} =    Convert To String    ${note_id_value}
-#     ${note_title_resp} =  Get Value From Json    ${response_cn_json}    $.data.title
+#     ${note_title_resp} =  Get Value From Json    ${response_un_json}    $.data.title
 #     ${note_title_value}=    Get From List    ${note_title_resp}    0
 #     ${note_title_str} =    Convert To String    ${note_title_value}
-#     ${note_description_resp} =  Get Value From Json    ${response_cn_json}    $.data.description
+#     ${note_description_resp} =  Get Value From Json    ${response_un_json}    $.data.description
 #     ${note_description_value}=    Get From List    ${note_description_resp}    0
 #     ${note_description_str} =    Convert To String    ${note_description_value}
-#     ${note_category_resp} =  Get Value From Json    ${response_cn_json}    $.data.category
+#     ${note_category_resp} =  Get Value From Json    ${response_un_json}    $.data.category
 #     ${note_category_value}=    Get From List    ${note_category_resp}    0
 #     ${note_category_str} =    Convert To String    ${note_category_value}
-#     ${note_completed_resp} =    Get Value From Json    ${response_cn_json}    $.data.completed
+#     ${note_completed_resp} =    Get Value From Json    ${response_un_json}    $.data.completed
 #     ${note_completed_value}=    Get From List    ${note_completed_resp}    0
 #     ${note_completed} =    Convert To String    ${note_completed_value}
-#     ${note_created_at_resp} =  Get Value From Json    ${response_cn_json}    $.data.created_at
+#     ${note_created_at_resp} =  Get Value From Json    ${response_un_json}    $.data.created_at
 #     ${note_created_at_value}=    Get From List    ${note_created_at_resp}    0
 #     ${note_created_at_str} =    Convert To String    ${note_created_at_value}
-#     ${note_updated_at_resp} =  Get Value From Json    ${response_cn_json}    $.data.updated_at
+#     ${note_updated_at_resp} =  Get Value From Json    ${response_un_json}    $.data.updated_at
 #     ${note_updated_at_value}=    Get From List    ${note_updated_at_resp}    0
 #     ${note_updated_at_str} =    Convert To String    ${note_updated_at_value}
-#     ${user_id_resp}=    Get Value From Json    ${response_cn_json}    $.data.user_id
+#     ${user_id_resp}=    Get Value From Json    ${response_un_json}    $.data.user_id
 #     ${user_id_value}=    Get From List    ${user_id_resp}    0
 #     ${user_id_str} =    Convert To String    ${user_id_value}
 
