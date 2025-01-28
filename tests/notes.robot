@@ -78,18 +78,19 @@ Creates a new note
     Swipe By Percent    50    80    50    20    1000
     
     # send request
-    Click Element    id=com.ab.apiclient:id/btnSend
-    closeFullScreenAd()
+    Click Element    id=com.ab.apiclient:id/btnSend    
 
     #save response
     Wait Until Element Is Visible    android=new UiSelector().text("Raw")    ${TIMEOUT}
-    Click Element    android=new UiSelector().text("Raw")
-    closeFullScreenAd()
-    Wait Until Element Is Visible    id=com.ab.apiclient:id/tvResult    ${TIMEOUT}
+    Click Element    android=new UiSelector().text("Raw")    
+    ${element_visible}    Run Keyword And Return Status    Wait Until Element Is Visible    id=com.ab.apiclient:id/tvResult    timeout=20
+    IF    not ${element_visible}
+        closeFullScreenAd()
+        Wait Until Element Is Visible    id=com.ab.apiclient:id/tvResult    timeout=10
+    END
     ${response_cn_string}=    Get Text    id=com.ab.apiclient:id/tvResult
     Log    string response is: ${response_cn_string}
-    ${response_cn_json}    Convert String To Json    ${response_cn_string}
-    closeFullScreenAd()
+    ${response_cn_json}    Convert String To Json    ${response_cn_string}    
  
     # Capturing variable values for assertions
     ${success} =    Get Value From Json    ${response_cn_json}    $.success
@@ -135,8 +136,6 @@ Creates a new note
     Should Be Equal    ${user_id_str}    ${user_id}
 
     Create File    tests/fixtures/testdata-${randomNumber}.json	{"note_category":"${note_category}","note_description":"${note_description}","note_id":"${note_id}","note_title":"${note_title}","note_created_at":"${note_created_at}","note_updated_at":"${note_updated_at}","user_id":"${user_id}","user_token":"${user_token}"}
-
-    closeFullScreenAd()
 
     # press back key and create a new request
     Press Keycode             4
@@ -204,15 +203,17 @@ Creates a new note - Bad request
     Swipe By Percent    50    80    50    20    1000
     
       # send request
-    Click Element    id=com.ab.apiclient:id/btnSend
-    closeFullScreenAd()
+    Click Element    id=com.ab.apiclient:id/btnSend    
 
     #save response
-    Wait Until Element Is Visible    id=com.ab.apiclient:id/tvResult    ${TIMEOUT}
+    ${element_visible}    Run Keyword And Return Status    Wait Until Element Is Visible    id=com.ab.apiclient:id/tvResult    timeout=20
+    IF    not ${element_visible}
+        closeFullScreenAd()
+        Wait Until Element Is Visible    id=com.ab.apiclient:id/tvResult    timeout=10
+    END
     ${response_cnbr_string}=    Get Text    id=com.ab.apiclient:id/tvResult
     Log    string response is: ${response_cnbr_string}
-    ${response_cnbr_json}    Convert String To Json    ${response_cnbr_string}
-    closeFullScreenAd()
+    ${response_cnbr_json}    Convert String To Json    ${response_cnbr_string}    
  
     # Capturing variable values for assertions
     ${success} =    Get Value From Json    ${response_cnbr_json}    $.success
@@ -227,8 +228,6 @@ Creates a new note - Bad request
     Should Be True    ${success}    False
     Should Be Equal    ${status_str}    400
     Should Be Equal    ${message_str}    Category must be one of the categories: Home, Work, Personal
-
-    closeFullScreenAd()
 
     # press back key and create a new request
     Press Keycode             4
@@ -297,15 +296,17 @@ Creates a new note - Unauthorized
     Swipe By Percent    50    80    50    20    1000
     
     # send request
-    Click Element    id=com.ab.apiclient:id/btnSend
-    closeFullScreenAd()
+    Click Element    id=com.ab.apiclient:id/btnSend    
 
     #save response
-    Wait Until Element Is Visible    id=com.ab.apiclient:id/tvResult    ${TIMEOUT}
+    ${element_visible}    Run Keyword And Return Status    Wait Until Element Is Visible    id=com.ab.apiclient:id/tvResult    timeout=20
+    IF    not ${element_visible}
+        closeFullScreenAd()
+        Wait Until Element Is Visible    id=com.ab.apiclient:id/tvResult    timeout=10
+    END
     ${response_cnbr_string}=    Get Text    id=com.ab.apiclient:id/tvResult
     Log    string response is: ${response_cnbr_string}
-    ${response_cnbr_json}    Convert String To Json    ${response_cnbr_string}
-    closeFullScreenAd()
+    ${response_cnbr_json}    Convert String To Json    ${response_cnbr_string}    
  
     # Capturing variable values for assertions
     ${success} =    Get Value From Json    ${response_cnbr_json}    $.success
@@ -320,8 +321,6 @@ Creates a new note - Unauthorized
     Should Be True    ${success}    False
     Should Be Equal    ${status_str}    401
     Should Be Equal    ${message_str}    Access token is not valid or has expired, you will need to login
-
-    closeFullScreenAd()
 
     # press back key and create a new request
     Press Keycode             4
@@ -409,18 +408,19 @@ Get all notes
     Swipe By Percent    50    80    50    20    1000
     
     # send request
-    Click Element    id=com.ab.apiclient:id/btnSend
-    closeFullScreenAd()
+    Click Element    id=com.ab.apiclient:id/btnSend    
 
     #save response
     Wait Until Element Is Visible    android=new UiSelector().text("Raw")    ${TIMEOUT}
-    Click Element    android=new UiSelector().text("Raw")
-    closeFullScreenAd()
-    Wait Until Element Is Visible    id=com.ab.apiclient:id/tvResult    ${TIMEOUT}
+    Click Element    android=new UiSelector().text("Raw")    
+    ${element_visible}    Run Keyword And Return Status    Wait Until Element Is Visible    id=com.ab.apiclient:id/tvResult    timeout=20
+    IF    not ${element_visible}
+        closeFullScreenAd()
+        Wait Until Element Is Visible    id=com.ab.apiclient:id/tvResult    timeout=10
+    END
     ${response_cn2_string}=    Get Text    id=com.ab.apiclient:id/tvResult
     Log    string response is: ${response_cn2_string}
-    ${response_cn2_json}    Convert String To Json    ${response_cn2_string}
-    closeFullScreenAd()
+    ${response_cn2_json}    Convert String To Json    ${response_cn2_string}    
  
     # Capturing variable values for assertions
     ${note2_id_resp}=    Get Value From Json    ${response_cn2_json}    $.data.id
@@ -446,9 +446,7 @@ Get all notes
     ${note2_updated_at} =    Convert To String    ${note2_updated_at_value}
     ${user_id_resp}=    Get Value From Json    ${response_cn2_json}    $.data.user_id
     ${user_id_value}=    Get From List    ${user_id_resp}    0
-    ${user_id_str} =    Convert To String    ${user_id_value}
-
-    closeFullScreenAd()
+    ${user_id_str} =    Convert To String    ${user_id_value}    
     
     # press back key and create a new request
     Press Keycode             4
@@ -472,18 +470,19 @@ Get all notes
     addTokenHeader(${randomNumber})
 
     # send request
-    Click Element    id=com.ab.apiclient:id/btnSend
-    closeFullScreenAd()
+    Click Element    id=com.ab.apiclient:id/btnSend    
 
     #save response
     Wait Until Element Is Visible    android=new UiSelector().text("Raw")    ${TIMEOUT}
-    Click Element    android=new UiSelector().text("Raw")
-    closeFullScreenAd()
-    Wait Until Element Is Visible    id=com.ab.apiclient:id/tvResult    ${TIMEOUT}
+    Click Element    android=new UiSelector().text("Raw")    
+    ${element_visible}    Run Keyword And Return Status    Wait Until Element Is Visible    id=com.ab.apiclient:id/tvResult    timeout=20
+    IF    not ${element_visible}
+        closeFullScreenAd()
+        Wait Until Element Is Visible    id=com.ab.apiclient:id/tvResult    timeout=10
+    END
     ${response_gns_string}=    Get Text    id=com.ab.apiclient:id/tvResult
     Log    string response is: ${response_gns_string}
-    ${response_gns_json}    Convert String To Json    ${response_gns_string}
-    closeFullScreenAd()
+    ${response_gns_json}    Convert String To Json    ${response_gns_string}    
  
     # Capturing variable values for assertions
     ${success} =    Get Value From Json    ${response_gns_json}    $.success
@@ -565,9 +564,7 @@ Get all notes
     Should Be Equal    ${note2_updated_at_str}    ${note2_updated_at}
     Should Not Be True    ${note2_completed}    False
     Should Be Equal    ${user_id_str}    ${user_id}
-    Should Be Equal    ${note2_id_str}    ${note2_id}
-
-    closeFullScreenAd()
+    Should Be Equal    ${note2_id_str}    ${note2_id}    
     
     # press back key and create a new request
     Press Keycode             4
@@ -629,18 +626,19 @@ Get note by ID
     addTokenHeader(${randomNumber})
 
     # send request
-    Click Element    id=com.ab.apiclient:id/btnSend
-    closeFullScreenAd()
+    Click Element    id=com.ab.apiclient:id/btnSend    
 
     #save response
     Wait Until Element Is Visible    android=new UiSelector().text("Raw")    ${TIMEOUT}
-    Click Element    android=new UiSelector().text("Raw")
-    closeFullScreenAd()
-    Wait Until Element Is Visible    id=com.ab.apiclient:id/tvResult    ${TIMEOUT}
+    Click Element    android=new UiSelector().text("Raw")    
+    ${element_visible}    Run Keyword And Return Status    Wait Until Element Is Visible    id=com.ab.apiclient:id/tvResult    timeout=20
+    IF    not ${element_visible}
+        closeFullScreenAd()
+        Wait Until Element Is Visible    id=com.ab.apiclient:id/tvResult    timeout=10
+    END
     ${response_cn_string}=    Get Text    id=com.ab.apiclient:id/tvResult
     Log    string response is: ${response_cn_string}
-    ${response_cn_json}    Convert String To Json    ${response_cn_string}
-    closeFullScreenAd()
+    ${response_cn_json}    Convert String To Json    ${response_cn_string}    
  
     # Capturing variable values for assertions
     ${success} =    Get Value From Json    ${response_cn_json}    $.success
@@ -686,9 +684,7 @@ Get note by ID
     Should Be Equal    ${note_updated_at_str}    ${note_updated_at}
     Should Not Be True    ${note_completed}    False
     Should Be Equal    ${user_id_str}    ${user_id}
-    Should Be Equal    ${note_id_str}    ${note_id}
-
-    closeFullScreenAd()
+    Should Be Equal    ${note_id_str}    ${note_id}    
 
     # press back key and create a new request
     Press Keycode             4
@@ -910,18 +906,19 @@ Update the completed status of a note
     Swipe By Percent    50    80    50    20    1000    
 
     # send request
-    Click Element    id=com.ab.apiclient:id/btnSend
-    closeFullScreenAd()
+    Click Element    id=com.ab.apiclient:id/btnSend    
 
     #save response
     Wait Until Element Is Visible    android=new UiSelector().text("Raw")    ${TIMEOUT}
-    Click Element    android=new UiSelector().text("Raw")
-    closeFullScreenAd()
-    Wait Until Element Is Visible    id=com.ab.apiclient:id/tvResult    ${TIMEOUT}
+    Click Element    android=new UiSelector().text("Raw")    
+    ${element_visible}    Run Keyword And Return Status    Wait Until Element Is Visible    id=com.ab.apiclient:id/tvResult    timeout=20
+    IF    not ${element_visible}
+        closeFullScreenAd()
+        Wait Until Element Is Visible    id=com.ab.apiclient:id/tvResult    timeout=10
+    END
     ${response_cn_string}=    Get Text    id=com.ab.apiclient:id/tvResult
     Log    string response is: ${response_cn_string}
-    ${response_cn_json}    Convert String To Json    ${response_cn_string}
-    closeFullScreenAd()
+    ${response_cn_json}    Convert String To Json    ${response_cn_string}    
  
     # Capturing variable values for assertions
     ${success} =    Get Value From Json    ${response_cn_json}    $.success
@@ -967,9 +964,7 @@ Update the completed status of a note
     Should Not Be Equal    ${note_updated_at_str}    ${note_updated_at}
     Should Be True    ${note_completed}    True
     Should Be Equal    ${user_id_str}    ${user_id}
-    Should Be Equal    ${note_id_str}    ${note_id}
-
-    closeFullScreenAd()
+    Should Be Equal    ${note_id_str}    ${note_id}    
 
     # press back key and create a new request
     Press Keycode             4
@@ -1026,15 +1021,17 @@ Update the completed status of a note - Bad request
     Swipe By Percent    50    80    50    20    1000    
 
     # send request
-    Click Element    id=com.ab.apiclient:id/btnSend
-    closeFullScreenAd()
+    Click Element    id=com.ab.apiclient:id/btnSend    
 
     #save response
-    Wait Until Element Is Visible    id=com.ab.apiclient:id/tvResult    ${TIMEOUT}
+    ${element_visible}    Run Keyword And Return Status    Wait Until Element Is Visible    id=com.ab.apiclient:id/tvResult    timeout=20
+    IF    not ${element_visible}
+        closeFullScreenAd()
+        Wait Until Element Is Visible    id=com.ab.apiclient:id/tvResult    timeout=10
+    END
     ${response_unbr_string}=    Get Text    id=com.ab.apiclient:id/tvResult
     Log    string response is: ${response_unbr_string}
-    ${response_unbr_json}    Convert String To Json    ${response_unbr_string}
-    closeFullScreenAd()
+    ${response_unbr_json}    Convert String To Json    ${response_unbr_string}    
  
     # Capturing variable values for assertions
     ${success} =    Get Value From Json    ${response_unbr_json}    $.success
@@ -1048,9 +1045,7 @@ Update the completed status of a note - Bad request
     # assertions
     Should Be True    ${success}    False
     Should Be Equal    ${status_str}    400
-    Should Be Equal    ${message_str}    Note completed status must be boolean
-
-    closeFullScreenAd()
+    Should Be Equal    ${message_str}    Note completed status must be boolean    
 
     # press back key and create a new request
     Press Keycode             4
@@ -1107,15 +1102,17 @@ Update the completed status of a note - Unauthorized
     Swipe By Percent    50    80    50    20    1000    
 
     # send request
-    Click Element    id=com.ab.apiclient:id/btnSend
-    closeFullScreenAd()
+    Click Element    id=com.ab.apiclient:id/btnSend    
 
     #save response
-    Wait Until Element Is Visible    id=com.ab.apiclient:id/tvResult    ${TIMEOUT}
+    ${element_visible}    Run Keyword And Return Status    Wait Until Element Is Visible    id=com.ab.apiclient:id/tvResult    timeout=20
+    IF    not ${element_visible}
+        closeFullScreenAd()
+        Wait Until Element Is Visible    id=com.ab.apiclient:id/tvResult    timeout=10
+    END
     ${response_unbr_string}=    Get Text    id=com.ab.apiclient:id/tvResult
     Log    string response is: ${response_unbr_string}
-    ${response_unbr_json}    Convert String To Json    ${response_unbr_string}
-    closeFullScreenAd()
+    ${response_unbr_json}    Convert String To Json    ${response_unbr_string}    
  
     # Capturing variable values for assertions
     ${success} =    Get Value From Json    ${response_unbr_json}    $.success
@@ -1130,8 +1127,6 @@ Update the completed status of a note - Unauthorized
     Should Be True    ${success}    False
     Should Be Equal    ${status_str}    401
     Should Be Equal    ${message_str}    Access token is not valid or has expired, you will need to login
-
-    closeFullScreenAd()
 
     # press back key and create a new request
     Press Keycode             4
@@ -1175,18 +1170,19 @@ Delete a note by ID
     addTokenHeader(${randomNumber})
 
     # send request
-    Click Element    id=com.ab.apiclient:id/btnSend
-    closeFullScreenAd()
+    Click Element    id=com.ab.apiclient:id/btnSend    
 
     #save response
     Wait Until Element Is Visible    android=new UiSelector().text("Raw")    ${TIMEOUT}
-    Click Element    android=new UiSelector().text("Raw")
-    closeFullScreenAd()
-    Wait Until Element Is Visible    id=com.ab.apiclient:id/tvResult    ${TIMEOUT}
+    Click Element    android=new UiSelector().text("Raw")    
+    ${element_visible}    Run Keyword And Return Status    Wait Until Element Is Visible    id=com.ab.apiclient:id/tvResult    timeout=20
+    IF    not ${element_visible}
+        closeFullScreenAd()
+        Wait Until Element Is Visible    id=com.ab.apiclient:id/tvResult    timeout=10
+    END
     ${response_dn_string}=    Get Text    id=com.ab.apiclient:id/tvResult
     Log    string response is: ${response_dn_string}
-    ${response_dn_json}    Convert String To Json    ${response_dn_string}
-    closeFullScreenAd()
+    ${response_dn_json}    Convert String To Json    ${response_dn_string}    
  
     # Capturing variable values for assertions
     ${success} =    Get Value From Json    ${response_dn_json}    $.success
@@ -1200,9 +1196,7 @@ Delete a note by ID
     # assertions
     Should Be True    ${success}    True
     Should Be Equal    ${status_str}    200
-    Should Be Equal    ${message_str}    Note successfully deleted
-
-    closeFullScreenAd()
+    Should Be Equal    ${message_str}    Note successfully deleted    
 
     # press back key and create a new request
     Press Keycode             4
@@ -1246,15 +1240,17 @@ Delete a note by ID - Bad request
     addTokenHeader(${randomNumber})
 
     # send request
-    Click Element    id=com.ab.apiclient:id/btnSend
-    closeFullScreenAd()
+    Click Element    id=com.ab.apiclient:id/btnSend    
 
     #save response
-    Wait Until Element Is Visible    id=com.ab.apiclient:id/tvResult    ${TIMEOUT}
+    ${element_visible}    Run Keyword And Return Status    Wait Until Element Is Visible    id=com.ab.apiclient:id/tvResult    timeout=20
+    IF    not ${element_visible}
+        closeFullScreenAd()
+        Wait Until Element Is Visible    id=com.ab.apiclient:id/tvResult    timeout=10
+    END
     ${response_dn_string}=    Get Text    id=com.ab.apiclient:id/tvResult
     Log    string response is: ${response_dn_string}
-    ${response_dn_json}    Convert String To Json    ${response_dn_string}
-    closeFullScreenAd()
+    ${response_dn_json}    Convert String To Json    ${response_dn_string}    
  
     # Capturing variable values for assertions
     ${success} =    Get Value From Json    ${response_dn_json}    $.success
@@ -1268,9 +1264,7 @@ Delete a note by ID - Bad request
     # assertions
     Should Be True    ${success}    False
     Should Be Equal    ${status_str}    400
-    Should Be Equal    ${message_str}    Note ID must be a valid ID
-
-    closeFullScreenAd()
+    Should Be Equal    ${message_str}    Note ID must be a valid ID    
 
     # press back key and create a new request
     Press Keycode             4
@@ -1314,15 +1308,17 @@ Delete a note by ID - Unauthorizedt
     addTokenHeaderUnauthorized(${randomNumber})
 
     # send request
-    Click Element    id=com.ab.apiclient:id/btnSend
-    closeFullScreenAd()
+    Click Element    id=com.ab.apiclient:id/btnSend    
 
     #save response
-    Wait Until Element Is Visible    id=com.ab.apiclient:id/tvResult    ${TIMEOUT}
+    ${element_visible}    Run Keyword And Return Status    Wait Until Element Is Visible    id=com.ab.apiclient:id/tvResult    timeout=20
+    IF    not ${element_visible}
+        closeFullScreenAd()
+        Wait Until Element Is Visible    id=com.ab.apiclient:id/tvResult    timeout=10
+    END
     ${response_dn_string}=    Get Text    id=com.ab.apiclient:id/tvResult
     Log    string response is: ${response_dn_string}
-    ${response_dn_json}    Convert String To Json    ${response_dn_string}
-    closeFullScreenAd()
+    ${response_dn_json}    Convert String To Json    ${response_dn_string}    
  
     # Capturing variable values for assertions
     ${success} =    Get Value From Json    ${response_dn_json}    $.success
@@ -1336,9 +1332,7 @@ Delete a note by ID - Unauthorizedt
     # assertions
     Should Be True    ${success}    False
     Should Be Equal    ${status_str}    401
-    Should Be Equal    ${message_str}    Access token is not valid or has expired, you will need to login
-
-    closeFullScreenAd()
+    Should Be Equal    ${message_str}    Access token is not valid or has expired, you will need to login    
     
     # press back key and create a new request
     Press Keycode             4

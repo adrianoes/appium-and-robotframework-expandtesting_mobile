@@ -73,17 +73,18 @@ logInUser(${randomNumber})
 
     # send request
     Click Element    id=com.ab.apiclient:id/btnSend
-    closeFullScreenAd()
 
     #save response
     Wait Until Element Is Visible    android=new UiSelector().text("Raw")    ${TIMEOUT}
     Click Element    android=new UiSelector().text("Raw")
-    closeFullScreenAd()
-    Wait Until Element Is Visible    id=com.ab.apiclient:id/tvResult    ${TIMEOUT}
+    ${element_visible}    Run Keyword And Return Status    Wait Until Element Is Visible    id=com.ab.apiclient:id/tvResult    timeout=20
+    IF    not ${element_visible}
+        closeFullScreenAd()
+        Wait Until Element Is Visible    id=com.ab.apiclient:id/tvResult    timeout=10
+    END
     ${response_lu_string}=    Get Text    id=com.ab.apiclient:id/tvResult
     Log    string response is: ${response_lu_string}
     ${response_lu_json}    Convert String To Json    ${response_lu_string}
-    closeFullScreenAd()
  
     # Capturing variable values for assertions
     ${success} =    Get Value From Json    ${response_lu_json}    $.success
@@ -116,8 +117,6 @@ logInUser(${randomNumber})
 
     # creating .json file
     Create File    tests/fixtures/testdata-${randomNumber}.json	{"user_email":"${user_email}","user_id":"${user_id}","user_name":"${user_name}","user_password":"${user_password}","user_token":"${user_token}"}
-    
-    closeFullScreenAd()
 
     # press back key and create a new request
     Press Keycode             4
@@ -148,17 +147,18 @@ deleteUser(${randomNumber})
 
     # send request
     Click Element    id=com.ab.apiclient:id/btnSend
-    closeFullScreenAd()
 
     #save response
     Wait Until Element Is Visible    android=new UiSelector().text("Raw")    ${TIMEOUT}
     Click Element    android=new UiSelector().text("Raw")
-    closeFullScreenAd()
-    Wait Until Element Is Visible    id=com.ab.apiclient:id/tvResult    ${TIMEOUT}
+    ${element_visible}    Run Keyword And Return Status    Wait Until Element Is Visible    id=com.ab.apiclient:id/tvResult    timeout=20
+    IF    not ${element_visible}
+        closeFullScreenAd()
+        Wait Until Element Is Visible    id=com.ab.apiclient:id/tvResult    timeout=10
+    END
     ${response_du_string}=    Get Text    id=com.ab.apiclient:id/tvResult
     Log    string response is: ${response_du_string}
     ${response_du_json}    Convert String To Json    ${response_du_string}
-    closeFullScreenAd()
  
     # Capturing variable values for assertions
     ${success} =    Get Value From Json    ${response_du_json}    $.success
@@ -173,8 +173,6 @@ deleteUser(${randomNumber})
     Should Be True    ${success}    True
     Should Be Equal    ${status_str}    200
     Should Be Equal    ${message_str}    Account successfully deleted
-
-    closeFullScreenAd()
 
     # press back key and create a new request
     Press Keycode             4
@@ -256,18 +254,19 @@ createUser(${randomNumber})
     Swipe By Percent    50    80    50    20    1000
 
     # send request
-    Click Element    id=com.ab.apiclient:id/btnSend
-    closeFullScreenAd()
+    Click Element    id=com.ab.apiclient:id/btnSend    
 
     #save response
     Wait Until Element Is Visible    android=new UiSelector().text("Raw")    ${TIMEOUT}
-    Click Element    android=new UiSelector().text("Raw")
-    closeFullScreenAd()
-    Wait Until Element Is Visible    id=com.ab.apiclient:id/tvResult    ${TIMEOUT}
+    Click Element    android=new UiSelector().text("Raw")    
+    ${element_visible}    Run Keyword And Return Status    Wait Until Element Is Visible    id=com.ab.apiclient:id/tvResult    timeout=20
+    IF    not ${element_visible}
+        closeFullScreenAd()
+        Wait Until Element Is Visible    id=com.ab.apiclient:id/tvResult    timeout=10
+    END
     ${response_cu_string}=    Get Text    id=com.ab.apiclient:id/tvResult
     Log    string response is: ${response_cu_string}
-    ${response_cu_json}    Convert String To Json    ${response_cu_string}
-    closeFullScreenAd()
+    ${response_cu_json}    Convert String To Json    ${response_cu_string}    
  
     # Capturing variable values for assertions
     ${success} =    Get Value From Json    ${response_cu_json}    $.success
@@ -296,8 +295,6 @@ createUser(${randomNumber})
 
     # creating .json file
     Create File    tests/fixtures/testdata-${randomNumber}.json	{"user_email":"${user_email}","user_id":"${user_id}","user_name":"${user_name}","user_password":"${user_password}"}
-
-    closeFullScreenAd()
 
     # press back key and create a new request
     Press Keycode             4
@@ -423,18 +420,19 @@ createANewNote(${randomNumber})
     Swipe By Percent    50    80    50    20    1000
     
     # send request
-    Click Element    id=com.ab.apiclient:id/btnSend
-    closeFullScreenAd()
+    Click Element    id=com.ab.apiclient:id/btnSend    
 
     #save response
     Wait Until Element Is Visible    android=new UiSelector().text("Raw")    ${TIMEOUT}
-    Click Element    android=new UiSelector().text("Raw")
-    closeFullScreenAd()
-    Wait Until Element Is Visible    id=com.ab.apiclient:id/tvResult    ${TIMEOUT}
+    Click Element    android=new UiSelector().text("Raw")    
+    ${element_visible}    Run Keyword And Return Status    Wait Until Element Is Visible    id=com.ab.apiclient:id/tvResult    timeout=20
+    IF    not ${element_visible}
+        closeFullScreenAd()
+        Wait Until Element Is Visible    id=com.ab.apiclient:id/tvResult    timeout=10
+    END
     ${response_cn_string}=    Get Text    id=com.ab.apiclient:id/tvResult
     Log    string response is: ${response_cn_string}
-    ${response_cn_json}    Convert String To Json    ${response_cn_string}
-    closeFullScreenAd()
+    ${response_cn_json}    Convert String To Json    ${response_cn_string}    
  
     # Capturing variable values for assertions
     ${success} =    Get Value From Json    ${response_cn_json}    $.success
@@ -480,8 +478,6 @@ createANewNote(${randomNumber})
     Should Be Equal    ${user_id_str}    ${user_id}
 
     Create File    tests/fixtures/testdata-${randomNumber}.json	{"note_category":"${note_category}","note_description":"${note_description}","note_id":"${note_id}","note_title":"${note_title}","note_created_at":"${note_created_at}","note_updated_at":"${note_updated_at}","user_id":"${user_id}","user_token":"${user_token}"}
-
-    closeFullScreenAd()
     
     # press back key and create a new request
     Press Keycode             4
@@ -491,5 +487,7 @@ createANewNote(${randomNumber})
     Click Element    xpath=//android.widget.CheckedTextView[@resource-id="com.ab.apiclient:id/design_menu_item_text" and @text="New Request"]
 
 closeFullScreenAd()
-    ${exists}=    Run Keyword And Return Status    Wait Until Element Is Visible    android=new UiSelector().className("android.widget.Button")    timeout=5
-    Run Keyword If    ${exists}    Click Element    android=new UiSelector().className("android.widget.Button")
+    ${exists}=    Run Keyword And Return Status    Wait Until Element Is Visible    android=new UiSelector().text("Close")    timeout=5
+    Run Keyword If    ${exists}    Click Element    android=new UiSelector().text("Close")
+
+
