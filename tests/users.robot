@@ -95,8 +95,9 @@ Creates a new user account
     Click Element    id=com.ab.apiclient:id/btnAdd
     Swipe By Percent    50    80    50    20    1000
 
-     # send request
+    # send request
     Click Element    id=com.ab.apiclient:id/btnSend
+    closeFullScreenAd()
 
     #save response
     # xpath=//android.widget.TextView[@text="Raw"]
@@ -106,6 +107,7 @@ Creates a new user account
     ${response_cu_string}=    Get Text    id=com.ab.apiclient:id/tvResult
     Log    string response is: ${response_cu_string}
     ${response_cu_json}    Convert String To Json    ${response_cu_string}
+    closeFullScreenAd()
  
     # Capturing variable values for assertions
     ${success} =    Get Value From Json    ${response_cu_json}    $.success
@@ -134,6 +136,8 @@ Creates a new user account
 
     # creating .json file
     Create File    tests/fixtures/testdata-${randomNumber}.json	{"user_email":"${user_email}","user_id":"${user_id}","user_name":"${user_name}","user_password":"${user_password}"}
+
+    closeFullScreenAd()
 
     # press back key and create a new request
     Press Keycode             4
@@ -219,14 +223,16 @@ Creates a new user account - Bad request
     Click Element    id=com.ab.apiclient:id/btnAdd
     Swipe By Percent    50    80    50    20    1000
 
-     # send request
+    # send request
     Click Element    id=com.ab.apiclient:id/btnSend
+    closeFullScreenAd()
 
     #save response
     Wait Until Element Is Visible    id=com.ab.apiclient:id/tvResult    ${TIMEOUT}
     ${response_cu_string}=    Get Text    id=com.ab.apiclient:id/tvResult
     Log    string response is: ${response_cu_string}
     ${response_cu_json}    Convert String To Json    ${response_cu_string}
+    closeFullScreenAd()
  
     # Capturing variable values for assertions
     ${success} =    Get Value From Json    ${response_cu_json}    $.success
@@ -241,6 +247,8 @@ Creates a new user account - Bad request
     Should Be True    ${success}    False
     Should Be Equal    ${status_str}    400
     Should Be Equal    ${message_str}    A valid email address is required
+
+    closeFullScreenAd()
 
     # press back key and create a new request
     Press Keycode             4
@@ -302,6 +310,7 @@ Log in as an existing user
 
     # send request
     Click Element    id=com.ab.apiclient:id/btnSend
+    closeFullScreenAd()
 
     #save response
     Wait Until Element Is Visible    android=new UiSelector().text("Raw")    ${TIMEOUT}
@@ -310,6 +319,7 @@ Log in as an existing user
     ${response_lu_string}=    Get Text    id=com.ab.apiclient:id/tvResult
     Log    string response is: ${response_lu_string}
     ${response_lu_json}    Convert String To Json    ${response_lu_string}
+    closeFullScreenAd()
  
     # Capturing variable values for assertions
     ${success} =    Get Value From Json    ${response_lu_json}    $.success
@@ -343,6 +353,8 @@ Log in as an existing user
     # creating .json file
     Create File    tests/fixtures/testdata-${randomNumber}.json	{"user_email":"${user_email}","user_id":"${user_id}","user_name":"${user_name}","user_password":"${user_password}","user_token":"${user_token}"}
     
+    closeFullScreenAd()
+
     # press back key and create a new request
     Press Keycode             4
     Wait Until Element Is Visible    xpath=//android.widget.ImageButton    ${TIMEOUT}
@@ -407,12 +419,14 @@ Log in as an existing user - Bad request
 
     # send request
     Click Element    id=com.ab.apiclient:id/btnSend
+    closeFullScreenAd()
 
     #save response
     Wait Until Element Is Visible    id=com.ab.apiclient:id/tvResult    ${TIMEOUT}
     ${response_lu_string}=    Get Text    id=com.ab.apiclient:id/tvResult
     Log    string response is: ${response_lu_string}
     ${response_lu_json}    Convert String To Json    ${response_lu_string}
+    closeFullScreenAd()
  
     # Capturing variable values for assertions
     ${success} =    Get Value From Json    ${response_lu_json}    $.success
@@ -427,7 +441,9 @@ Log in as an existing user - Bad request
     Should Be True    ${success}    False
     Should Be Equal    ${status_str}    400
     Should Be Equal    ${message_str}    A valid email address is required
-
+    
+    closeFullScreenAd()
+    
     # press back key and create a new request
     Press Keycode             4
     Wait Until Element Is Visible    xpath=//android.widget.ImageButton    ${TIMEOUT}
@@ -493,12 +509,14 @@ Log in as an existing user - Unauthorized
 
     # send request
     Click Element    id=com.ab.apiclient:id/btnSend
+    closeFullScreenAd()
 
     #save response
     Wait Until Element Is Visible    id=com.ab.apiclient:id/tvResult    ${TIMEOUT}
     ${response_lu_string}=    Get Text    id=com.ab.apiclient:id/tvResult
     Log    string response is: ${response_lu_string}
     ${response_lu_json}    Convert String To Json    ${response_lu_string}
+    closeFullScreenAd()
  
     # Capturing variable values for assertions
     ${success} =    Get Value From Json    ${response_lu_json}    $.success
@@ -513,6 +531,8 @@ Log in as an existing user - Unauthorized
     Should Be True    ${success}    False
     Should Be Equal    ${status_str}    401
     Should Be Equal    ${message_str}    Incorrect email address or password
+
+    closeFullScreenAd()
 
     # press back key and create a new request
     Press Keycode             4
@@ -563,6 +583,7 @@ Retrieve user profile information
 
     # send request
     Click Element    id=com.ab.apiclient:id/btnSend
+    closeFullScreenAd()
 
     #save response
     Wait Until Element Is Visible    android=new UiSelector().text("Raw")    ${TIMEOUT}
@@ -571,6 +592,7 @@ Retrieve user profile information
     ${response_ru_string}=    Get Text    id=com.ab.apiclient:id/tvResult
     Log    string response is: ${response_ru_string}
     ${response_ru_json}    Convert String To Json    ${response_ru_string}
+    closeFullScreenAd()
  
     # Capturing variable values for assertions
     ${success} =    Get Value From Json    ${response_ru_json}    $.success
@@ -597,6 +619,8 @@ Retrieve user profile information
     Should Be Equal    ${user_id_str}    ${user_id}
     Should Be Equal    ${user_name_str}  ${user_name}
     Should Be Equal    ${user_email_str}    ${user_email}
+
+    closeFullScreenAd()
 
     # press back key and create a new request
     Press Keycode             4
@@ -646,12 +670,14 @@ Retrieve user profile information - Unauthorized
 
     # send request
     Click Element    id=com.ab.apiclient:id/btnSend
+    closeFullScreenAd()
 
     #save response
     Wait Until Element Is Visible    id=com.ab.apiclient:id/tvResult    ${TIMEOUT}
     ${response_ru_string}=    Get Text    id=com.ab.apiclient:id/tvResult
     Log    string response is: ${response_ru_string}
     ${response_ru_json}    Convert String To Json    ${response_ru_string}
+    closeFullScreenAd()
  
     # Capturing variable values for assertions
     ${success} =    Get Value From Json    ${response_ru_json}    $.success
@@ -666,6 +692,8 @@ Retrieve user profile information - Unauthorized
     Should Be True    ${success}    False
     Should Be Equal    ${status_str}    401
     Should Be Equal    ${message_str}    Access token is not valid or has expired, you will need to login
+
+    closeFullScreenAd()
 
     # press back key and create a new request
     Press Keycode             4
@@ -744,6 +772,7 @@ Update the user profile information
     
     # send request
     Click Element    id=com.ab.apiclient:id/btnSend
+    closeFullScreenAd()
 
     #save response
     Wait Until Element Is Visible    android=new UiSelector().text("Raw")    ${TIMEOUT}
@@ -752,6 +781,7 @@ Update the user profile information
     ${response_uu_string}=    Get Text    id=com.ab.apiclient:id/tvResult
     Log    string response is: ${response_uu_string}
     ${response_uu_json}    Convert String To Json    ${response_uu_string}
+    closeFullScreenAd()
  
     # Capturing variable values for assertions
     ${success} =    Get Value From Json    ${response_uu_json}    $.success
@@ -786,6 +816,8 @@ Update the user profile information
     Should Be Equal    ${user_email_str}    ${user_email}
     Should Be Equal    ${user_company_str}  ${updated_user_company}
     Should Be Equal    ${user_phone_str}    ${updated_user_phone}
+
+    closeFullScreenAd()
 
     # press back key and create a new request
     Press Keycode             4
@@ -864,12 +896,14 @@ Update the user profile information - Bad Request
     
     # send request
     Click Element    id=com.ab.apiclient:id/btnSend
+    closeFullScreenAd()
 
     #save response
     Wait Until Element Is Visible    id=com.ab.apiclient:id/tvResult    ${TIMEOUT}
     ${response_uu_string}=    Get Text    id=com.ab.apiclient:id/tvResult
     Log    string response is: ${response_uu_string}
     ${response_uu_json}    Convert String To Json    ${response_uu_string}
+    closeFullScreenAd()
  
     # Capturing variable values for assertions
     ${success} =    Get Value From Json    ${response_uu_json}    $.success
@@ -884,6 +918,8 @@ Update the user profile information - Bad Request
     Should Be True    ${success}    False
     Should Be Equal    ${status_str}    400
     Should Be Equal    ${message_str}    User name must be between 4 and 30 characters
+
+    closeFullScreenAd()
 
     # press back key and create a new request
     Press Keycode             4
@@ -960,14 +996,16 @@ Update the user profile information - Unauthorized
     Click Element    id=com.ab.apiclient:id/btnAdd
     Swipe By Percent    50    80    50    20    1000
     
-    # send request
+     # send request
     Click Element    id=com.ab.apiclient:id/btnSend
+    closeFullScreenAd()
 
     #save response
     Wait Until Element Is Visible    id=com.ab.apiclient:id/tvResult    ${TIMEOUT}
     ${response_uu_string}=    Get Text    id=com.ab.apiclient:id/tvResult
     Log    string response is: ${response_uu_string}
     ${response_uu_json}    Convert String To Json    ${response_uu_string}
+    closeFullScreenAd()
  
     # Capturing variable values for assertions
     ${success} =    Get Value From Json    ${response_uu_json}    $.success
@@ -982,6 +1020,8 @@ Update the user profile information - Unauthorized
     Should Be True    ${success}    False
     Should Be Equal    ${status_str}    401
     Should Be Equal    ${message_str}    Access token is not valid or has expired, you will need to login
+
+    closeFullScreenAd()
 
     # press back key and create a new request
     Press Keycode             4
@@ -1044,6 +1084,7 @@ Change a user\'s password
 
     # send request
     Click Element    id=com.ab.apiclient:id/btnSend
+    closeFullScreenAd()
 
     #save response
     Wait Until Element Is Visible    android=new UiSelector().text("Raw")    ${TIMEOUT}
@@ -1052,6 +1093,7 @@ Change a user\'s password
     ${response_cup_string}=    Get Text    id=com.ab.apiclient:id/tvResult
     Log    string response is: ${response_cup_string}
     ${response_cup_json}    Convert String To Json    ${response_cup_string}
+    closeFullScreenAd()
  
     # Capturing variable values for assertions
     ${success} =    Get Value From Json    ${response_cup_json}    $.success
@@ -1066,6 +1108,8 @@ Change a user\'s password
     Should Be True    ${success}    True
     Should Be Equal    ${status_str}    200
     Should Be Equal    ${message_str}    The password was successfully updated
+
+    closeFullScreenAd()
 
     # press back key and create a new request
     Press Keycode             4
@@ -1128,12 +1172,14 @@ Change a user\'s password - Bad Request
 
     # send request
     Click Element    id=com.ab.apiclient:id/btnSend
+    closeFullScreenAd()
 
     #save response
     Wait Until Element Is Visible    id=com.ab.apiclient:id/tvResult    ${TIMEOUT}
     ${response_cup_string}=    Get Text    id=com.ab.apiclient:id/tvResult
     Log    string response is: ${response_cup_string}
     ${response_cup_json}    Convert String To Json    ${response_cup_string}
+    closeFullScreenAd()
  
     # Capturing variable values for assertions
     ${success} =    Get Value From Json    ${response_cup_json}    $.success
@@ -1148,6 +1194,8 @@ Change a user\'s password - Bad Request
     Should Be True    ${success}    False
     Should Be Equal    ${status_str}    400
     Should Be Equal    ${message_str}    New password must be between 6 and 30 characters
+
+    closeFullScreenAd()
 
     # press back key and create a new request
     Press Keycode             4
@@ -1210,12 +1258,14 @@ Change a user\'s password - Unauthorized
 
     # send request
     Click Element    id=com.ab.apiclient:id/btnSend
+    closeFullScreenAd()
 
     #save response
     Wait Until Element Is Visible    id=com.ab.apiclient:id/tvResult    ${TIMEOUT}
     ${response_cup_string}=    Get Text    id=com.ab.apiclient:id/tvResult
     Log    string response is: ${response_cup_string}
     ${response_cup_json}    Convert String To Json    ${response_cup_string}
+    closeFullScreenAd()
  
     # Capturing variable values for assertions
     ${success} =    Get Value From Json    ${response_cup_json}    $.success
@@ -1230,6 +1280,8 @@ Change a user\'s password - Unauthorized
     Should Be True    ${success}    True
     Should Be Equal    ${status_str}    401
     Should Be Equal    ${message_str}    Access token is not valid or has expired, you will need to login
+
+    closeFullScreenAd()
 
     # press back key and create a new request
     Press Keycode             4
@@ -1268,8 +1320,9 @@ Log out a user via API
     addAcceptHeader()
     addTokenHeader(${randomNumber})
 
-    # send request
+     # send request
     Click Element    id=com.ab.apiclient:id/btnSend
+    closeFullScreenAd()
 
     #save response
     Wait Until Element Is Visible    android=new UiSelector().text("Raw")    ${TIMEOUT}
@@ -1278,6 +1331,7 @@ Log out a user via API
     ${response_lou_string}=    Get Text    id=com.ab.apiclient:id/tvResult    ${TIMEOUT}
     Log    string response is: ${response_lou_string}
     ${response_lou_json}    Convert String To Json    ${response_lou_string}
+    closeFullScreenAd()
  
     # Capturing variable values for assertions
     ${success} =    Get Value From Json    ${response_lou_json}    $.success
@@ -1292,6 +1346,8 @@ Log out a user via API
     Should Be True    ${success}    True
     Should Be Equal    ${status_str}    200
     Should Be Equal    ${message_str}    User has been successfully logged out
+
+    closeFullScreenAd()
 
     # press back key and create a new request
     Press Keycode             4
@@ -1333,12 +1389,14 @@ Log out a user via API - Unauthorized
 
     # send request
     Click Element    id=com.ab.apiclient:id/btnSend
+    closeFullScreenAd()
 
     #save response
     Wait Until Element Is Visible    id=com.ab.apiclient:id/tvResult    ${TIMEOUT}
     ${response_lou_string}=    Get Text    id=com.ab.apiclient:id/tvResult    ${TIMEOUT}
     Log    string response is: ${response_lou_string}
     ${response_lou_json}    Convert String To Json    ${response_lou_string}
+    closeFullScreenAd()
  
     # Capturing variable values for assertions
     ${success} =    Get Value From Json    ${response_lou_json}    $.success
@@ -1353,6 +1411,8 @@ Log out a user via API - Unauthorized
     Should Be True    ${success}    False
     Should Be Equal    ${status_str}    401
     Should Be Equal    ${message_str}    Access token is not valid or has expired, you will need to login
+
+    closeFullScreenAd()
 
     # press back key and create a new request
     Press Keycode             4
@@ -1394,6 +1454,7 @@ Delete user account
 
     # send request
     Click Element    id=com.ab.apiclient:id/btnSend
+    closeFullScreenAd()
 
     #save response
     Wait Until Element Is Visible    android=new UiSelector().text("Raw")    ${TIMEOUT}
@@ -1402,6 +1463,7 @@ Delete user account
     ${response_du_string}=    Get Text    id=com.ab.apiclient:id/tvResult
     Log    string response is: ${response_du_string}
     ${response_du_json}    Convert String To Json    ${response_du_string}
+    closeFullScreenAd()
  
     # Capturing variable values for assertions
     ${success} =    Get Value From Json    ${response_du_json}    $.success
@@ -1416,6 +1478,8 @@ Delete user account
     Should Be True    ${success}    True
     Should Be Equal    ${status_str}    200
     Should Be Equal    ${message_str}    Account successfully deleted
+
+    closeFullScreenAd()
 
     # press back key and create a new request
     Press Keycode             4
@@ -1454,12 +1518,14 @@ Delete user account - Unauthorized
 
     # send request
     Click Element    id=com.ab.apiclient:id/btnSend
+    closeFullScreenAd()
 
     #save response
     Wait Until Element Is Visible    id=com.ab.apiclient:id/tvResult    ${TIMEOUT}
     ${response_du_string}=    Get Text    id=com.ab.apiclient:id/tvResult
     Log    string response is: ${response_du_string}
     ${response_du_json}    Convert String To Json    ${response_du_string}
+    closeFullScreenAd()
  
     # Capturing variable values for assertions
     ${success} =    Get Value From Json    ${response_du_json}    $.success
@@ -1475,6 +1541,8 @@ Delete user account - Unauthorized
     Should Be Equal    ${status_str}    401
     Should Be Equal    ${message_str}    Access token is not valid or has expired, you will need to login
 
+    closeFullScreenAd()
+    
     # press back key and create a new request
     Press Keycode             4
     Wait Until Element Is Visible    xpath=//android.widget.ImageButton    ${TIMEOUT}

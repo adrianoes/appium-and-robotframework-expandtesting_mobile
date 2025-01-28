@@ -106,3 +106,4 @@ Check then both to add both options in context menu.
 - Disable wifi when the apk presents connections problems.
 - Use the versions mentioned it this documentation. They have been checked already.
 - noReset and autoDismissAlerts capabilities were added to start the apk normaly, avoiding pop ups.
+- The apk in test is a commercial one. Random ads might appear. If so, stop the test execution when it happens, let the android studio virtual device as it is (with the screen showing the ad), quit the Appium Inspector session and create a new one. Refresh the source code, click in the closing ad button, copy its selector and code it in the most probable places according to its appearance history so the ad will be probably closed if it appears again.
