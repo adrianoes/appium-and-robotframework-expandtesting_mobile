@@ -65,11 +65,7 @@ Check api healt
     #save response
     Wait Until Element Is Visible    android=new UiSelector().text("Raw")    ${TIMEOUT}
     Click Element    android=new UiSelector().text("Raw")    
-    ${element_visible}    Run Keyword And Return Status    Wait Until Element Is Visible    id=com.ab.apiclient:id/tvResult    timeout=20
-    IF    not ${element_visible}
-        closeFullScreenAd()
-        Wait Until Element Is Visible    id=com.ab.apiclient:id/tvResult    timeout=10
-    END
+    waitForResultElementAndCloseAd()
     ${response_ch_string}=    Get Text    id=com.ab.apiclient:id/tvResult    ${TIMEOUT}
     Log    string response is: ${response_ch_string}
     ${response_ch_json}    Convert String To Json    ${response_ch_string}

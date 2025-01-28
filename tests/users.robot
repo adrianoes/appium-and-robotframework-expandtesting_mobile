@@ -101,13 +101,8 @@ Creates a new user account
     #save response
     # xpath=//android.widget.TextView[@text="Raw"]
     Wait Until Element Is Visible    android=new UiSelector().text("Raw")    ${TIMEOUT}
-    Click Element    android=new UiSelector().text("Raw")
-    
-    ${element_visible}    Run Keyword And Return Status    Wait Until Element Is Visible    id=com.ab.apiclient:id/tvResult    timeout=20
-    IF    not ${element_visible}
-        closeFullScreenAd()
-        Wait Until Element Is Visible    id=com.ab.apiclient:id/tvResult    timeout=10
-    END
+    Click Element    android=new UiSelector().text("Raw")    
+    waitForResultElementAndCloseAd()
     ${response_cu_string}=    Get Text    id=com.ab.apiclient:id/tvResult
     Log    string response is: ${response_cu_string}
     ${response_cu_json}    Convert String To Json    ${response_cu_string}
@@ -228,11 +223,7 @@ Creates a new user account - Bad request
     Click Element    id=com.ab.apiclient:id/btnSend
     
     #save response
-    ${element_visible}    Run Keyword And Return Status    Wait Until Element Is Visible    id=com.ab.apiclient:id/tvResult    timeout=20
-    IF    not ${element_visible}
-        closeFullScreenAd()
-        Wait Until Element Is Visible    id=com.ab.apiclient:id/tvResult    timeout=10
-    END
+    waitForResultElementAndCloseAd()
     ${response_cu_string}=    Get Text    id=com.ab.apiclient:id/tvResult
     Log    string response is: ${response_cu_string}
     ${response_cu_json}    Convert String To Json    ${response_cu_string}
@@ -315,12 +306,7 @@ Log in as an existing user
     #save response
     Wait Until Element Is Visible    android=new UiSelector().text("Raw")    ${TIMEOUT}
     Click Element    android=new UiSelector().text("Raw")
-    
-    ${element_visible}    Run Keyword And Return Status    Wait Until Element Is Visible    id=com.ab.apiclient:id/tvResult    timeout=20
-    IF    not ${element_visible}
-        closeFullScreenAd()
-        Wait Until Element Is Visible    id=com.ab.apiclient:id/tvResult    timeout=10
-    END
+    waitForResultElementAndCloseAd()
     ${response_lu_string}=    Get Text    id=com.ab.apiclient:id/tvResult
     Log    string response is: ${response_lu_string}
     ${response_lu_json}    Convert String To Json    ${response_lu_string}
@@ -423,11 +409,7 @@ Log in as an existing user - Bad request
     Click Element    id=com.ab.apiclient:id/btnSend
     
     #save response
-    ${element_visible}    Run Keyword And Return Status    Wait Until Element Is Visible    id=com.ab.apiclient:id/tvResult    timeout=20
-    IF    not ${element_visible}
-        closeFullScreenAd()
-        Wait Until Element Is Visible    id=com.ab.apiclient:id/tvResult    timeout=10
-    END
+    waitForResultElementAndCloseAd()
     ${response_lu_string}=    Get Text    id=com.ab.apiclient:id/tvResult
     Log    string response is: ${response_lu_string}
     ${response_lu_json}    Convert String To Json    ${response_lu_string}
@@ -513,11 +495,7 @@ Log in as an existing user - Unauthorized
     Click Element    id=com.ab.apiclient:id/btnSend
     
     #save response
-    ${element_visible}    Run Keyword And Return Status    Wait Until Element Is Visible    id=com.ab.apiclient:id/tvResult    timeout=20
-    IF    not ${element_visible}
-        closeFullScreenAd()
-        Wait Until Element Is Visible    id=com.ab.apiclient:id/tvResult    timeout=10
-    END
+    waitForResultElementAndCloseAd()
     ${response_lu_string}=    Get Text    id=com.ab.apiclient:id/tvResult
     Log    string response is: ${response_lu_string}
     ${response_lu_json}    Convert String To Json    ${response_lu_string}
@@ -588,13 +566,8 @@ Retrieve user profile information
     
     #save response
     Wait Until Element Is Visible    android=new UiSelector().text("Raw")    ${TIMEOUT}
-    Click Element    android=new UiSelector().text("Raw")
-    
-    ${element_visible}    Run Keyword And Return Status    Wait Until Element Is Visible    id=com.ab.apiclient:id/tvResult    timeout=20
-    IF    not ${element_visible}
-        closeFullScreenAd()
-        Wait Until Element Is Visible    id=com.ab.apiclient:id/tvResult    timeout=10
-    END
+    Click Element    android=new UiSelector().text("Raw") 
+    waitForResultElementAndCloseAd()
     ${response_ru_string}=    Get Text    id=com.ab.apiclient:id/tvResult
     Log    string response is: ${response_ru_string}
     ${response_ru_json}    Convert String To Json    ${response_ru_string}
@@ -675,11 +648,7 @@ Retrieve user profile information - Unauthorized
     Click Element    id=com.ab.apiclient:id/btnSend
     
     #save response
-    ${element_visible}    Run Keyword And Return Status    Wait Until Element Is Visible    id=com.ab.apiclient:id/tvResult    timeout=20
-    IF    not ${element_visible}
-        closeFullScreenAd()
-        Wait Until Element Is Visible    id=com.ab.apiclient:id/tvResult    timeout=10
-    END
+    waitForResultElementAndCloseAd()
     ${response_ru_string}=    Get Text    id=com.ab.apiclient:id/tvResult
     Log    string response is: ${response_ru_string}
     ${response_ru_json}    Convert String To Json    ${response_ru_string}
@@ -779,12 +748,7 @@ Update the user profile information
     #save response
     Wait Until Element Is Visible    android=new UiSelector().text("Raw")    ${TIMEOUT}
     Click Element    android=new UiSelector().text("Raw")
-    
-    ${element_visible}    Run Keyword And Return Status    Wait Until Element Is Visible    id=com.ab.apiclient:id/tvResult    timeout=20
-    IF    not ${element_visible}
-        closeFullScreenAd()
-        Wait Until Element Is Visible    id=com.ab.apiclient:id/tvResult    timeout=10
-    END
+    waitForResultElementAndCloseAd()
     ${response_uu_string}=    Get Text    id=com.ab.apiclient:id/tvResult
     Log    string response is: ${response_uu_string}
     ${response_uu_json}    Convert String To Json    ${response_uu_string}
@@ -902,11 +866,7 @@ Update the user profile information - Bad Request
     Click Element    id=com.ab.apiclient:id/btnSend
     
     #save response
-    ${element_visible}    Run Keyword And Return Status    Wait Until Element Is Visible    id=com.ab.apiclient:id/tvResult    timeout=20
-    IF    not ${element_visible}
-        closeFullScreenAd()
-        Wait Until Element Is Visible    id=com.ab.apiclient:id/tvResult    timeout=10
-    END
+    waitForResultElementAndCloseAd()
     ${response_uu_string}=    Get Text    id=com.ab.apiclient:id/tvResult
     Log    string response is: ${response_uu_string}
     ${response_uu_json}    Convert String To Json    ${response_uu_string}
@@ -1004,11 +964,7 @@ Update the user profile information - Unauthorized
     Click Element    id=com.ab.apiclient:id/btnSend
     
     #save response
-    ${element_visible}    Run Keyword And Return Status    Wait Until Element Is Visible    id=com.ab.apiclient:id/tvResult    timeout=20
-    IF    not ${element_visible}
-        closeFullScreenAd()
-        Wait Until Element Is Visible    id=com.ab.apiclient:id/tvResult    timeout=10
-    END
+    waitForResultElementAndCloseAd()
     ${response_uu_string}=    Get Text    id=com.ab.apiclient:id/tvResult
     Log    string response is: ${response_uu_string}
     ${response_uu_json}    Convert String To Json    ${response_uu_string}
@@ -1092,12 +1048,7 @@ Change a user\'s password
     #save response
     Wait Until Element Is Visible    android=new UiSelector().text("Raw")    ${TIMEOUT}
     Click Element    android=new UiSelector().text("Raw")
-    
-    ${element_visible}    Run Keyword And Return Status    Wait Until Element Is Visible    id=com.ab.apiclient:id/tvResult    timeout=20
-    IF    not ${element_visible}
-        closeFullScreenAd()
-        Wait Until Element Is Visible    id=com.ab.apiclient:id/tvResult    timeout=10
-    END
+    waitForResultElementAndCloseAd()
     ${response_cup_string}=    Get Text    id=com.ab.apiclient:id/tvResult
     Log    string response is: ${response_cup_string}
     ${response_cup_json}    Convert String To Json    ${response_cup_string}
@@ -1179,11 +1130,7 @@ Change a user\'s password - Bad Request
     Click Element    id=com.ab.apiclient:id/btnSend
     
     #save response
-    ${element_visible}    Run Keyword And Return Status    Wait Until Element Is Visible    id=com.ab.apiclient:id/tvResult    timeout=20
-    IF    not ${element_visible}
-        closeFullScreenAd()
-        Wait Until Element Is Visible    id=com.ab.apiclient:id/tvResult    timeout=10
-    END
+    waitForResultElementAndCloseAd()
     ${response_cup_string}=    Get Text    id=com.ab.apiclient:id/tvResult
     Log    string response is: ${response_cup_string}
     ${response_cup_json}    Convert String To Json    ${response_cup_string}
@@ -1265,11 +1212,7 @@ Change a user\'s password - Unauthorized
     Click Element    id=com.ab.apiclient:id/btnSend
     
     #save response
-    ${element_visible}    Run Keyword And Return Status    Wait Until Element Is Visible    id=com.ab.apiclient:id/tvResult    timeout=20
-    IF    not ${element_visible}
-        closeFullScreenAd()
-        Wait Until Element Is Visible    id=com.ab.apiclient:id/tvResult    timeout=10
-    END
+    waitForResultElementAndCloseAd()
     ${response_cup_string}=    Get Text    id=com.ab.apiclient:id/tvResult
     Log    string response is: ${response_cup_string}
     ${response_cup_json}    Convert String To Json    ${response_cup_string}
@@ -1331,12 +1274,7 @@ Log out a user via API
     #save response
     Wait Until Element Is Visible    android=new UiSelector().text("Raw")    ${TIMEOUT}
     Click Element    android=new UiSelector().text("Raw")
-    
-    ${element_visible}    Run Keyword And Return Status    Wait Until Element Is Visible    id=com.ab.apiclient:id/tvResult    timeout=20
-    IF    not ${element_visible}
-        closeFullScreenAd()
-        Wait Until Element Is Visible    id=com.ab.apiclient:id/tvResult    timeout=10
-    END
+    waitForResultElementAndCloseAd()
     ${response_lou_string}=    Get Text    id=com.ab.apiclient:id/tvResult    ${TIMEOUT}
     Log    string response is: ${response_lou_string}
     ${response_lou_json}    Convert String To Json    ${response_lou_string}
@@ -1397,11 +1335,7 @@ Log out a user via API - Unauthorized
     Click Element    id=com.ab.apiclient:id/btnSend
     
     #save response
-    ${element_visible}    Run Keyword And Return Status    Wait Until Element Is Visible    id=com.ab.apiclient:id/tvResult    timeout=20
-    IF    not ${element_visible}
-        closeFullScreenAd()
-        Wait Until Element Is Visible    id=com.ab.apiclient:id/tvResult    timeout=10
-    END
+    waitForResultElementAndCloseAd()
     ${response_lou_string}=    Get Text    id=com.ab.apiclient:id/tvResult    ${TIMEOUT}
     Log    string response is: ${response_lou_string}
     ${response_lou_json}    Convert String To Json    ${response_lou_string}
@@ -1464,12 +1398,7 @@ Delete user account
     #save response
     Wait Until Element Is Visible    android=new UiSelector().text("Raw")    ${TIMEOUT}
     Click Element    android=new UiSelector().text("Raw")
-    
-    ${element_visible}    Run Keyword And Return Status    Wait Until Element Is Visible    id=com.ab.apiclient:id/tvResult    timeout=20
-    IF    not ${element_visible}
-        closeFullScreenAd()
-        Wait Until Element Is Visible    id=com.ab.apiclient:id/tvResult    timeout=10
-    END
+    waitForResultElementAndCloseAd()
     ${response_du_string}=    Get Text    id=com.ab.apiclient:id/tvResult
     Log    string response is: ${response_du_string}
     ${response_du_json}    Convert String To Json    ${response_du_string}
@@ -1527,11 +1456,7 @@ Delete user account - Unauthorized
     Click Element    id=com.ab.apiclient:id/btnSend
     
     #save response
-    ${element_visible}    Run Keyword And Return Status    Wait Until Element Is Visible    id=com.ab.apiclient:id/tvResult    timeout=20
-    IF    not ${element_visible}
-        closeFullScreenAd()
-        Wait Until Element Is Visible    id=com.ab.apiclient:id/tvResult    timeout=10
-    END
+    waitForResultElementAndCloseAd()
     ${response_du_string}=    Get Text    id=com.ab.apiclient:id/tvResult
     Log    string response is: ${response_du_string}
     ${response_du_json}    Convert String To Json    ${response_du_string}
