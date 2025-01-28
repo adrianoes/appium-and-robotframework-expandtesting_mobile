@@ -40,6 +40,7 @@ Check api healt
     ...                 appWaitDuration=20000
     ...                 uiautomator2ServerInstallTimeout=60000
     ...                 noReset=true
+    ...                 autoDismissAlerts=true
     # ...                 avdArgs=--dns-server=8.8.8.8,8.8.4.4
     # ...                 newCommandTimeout=300
     # ...                 noReset=true
