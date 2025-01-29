@@ -49,7 +49,6 @@ Check then both to add both options in context menu.
 - Open your terminal in your project directory and execute ```npx appium-doctor --android``` to run Appium Doctor and check Appium instalation status.
 - Open your terminal in your project directory and execute ```npx appium driver install uiautomator2``` to install drivers for automationName and platformName capabilities.
 - See [Appium Inspector download page](https://github.com/appium/appium-inspector/releases), download and install it. Configure capabilities as below and save it:
-
   ```
   {
     "platformName": "Android",
@@ -63,7 +62,8 @@ Check then both to add both options in context menu.
     "appium:appWaitActivity": "com.ab.apiclient.ui.Splash,com.ab.apiclient.*,com.ab.apiclient.ui.MainActivity",
     "appium:appWaitDuration": 20000,
     "appium:noReset": true,
-    "appium:autoDismissAlerts": true
+    "appium:autoDismissAlerts": true,
+    "appium:uiautomator2ServerInstallTimeout": 60000
   }
   ```  
 - Open windows propmpt as admin and execute ```pip install robotframework``` to install Robot Framework.
@@ -104,6 +104,3 @@ Check then both to add both options in context menu.
 
 - UI and API tests to send password reset link to user's email and API tests to verify a password reset token and reset a user's password must be tested manually as they rely on e-mail verification. 
 - Disable wifi when the apk presents connections problems.
-- Use the versions mentioned it this documentation. They have been checked already.
-- noReset and autoDismissAlerts capabilities were added to start the apk normaly, avoiding pop ups.
-- The apk in test is a commercial one. Random ads might appear. If so, stop the test execution when it happens, let the android studio virtual device as it is (with the screen showing the ad), quit the Appium Inspector session and create a new one. In the Appium Inspector working on the new session, refresh the source code, click in the closing ad button, copy its selector and code it in the most probable places according to its appearance history so the ad will be probably closed if it appears again.

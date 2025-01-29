@@ -22,6 +22,7 @@ ${ADB_TIMEOUT}    60000
 ${AUTO_GRANT_PERMISSIONS}    true
 ${PLATFORM_VERSION}    10.0
 ${DEVICE_NAME}    Pixel_4_API_29
+# ${DEVICE_NAME}    Pixel_4_xl_API_29
 ${TIMEOUT}            30
 
 *** Test Cases ***
@@ -39,8 +40,8 @@ Check api healt
     ...                 appWaitActivity=com.ab.apiclient.ui.Splash,com.ab.apiclient.*,com.ab.apiclient.ui.MainActivity
     ...                 appWaitDuration=20000
     ...                 uiautomator2ServerInstallTimeout=60000
-    ...                 noReset=true
-    ...                 autoDismissAlerts=true
+    # ...                 noReset=true
+    # ...                 autoDismissAlerts=true
     # ...                 avdArgs=--dns-server=8.8.8.8,8.8.4.4
     # ...                 newCommandTimeout=300
     # ...                 noReset=true

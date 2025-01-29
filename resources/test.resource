@@ -21,6 +21,7 @@ ${ADB_TIMEOUT}    60000
 ${AUTO_GRANT_PERMISSIONS}    true
 ${PLATFORM_VERSION}    10.0
 ${DEVICE_NAME}    Pixel_4_API_29
+# ${DEVICE_NAME}    Pixel_4_xl_API_29
 ${TIMEOUT}            30
 
 *** Keywords ***
@@ -196,8 +197,8 @@ createUser(${randomNumber})
     ...                 appWaitActivity=com.ab.apiclient.ui.Splash,com.ab.apiclient.*,com.ab.apiclient.ui.MainActivity
     ...                 appWaitDuration=20000
     ...                 uiautomator2ServerInstallTimeout=60000
-    ...                 noReset=true
-    ...                 autoDismissAlerts=true
+    # ...                 noReset=true
+    # ...                 autoDismissAlerts=true
     # ...                 avdArgs=--dns-server=8.8.8.8,8.8.4.4
     # ...                 newCommandTimeout=300
     # ...                 noReset=true
@@ -471,8 +472,9 @@ createANewNote(${randomNumber})
     Click Element    xpath=//android.widget.CheckedTextView[@resource-id="com.ab.apiclient:id/design_menu_item_text" and @text="New Request"]
 
 closeFullScreenAd()
-    ${exists}=    Run Keyword And Return Status    Wait Until Element Is Visible    android=new UiSelector().text("Close")    timeout=5
-    Run Keyword If    ${exists}    Click Element    android=new UiSelector().text("Close")
+    # ${exists}=    Run Keyword And Return Status    Wait Until Element Is Visible    android=new UiSelector().className("android.widget.Button")    timeout=5
+    # Run Keyword If    ${exists}    Click Element    android=new UiSelector().className("android.widget.Button")
+    Tap With Positions    1017    237
 
 waitForResultElementAndCloseAd()
     ${element_visible}    Run Keyword And Return Status    Wait Until Element Is Visible    id=com.ab.apiclient:id/tvResult    timeout=20
