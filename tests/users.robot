@@ -28,6 +28,7 @@ ${TIMEOUT}            60
 *** Test Cases ***
     
 Creates a new user account
+    [Tags]    USERS
     ${randomNumber}    FakerLibrary.creditCardNumber
     ${random_letter}    FakerLibrary.Random Lowercase Letter
     ${random_email}    FakerLibrary.Email
@@ -152,6 +153,7 @@ Creates a new user account
     deleteJsonFile(${randomNumber})
 
 Creates a new user account - Bad request
+    [Tags]    USERS    NEGATIVE
     ${randomNumber}    FakerLibrary.creditCardNumber
     ${random_letter}    FakerLibrary.Random Lowercase Letter
     ${random_email}    FakerLibrary.Email
@@ -254,6 +256,7 @@ Creates a new user account - Bad request
     [Teardown]    Close Application
 
 Log in as an existing user
+    [Tags]    USERS
     ${randomNumber}    FakerLibrary.creditCardNumber
     createUser(${randomNumber})
     ${data}    Load Json From File    tests/fixtures/testdata-${randomNumber}.json
@@ -359,6 +362,7 @@ Log in as an existing user
     deleteJsonFile(${randomNumber})
 
 Log in as an existing user - Bad request
+    [Tags]    USERS    NEGATIVE
     ${randomNumber}    FakerLibrary.creditCardNumber
     createUser(${randomNumber})
     ${data}    Load Json From File    tests/fixtures/testdata-${randomNumber}.json
@@ -445,6 +449,7 @@ Log in as an existing user - Bad request
     deleteJsonFile(${randomNumber})
 
 Log in as an existing user - Unauthorized
+    [Tags]    USERS    NEGATIVE
     ${randomNumber}    FakerLibrary.creditCardNumber
     createUser(${randomNumber})
     ${data}    Load Json From File    tests/fixtures/testdata-${randomNumber}.json
@@ -531,6 +536,7 @@ Log in as an existing user - Unauthorized
     deleteJsonFile(${randomNumber})
 
 Retrieve user profile information
+    [Tags]    USERS
     ${randomNumber}    FakerLibrary.creditCardNumber
     createUser(${randomNumber})
     logInUser(${randomNumber})
@@ -614,6 +620,7 @@ Retrieve user profile information
     deleteJsonFile(${randomNumber})
 
 Retrieve user profile information - Unauthorized
+    [Tags]    USERS    NEGATIVE
     ${randomNumber}    FakerLibrary.creditCardNumber
     createUser(${randomNumber})
     logInUser(${randomNumber})
@@ -683,6 +690,7 @@ Retrieve user profile information - Unauthorized
     deleteJsonFile(${randomNumber})
 
 Update the user profile information
+    [Tags]    USERS
     ${randomNumber}    FakerLibrary.creditCardNumber
     createUser(${randomNumber})
     logInUser(${randomNumber})
@@ -803,6 +811,7 @@ Update the user profile information
     deleteJsonFile(${randomNumber})
 
 Update the user profile information - Bad Request
+    [Tags]    USERS    NEGATIVE
     ${randomNumber}    FakerLibrary.creditCardNumber
     createUser(${randomNumber})
     logInUser(${randomNumber})
@@ -901,6 +910,7 @@ Update the user profile information - Bad Request
     deleteJsonFile(${randomNumber})
 
 Update the user profile information - Unauthorized
+    [Tags]    USERS    NEGATIVE
     ${randomNumber}    FakerLibrary.creditCardNumber
     createUser(${randomNumber})
     logInUser(${randomNumber})
@@ -999,6 +1009,7 @@ Update the user profile information - Unauthorized
     deleteJsonFile(${randomNumber})
 
 Change a user\'s password
+    [Tags]    USERS
     ${randomNumber}    FakerLibrary.creditCardNumber
     createUser(${randomNumber})
     logInUser(${randomNumber})
@@ -1083,6 +1094,7 @@ Change a user\'s password
     deleteJsonFile(${randomNumber})
 
 Change a user\'s password - Bad Request
+    [Tags]    USERS    NEGATIVE
     ${randomNumber}    FakerLibrary.creditCardNumber
     createUser(${randomNumber})
     logInUser(${randomNumber})
@@ -1165,6 +1177,7 @@ Change a user\'s password - Bad Request
     deleteJsonFile(${randomNumber})
 
 Change a user\'s password - Unauthorized
+    [Tags]    USERS    NEGATIVE
     ${randomNumber}    FakerLibrary.creditCardNumber
     createUser(${randomNumber})
     logInUser(${randomNumber})
@@ -1247,6 +1260,7 @@ Change a user\'s password - Unauthorized
     deleteJsonFile(${randomNumber})
 
 Log out a user via API
+    [Tags]    USERS
     ${randomNumber}    FakerLibrary.creditCardNumber
     createUser(${randomNumber})
     logInUser(${randomNumber})
@@ -1310,6 +1324,7 @@ Log out a user via API
     deleteJsonFile(${randomNumber})
 
 Log out a user via API - Unauthorized
+    [Tags]    USERS    NEGATIVE
     ${randomNumber}    FakerLibrary.creditCardNumber
     createUser(${randomNumber})
     logInUser(${randomNumber})
@@ -1371,6 +1386,7 @@ Log out a user via API - Unauthorized
     deleteJsonFile(${randomNumber})
 
 Delete user account
+    [Tags]    USERS
     ${randomNumber}    FakerLibrary.creditCardNumber
     createUser(${randomNumber})
     logInUser(${randomNumber})
@@ -1431,6 +1447,7 @@ Delete user account
     deleteJsonFile(${randomNumber})
 
 Delete user account - Unauthorized
+    [Tags]    USERS    NEGATIVE
     ${randomNumber}    FakerLibrary.creditCardNumber
     createUser(${randomNumber})
     logInUser(${randomNumber})

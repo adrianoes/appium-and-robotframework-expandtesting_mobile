@@ -28,6 +28,7 @@ ${TIMEOUT}            30
 *** Test Cases ***
     
 Check api healt
+    [Tags]    HEALTH
     Open Application    ${APPIUM_URL}
     ...                 platformName=${PLATFORM_NAME} 
     ...                 platformVersion=${PLATFORM_VERSION}

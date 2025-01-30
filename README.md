@@ -79,7 +79,12 @@ Check then both to add both options in context menu.
 # Tests:
 
 - Execute ```robot -d ./results tests``` to run all tests in headless mode and store results in separated folder.
-- Hit :point_right: **Testing** button on left side bar in VSC and choose the tests you want to execute.
+- Execute ```robot -d ./results .\tests\users.robot``` to run all the tests in the users.robot suite in headless mode and store results in separated folder.
+- Execute ```robot -d ./results -t "Change a user\'s password" tests/users.robot``` to run Change a user's password test case inside users.robot suite and store results in separated folder.
+- Execute ```robot -d results -i NEGATIVE tests``` to run the tests tagged with NEGATIVE tag and store results in separated folder.
+- Execute ```robot -d results -e NEGATIVE -e USERS .\tests\notes.robot``` to run all the tests but the ones tagged with NEGATIVE, USERS or both tags inside notes.robot suite and store results in separated folder.
+- Execute ```robot -d results -i HEALTH -i USERS .\tests``` to run all the tests tagged with NOTES, USERS or both tags inside tests directory and store results in separated folder.
+- Hit :point_right:**Testing** button on left side bar in VSC and choose the tests to execute.
 
 # Support:
 

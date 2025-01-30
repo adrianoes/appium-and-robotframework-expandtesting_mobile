@@ -27,6 +27,7 @@ ${TIMEOUT}            60
 *** Test Cases ***
     
 Creates a new note
+    [Tags]    NOTES
     ${randomNumber}    FakerLibrary.creditCardNumber
     createUser(${randomNumber})
     logInUser(${randomNumber})
@@ -149,6 +150,7 @@ Creates a new note
     deleteJsonFile(${randomNumber})
 
 Creates a new note - Bad request
+    [Tags]    NOTES    NEGATIVE
     ${randomNumber}    FakerLibrary.creditCardNumber
     createUser(${randomNumber})
     logInUser(${randomNumber})
@@ -237,6 +239,7 @@ Creates a new note - Bad request
     deleteJsonFile(${randomNumber})
 
 Creates a new note - Unauthorized
+    [Tags]    NOTES    NEGATIVE
     ${randomNumber}    FakerLibrary.creditCardNumber
     createUser(${randomNumber})
     logInUser(${randomNumber})
@@ -326,6 +329,7 @@ Creates a new note - Unauthorized
     deleteJsonFile(${randomNumber})
 
 Get all notes
+    [Tags]    NOTES
     ${randomNumber}    FakerLibrary.creditCardNumber
     createUser(${randomNumber})
     logInUser(${randomNumber})
@@ -562,6 +566,7 @@ Get all notes
     deleteJsonFile(${randomNumber})
 
 Get note by ID
+    [Tags]    NOTES
     ${randomNumber}    FakerLibrary.creditCardNumber
     createUser(${randomNumber})
     logInUser(${randomNumber})
@@ -825,6 +830,7 @@ Get note by ID
 #     deleteJsonFile(${randomNumber})
 
 Update the completed status of a note
+    [Tags]    NOTES
     ${randomNumber}    FakerLibrary.creditCardNumber
     createUser(${randomNumber})
     logInUser(${randomNumber})
@@ -954,6 +960,7 @@ Update the completed status of a note
     deleteJsonFile(${randomNumber})
 
 Update the completed status of a note - Bad request
+    [Tags]    NOTES    NEGATIVE
     ${randomNumber}    FakerLibrary.creditCardNumber
     createUser(${randomNumber})
     logInUser(${randomNumber})
@@ -1031,6 +1038,7 @@ Update the completed status of a note - Bad request
     deleteJsonFile(${randomNumber})
 
 Update the completed status of a note - Unauthorized
+    [Tags]    NOTES    NEGATIVE
     ${randomNumber}    FakerLibrary.creditCardNumber
     createUser(${randomNumber})
     logInUser(${randomNumber})
@@ -1108,6 +1116,7 @@ Update the completed status of a note - Unauthorized
     deleteJsonFile(${randomNumber})
 
 Delete a note by ID
+    [Tags]    NOTES
     ${randomNumber}    FakerLibrary.creditCardNumber
     createUser(${randomNumber})
     logInUser(${randomNumber})
@@ -1174,6 +1183,7 @@ Delete a note by ID
     deleteJsonFile(${randomNumber})
 
 Delete a note by ID - Bad request
+    [Tags]    NOTES    NEGATIVE
     ${randomNumber}    FakerLibrary.creditCardNumber
     createUser(${randomNumber})
     logInUser(${randomNumber})
@@ -1238,6 +1248,7 @@ Delete a note by ID - Bad request
     deleteJsonFile(${randomNumber})
 
 Delete a note by ID - Unauthorizedt
+    [Tags]    NOTES    NEGATIVE
     ${randomNumber}    FakerLibrary.creditCardNumber
     createUser(${randomNumber})
     logInUser(${randomNumber})
