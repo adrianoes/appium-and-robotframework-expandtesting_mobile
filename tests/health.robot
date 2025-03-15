@@ -22,7 +22,6 @@ ${ADB_TIMEOUT}    60000
 ${AUTO_GRANT_PERMISSIONS}    true
 ${PLATFORM_VERSION}    10.0
 ${DEVICE_NAME}    Pixel_4_API_29
-# ${DEVICE_NAME}    Pixel_4_xl_API_29
 ${TIMEOUT}            30
 
 *** Test Cases ***
