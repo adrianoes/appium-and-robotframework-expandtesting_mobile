@@ -1,4 +1,4 @@
-# appium-expandtesting_UI
+# appium-and-robotframework-expandtesting_mobile
 
 UI testing in ApiClient apk using [expandtesting](https://practice.expandtesting.com/notes/app/). This project contains basic examples on how to use Appium and Robot Framework to test UI tests. Good practices such as hooks, custom commands and tags, among others, are used. All the necessary support documentation to develop this project is placed here. 
 
@@ -55,7 +55,7 @@ Check then both to add both options in context menu.
     "appium:platformVersion": "10.0",
     "appium:deviceName": "Pixel_4_API_29",
     "appium:automationName": "UIAutomator2",
-    "appium:app": "C:\\appium-expandtesting_UI\\apps\\apiClient.apk",
+    "appium:app": "C:\\appium-and-robotframework-expandtesting_mobile\\apps\\apiClient.apk",
     "appium:adbExecTimeout": 120000,
     "appium:autoGrantPermissions": true,
     "appium:appActivity": "com.ab.apiclient.ui.Splash",
